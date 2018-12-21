@@ -1,0 +1,13 @@
+﻿@import '~nativescript-theme-core/css/core.light.css';
+
+.image {
+  height: 50;
+  width: 50;
+}
+
+.label {
+  color: #fff;
+  font-size: 20;
+  margin: 4;
+  vertical-align: middle;
+}

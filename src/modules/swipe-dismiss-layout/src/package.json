@@ -1,0 +1,7 @@
+{
+  "name": "swipe-dismiss-frame-layout",
+  "version": "0.1.0",
+  "description": "Layout for Wear OS apps built with NativeScript that implements the SwipeDismissFrameLayout.",
+  "main": "index",
+  "typings": "index.d.ts"
+}

@@ -1,0 +1,22 @@
+﻿﻿# generated files
+.vs
+.vs/
+.sln
+*.sln
+demo/
+screens/
+node_modules/
+typings/
+
+.travis.yml
+package-lock.json
+*.ts
+!*.d.ts
+*.map
+tsconfig.json
+scripts/*
+platforms/android/*
+!platforms/android/include.gradle
+!platforms/android/*.aar
+!platforms/android/*.jar
+references.d.ts

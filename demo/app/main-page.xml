@@ -1,0 +1,13 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" loaded="pageLoaded" backgroundColor="black" 
+  xmlns:wear="nativescript-wear-os-listview">
+  <StackLayout>
+    <wear:WearOsListView margin="4" height="100%" circularScrollingEnabled="true" items="{{ items }}" itemTap="{{ onItemTap }}" backgroundColor="black">
+      <wear:WearOsListView.itemTemplate>
+        <GridLayout rows="*" columns="auto, *">
+          <Image src="{{ image }}" class="image" stretch="aspectFit" row="0" col="0" />
+          <Label text="{{ title }}" class="label" row="0" col="1" textWrap="true"/>
+        </GridLayout>
+      </wear:WearOsListView.itemTemplate>
+    </wear:WearOsListView>
+  </StackLayout>
+</Page>

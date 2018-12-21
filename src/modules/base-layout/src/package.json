@@ -1,0 +1,7 @@
+{
+  "name": "base-layout",
+  "version": "0.1.0",
+  "description": "Base layout for Wear OS apps built with NativeScript",
+  "main": "index",
+  "typings": "index.d.ts"
+}
