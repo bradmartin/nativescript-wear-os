@@ -1,16 +1,8 @@
 import { Observable } from 'tns-core-modules/data/observable/observable';
-import {
-  KeyedTemplate,
-  PercentLength,
-  Template,
-  View
-} from 'tns-core-modules/ui/core/view';
+import { KeyedTemplate, PercentLength, Template, View } from 'tns-core-modules/ui/core/view';
 import { ad } from 'tns-core-modules/utils/utils';
 import { TNS_CustomScrollingLayoutCallback } from './tns-custom-scrolling-layout-callback';
-import {
-  ensureWearOsListViewAdapterClass,
-  TNS_WearOsListViewAdapterClass
-} from './tns-wear-os-adapter';
+import { ensureWearOsListViewAdapterClass, TNS_WearOsListViewAdapterClass } from './tns-wear-os-adapter';
 import { TNS_WearableRecyclerView } from './tns-wearable-recyclerview';
 import * as BASE from './wear-os-listview-base';
 
@@ -83,7 +75,7 @@ export class WearOsListView extends BASE.WearOsListViewBase {
       .getResources()
       .getConfiguration();
     // https://developer.android.com/reference/android/content/res/Configuration.html#isScreenRound()
-    const isCircleWatch = androidConfig.isScreenRound();
+    const isCircleWatch = (androidConfig as any).isScreenRound();
 
     if (isCircleWatch === true) {
       // create the custom scrolling layout callback - this is how the items are scaled/animated on scrolling
@@ -105,7 +97,6 @@ export class WearOsListView extends BASE.WearOsListViewBase {
 
     // By default, circular scrolling is disabled in the WearableRecyclerView. If you want to enable a circular scrolling gesture in your child view, use the WearableRecyclerView’s setCircularScrollingGestureEnabled() method.
     if (this.circularScrollingEnabled === true) {
-      console.log('circularScrollingEnabled', this.circularScrollingEnabled);
       this.listView.setCircularScrollingGestureEnabled(true);
     }
 
@@ -115,7 +106,6 @@ export class WearOsListView extends BASE.WearOsListViewBase {
     );
     this.listView.setLayoutParams(params);
 
-    console.log('set vertical scrollbar enabled...');
     this.listView.setVerticalScrollBarEnabled(true);
     this.listView.setScrollBarSize(20);
 

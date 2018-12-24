@@ -567,7 +567,7 @@ declare module android {
   export namespace support {
     export namespace wear {
       export namespace widget {
-        export class BoxInsetLayout {
+        export class BoxInsetLayout extends android.view.ViewGroup {
           public static class: java.lang.Class<
             android.support.wear.widget.BoxInsetLayout
           >;
@@ -976,8 +976,8 @@ declare module android {
   export namespace support {
     export namespace wear {
       export namespace widget {
-        export class SwipeDismissFrameLayout extends android.support.wear.widget
-          .SwipeDismissLayout {
+        export class SwipeDismissFrameLayout extends android.view.ViewGroup extends android.support.wear.widget
+          .SwipeDismissLayout  {
           public static class: java.lang.Class<
             android.support.wear.widget.SwipeDismissFrameLayout
           >;

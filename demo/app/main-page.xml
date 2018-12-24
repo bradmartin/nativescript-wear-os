@@ -1,7 +1,7 @@
-<Page xmlns="http://schemas.nativescript.org/tns.xsd" loaded="pageLoaded" backgroundColor="black" 
-  xmlns:wear="nativescript-wear-os-listview">
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" loaded="pageLoaded" 
+  xmlns:wear="nativescript-wear-os/packages/listview">
   <StackLayout>
-    <wear:WearOsListView margin="4" height="100%" circularScrollingEnabled="true" items="{{ items }}" itemTap="{{ onItemTap }}" backgroundColor="black">
+    <wear:WearOsListView margin="4" height="100%" circularScrollingEnabled="true" items="{{ items }}" itemTap="{{ onItemTap }}">
       <wear:WearOsListView.itemTemplate>
         <GridLayout rows="*" columns="auto, *">
           <Image src="{{ image }}" class="image" stretch="aspectFit" row="0" col="0" />

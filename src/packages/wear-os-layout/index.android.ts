@@ -85,7 +85,7 @@ export class WearOsLayout extends View implements AddChildFromBuilder {
 
     if (isCircleWatch) {
       result = WearOsLayout.SCALE_FACTOR * screen.mainScreen.widthPixels;
-      console.log('inset', result);
+      // console.log('inset', result);
     }
     return result;
   }

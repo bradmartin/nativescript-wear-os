@@ -1,3 +1,6 @@
+/// <reference path="../../node_modules/tns-platform-declarations/android.d.ts" />
+/// <reference path="../../typings/wear-27.1.1.d.ts" />
+
 import { AddChildFromBuilder, View } from 'tns-core-modules/ui/core/view';
 
 export class BoxInsetLayout extends View implements AddChildFromBuilder {
@@ -26,7 +29,7 @@ export class BoxInsetLayout extends View implements AddChildFromBuilder {
     this._android.setId(this._androidViewId);
     this._holder.setOrientation(android.widget.LinearLayout.VERTICAL);
     this._holder.setGravity(android.view.Gravity.FILL_VERTICAL);
-    this._holder.setLayoutParams(
+    (this._holder as any).setLayoutParams(
       new android.support.wear.widget.BoxInsetLayout.LayoutParams(
         android.view.ViewGroup.LayoutParams.FILL_PARENT,
         android.view.ViewGroup.LayoutParams.FILL_PARENT,

@@ -1,4 +1,4 @@
-import { SwipeDismissFrameLayout } from './index';
+import { SwipeDismissFrameLayout } from './index.android';
 
 // tslint:disable-next-line:class-name
 export class TNS_SwipeDismissFrameLayoutCallback extends android.support.wear
@@ -9,7 +9,7 @@ export class TNS_SwipeDismissFrameLayoutCallback extends android.support.wear
   }
 
   onDismissed(layout: android.support.wear.widget.SwipeDismissFrameLayout) {
-    console.log('onDismissed', layout);
+    // console.log('onDismissed', layout);
     const owner = this.owner.get();
     owner.notify({
       eventName: SwipeDismissFrameLayout.dimissedEvent,
@@ -18,7 +18,7 @@ export class TNS_SwipeDismissFrameLayoutCallback extends android.support.wear
   }
 
   onSwipeCanceled(layout: android.support.wear.widget.SwipeDismissFrameLayout) {
-    console.log('swipe canceled', layout);
+    // console.log('swipe canceled', layout);
     const owner = this.owner.get();
     owner.notify({
       eventName: SwipeDismissFrameLayout.swipeCanceledEvent,
@@ -27,7 +27,7 @@ export class TNS_SwipeDismissFrameLayoutCallback extends android.support.wear
   }
 
   onSwipeStarted(layout: android.support.wear.widget.SwipeDismissFrameLayout) {
-    console.log('swipe started', layout);
+    // console.log('swipe started', layout);
     const owner = this.owner.get();
     owner.notify({
       eventName: SwipeDismissFrameLayout.swipeStartedEvent,

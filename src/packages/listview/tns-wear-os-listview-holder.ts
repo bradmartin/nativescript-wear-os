@@ -1,11 +1,6 @@
-import { WearOsListView } from './wear-os-listview.android';
 import { View } from 'tns-core-modules/ui/core/view';
-import {
-  ItemEventData,
-  ITEMTAP,
-  ITEMSELECTED,
-  ITEMDESELECTED
-} from './wear-os-listview-base';
+import { ITEMDESELECTED, ItemEventData, ITEMSELECTED, ITEMTAP } from './wear-os-listview-base';
+import { WearOsListView } from './wear-os-listview.android';
 
 @Interfaces([
   android.view.View.OnClickListener,

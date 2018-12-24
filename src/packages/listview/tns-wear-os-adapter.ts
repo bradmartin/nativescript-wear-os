@@ -1,14 +1,9 @@
-import { WearOsListView } from './wear-os-listview.android';
 import { View } from 'tns-core-modules/ui/core/view';
-import { ProxyViewContainer } from 'tns-core-modules/ui/proxy-view-container';
 import { StackLayout } from 'tns-core-modules/ui/layouts/stack-layout';
+import { ProxyViewContainer } from 'tns-core-modules/ui/proxy-view-container';
 import { TNS_WearOsListViewHolder } from './tns-wear-os-listview-holder';
-import {
-  ItemEventData,
-  ITEMLOADING,
-  layout,
-  LayoutTypeOptions
-} from './wear-os-listview-base';
+import { ItemEventData, ITEMLOADING, layout, LayoutTypeOptions } from './wear-os-listview-base';
+import { WearOsListView } from './wear-os-listview.android';
 
 export let TNS_WearOsListViewAdapterClass;
 

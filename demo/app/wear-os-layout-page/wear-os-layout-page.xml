@@ -1,0 +1,19 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" actionBarHidden="true" loaded="pageLoaded" 
+    xmlns:ui="nativescript-wear-os/packages/wear-os-layout">
+    <ui:WearOsLayout>
+        <StackLayout>
+            <Label text="Going to put a long string of text so we can fill the screen with other view components to show how this works on Circle and Square watch faces." class="c-white" textWrap="true"/>
+            <GridLayout rows="auto, auto, auto" columns="*, *, *">
+                <Button text="Go Back" tap="navBack" class="yellowBtn" row="0" col="0" />
+                <Image src="res://icon" stretch="aspectFit" row="0" col="1" />
+                <Button text="Wow" class="greenBtn" row="0" col="2" />
+                <Button text="Fantastic" row="1" col="0" />
+                <Label text="Something something something" class="c-white" row="1" col="1" textWrap="true" />
+                <Label text="Something Text" row="1" col="2" />
+                <Button text="Yay" row="2" col="0" />
+                <Image src="res://icon" stretch="aspectFit" row="2" col="1" />
+                <Button text="Okay" row="2" col="2" />
+            </GridLayout>
+        </StackLayout>
+    </ui:WearOsLayout>
+</Page>

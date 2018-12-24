@@ -1,6 +1,9 @@
 {
   "nativescript": {
-    "id": "org.nativescript.demo"
+    "id": "org.nativescript.demo",
+    "tns-android": {
+      "version": "5.0.0"
+    }
   },
   "dependencies": {
     "nativescript-theme-core": "^1.0.4",
