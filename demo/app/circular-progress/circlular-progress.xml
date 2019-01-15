@@ -1,0 +1,12 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" loaded="pageLoaded" actionBarHidden="true" 
+    xmlns:ui="nativescript-wear-os/packages/circular-progress-layout">
+    <ui:CircularProgressLayout>
+        <StackLayout height="100%" width="100%">
+            <Label text="No clue" class="text-white" textWrap="true"/>
+            <GridLayout rows="50" columns="*, *">
+                <Button col="0" text="Go Back" class="greyBtn" tap="navBack" />
+                <Button col="1" text="Okay" class="yellowBtn" />
+            </GridLayout>
+        </StackLayout>
+    </ui:CircularProgressLayout>
+</Page>

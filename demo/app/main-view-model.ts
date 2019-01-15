@@ -49,6 +49,10 @@ export class HelloWorldModel extends Observable {
       );
     } else if (args.index === 1) {
       topmost().currentPage.frame.navigate('./box-inset-page/box-inset-page');
+    } else if (args.index === 2) {
+      topmost().currentPage.frame.navigate(
+        './circular-progress/circular-progress'
+      );
     }
   }
 }
