@@ -1,7 +1,7 @@
 import { ItemEventData } from 'nativescript-wear-os/packages/listview';
 import { Observable } from 'tns-core-modules/data/observable';
 import { ObservableArray } from 'tns-core-modules/data/observable-array/observable-array';
-import { topmost } from 'tns-core-modules/ui/frame';
+import { Frame, topmost } from 'tns-core-modules/ui/frame';
 
 export class HelloWorldModel extends Observable {
   public items = new ObservableArray([
@@ -42,17 +42,16 @@ export class HelloWorldModel extends Observable {
 
   onItemTap(args: ItemEventData) {
     const x = this.items.getItem(args.index);
+    const frame = topmost().currentPage.frame as Frame;
+
     console.log('tapped item', x);
+
     if (args.index === 0) {
-      topmost().currentPage.frame.navigate(
-        './wear-os-layout-page/wear-os-layout-page'
-      );
+      frame.navigate('./wear-os-layout-page/wear-os-layout-page');
     } else if (args.index === 1) {
-      topmost().currentPage.frame.navigate('./box-inset-page/box-inset-page');
+      frame.navigate('./box-inset-page/box-inset-page');
     } else if (args.index === 2) {
-      topmost().currentPage.frame.navigate(
-        './circular-progress/circular-progress'
-      );
+      frame.navigate('./circular-progress-page/circular-progress-page');
     }
   }
 }
