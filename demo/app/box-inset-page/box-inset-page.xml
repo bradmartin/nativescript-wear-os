@@ -1,12 +1,15 @@
 <Page xmlns="http://schemas.nativescript.org/tns.xsd" loaded="pageLoaded" actionBarHidden="true" 
-    xmlns:ui="nativescript-wear-os/packages/box-inset-layout">
-    <ui:BoxInsetLayout>
-        <StackLayout height="100%" width="100%">
-            <Label text="This is a box inset layout. It's purpose is for short views so you don't have to calculate the inset for your layout manually. So don't try using a ScrollView with it." class="text-white" textWrap="true"/>
-            <GridLayout rows="50" columns="*, *">
-                <Button col="0" text="Go Back" class="greyBtn" tap="navBack" />
-                <Button col="1" text="Okay" class="yellowBtn" />
-            </GridLayout>
-        </StackLayout>
-    </ui:BoxInsetLayout>
+    xmlns:ui="nativescript-wear-os/packages/box-inset-layout" 
+    xmlns:wol="nativescript-wear-os/packages/wear-os-layout">
+    <wol:WearOsLayout>
+        <ui:BoxInsetLayout>
+            <StackLayout height="100%" width="100%">
+                <Label text="This is a box inset layout. It's purpose is for short views so you don't have to calculate the inset for your layout manually. If you need it to scroll, wrap the BoxInsetLayout inside the WearOsLayout container." class="text-white" textWrap="true"/>
+                <GridLayout rows="50" columns="*, *">
+                    <Button col="0" text="Go Back" class="greyBtn" tap="navBack" />
+                    <Button col="1" text="Okay" class="yellowBtn" />
+                </GridLayout>
+            </StackLayout>
+        </ui:BoxInsetLayout>
+    </wol:WearOsLayout>
 </Page>
