@@ -57,8 +57,10 @@ export class WearOsLayout extends View implements AddChildFromBuilder {
   public onLoaded(): void {
     super.onLoaded();
     this._childViews.forEach(value => {
-      this._addView(value);
-      this._holder.addView(value.nativeView);
+      if (!value.parent) {
+        this._addView(value);
+        this._holder.addView(value.nativeView);
+      }
     });
   }
 
@@ -85,7 +87,6 @@ export class WearOsLayout extends View implements AddChildFromBuilder {
 
     if (isCircleWatch) {
       result = WearOsLayout.SCALE_FACTOR * screen.mainScreen.widthPixels;
-      // console.log('inset', result);
     }
     return result;
   }
