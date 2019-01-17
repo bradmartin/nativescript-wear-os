@@ -2,8 +2,9 @@
 /// <reference path="../../typings/wear-27.1.1.d.ts" />
 
 import { AddChildFromBuilder, View } from 'tns-core-modules/ui/core/view';
+import { ContentView } from 'tns-core-modules/ui/content-view';
 
-export class BoxInsetLayout extends View implements AddChildFromBuilder {
+export class BoxInsetLayout extends ContentView implements AddChildFromBuilder {
   private _android: android.support.wear.widget.BoxInsetLayout;
   private _holder: android.widget.LinearLayout;
   private _androidViewId: number;
@@ -51,20 +52,9 @@ export class BoxInsetLayout extends View implements AddChildFromBuilder {
     super.disposeNativeView();
   }
 
-  public onLoaded(): void {
-    super.onLoaded();
-    this._childViews.forEach(value => {
-      this._addView(value);
-      this._holder.addView(value.nativeView);
-    });
-  }
-
   _addChildFromBuilder(name: string, value: View): void {
-    if (!this._childViews) {
-      this._childViews = new Map<number, View>();
-    }
-    if (!value.parent) {
-      this._childViews.set(value._domId, value);
+    if (value instanceof View) {
+      this.content = value;
     }
   }
 }
