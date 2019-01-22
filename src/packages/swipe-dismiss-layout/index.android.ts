@@ -2,8 +2,7 @@ import { AddChildFromBuilder } from 'tns-core-modules/ui/content-view';
 import { View } from 'tns-core-modules/ui/core/view';
 import { TNS_SwipeDismissFrameLayoutCallback } from './callback';
 
-export class SwipeDismissLayout extends View
-  implements AddChildFromBuilder {
+export class SwipeDismissLayout extends View implements AddChildFromBuilder {
   /**
    * String value for hooking into the layout dismissed event. This event fires when the swipe layout has been dismissed.
    */
@@ -58,9 +57,8 @@ export class SwipeDismissLayout extends View
   public initNativeView() {
     super.initNativeView();
     // add the layout callback
-    this._android.addCallback(
-      new TNS_SwipeDismissFrameLayoutCallback(new WeakRef(this))
-    );
+    this._callback = new TNS_SwipeDismissFrameLayoutCallback(new WeakRef(this));
+    this._android.addCallback(this._callback);
   }
 
   public disposeNativeView() {

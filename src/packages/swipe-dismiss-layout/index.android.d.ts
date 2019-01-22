@@ -1,6 +1,6 @@
 import { AddChildFromBuilder } from 'tns-core-modules/ui/content-view';
 import { View } from 'tns-core-modules/ui/core/view';
-export declare class SwipeDismissFrameLayout extends View implements AddChildFromBuilder {
+export declare class SwipeDismissLayout extends View implements AddChildFromBuilder {
     static dimissedEvent: string;
     static swipeCanceledEvent: string;
     static swipeStartedEvent: string;
