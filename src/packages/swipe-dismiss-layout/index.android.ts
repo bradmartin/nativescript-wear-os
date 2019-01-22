@@ -57,7 +57,9 @@ export class SwipeDismissLayout extends View implements AddChildFromBuilder {
   public initNativeView() {
     super.initNativeView();
     // add the layout callback
-    this._callback = new TNS_SwipeDismissFrameLayoutCallback(new WeakRef(this));
+    this._callback = new TNS_SwipeDismissFrameLayoutCallback(
+      new WeakRef(this as any)
+    );
     this._android.addCallback(this._callback);
   }
 
