@@ -2,7 +2,7 @@ import { AddChildFromBuilder } from 'tns-core-modules/ui/content-view';
 import { View } from 'tns-core-modules/ui/core/view';
 import { TNS_SwipeDismissFrameLayoutCallback } from './callback';
 
-export class SwipeDismissFrameLayout extends View
+export class SwipeDismissLayout extends View
   implements AddChildFromBuilder {
   /**
    * String value for hooking into the layout dismissed event. This event fires when the swipe layout has been dismissed.
