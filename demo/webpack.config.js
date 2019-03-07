@@ -15,23 +15,7 @@ module.exports = env => {
   // Add your custom Activities, Services and other Android app components here.
   const appComponents = [
     'tns-core-modules/ui/frame',
-    'tns-core-modules/ui/frame/activity',
-    resolve(
-      __dirname,
-      'node_modules/nativescript-wear-os/packages/listview/tns-custom-scrolling-layout-callback.js'
-    ),
-    resolve(
-      __dirname,
-      'node_modules/nativescript-wear-os/packages/listview/tns-wear-os-adapter.js'
-    ),
-    resolve(
-      __dirname,
-      'node_modules/nativescript-wear-os/packages/listview/tns-wear-os-listview-holder.js'
-    ),
-    resolve(
-      __dirname,
-      'node_modules/nativescript-wear-os/packages/listview/tns-wearable-recyclerview.js'
-    )
+    'tns-core-modules/ui/frame/activity'
   ];
 
   const platform = env && ((env.android && 'android') || (env.ios && 'ios'));

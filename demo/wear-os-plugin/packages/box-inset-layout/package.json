@@ -1,7 +1,0 @@
-{
-  "name": "box-inset-layout",
-  "version": "0.1.0",
-  "description": "NativeScript plugin for WearOS BoxInsetLayout ViewGroup for screen shape-aware layouts.",
-  "main": "index",
-  "typings": "index.d.ts"
-}

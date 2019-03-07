@@ -83,31 +83,3 @@ This has no effect on square watches.
 ```
 
 ![BoxInsetLayout Usage](./screenshots/box-inset/boxinset.png)
-
-## Webpack with WearOs Plugin
-
-Your project's **webpack.config.js** will need to have the android extended classes declared so the static binding generator will find the files and generate the java files. The snippet below can befound in the demo project.
-
-```javascript
-// Add your custom Activities, Services and other Android app components here.
-const appComponents = [
-  'tns-core-modules/ui/frame',
-  'tns-core-modules/ui/frame/activity',
-  resolve(
-    __dirname,
-    'node_modules/nativescript-wear-os/packages/listview/tns-custom-scrolling-layout-callback.js'
-  ),
-  resolve(
-    __dirname,
-    'node_modules/nativescript-wear-os/packages/listview/tns-wear-os-adapter.js'
-  ),
-  resolve(
-    __dirname,
-    'node_modules/nativescript-wear-os/packages/listview/tns-wear-os-listview-holder.js'
-  ),
-  resolve(
-    __dirname,
-    'node_modules/nativescript-wear-os/packages/listview/tns-wearable-recyclerview.js'
-  )
-];
-```

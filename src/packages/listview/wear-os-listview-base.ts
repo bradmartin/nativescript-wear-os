@@ -235,6 +235,7 @@ export abstract class WearOsListViewBase extends View {
   private _itemIdGenerator: (item: any, index: number, items: any) => number = (
     _item: any,
     index: number
+    // tslint:disable-next-line:semicolon
   ) => index;
 
   private _itemTemplateSelector: (

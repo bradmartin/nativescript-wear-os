@@ -1,8 +1,0 @@
-{
-    "name": "circular-progress-layout",
-    "version": "0.1.0",
-    "description": "NativeScript plugin for WearOS CircularProgressLayout - adds a circular countdown timer behind the view it contains, typically used to automatically confirm an operation after a short delay has elapsed.",
-    "main": "index",
-    "typings": "index.d.ts"
-  }
-  

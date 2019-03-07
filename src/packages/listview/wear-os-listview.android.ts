@@ -45,12 +45,13 @@ export class WearOsListView extends BASE.WearOsListViewBase {
   }
 
   public createNativeView() {
+    // const weakRefLocal = new WeakRef<WearOsListView>(this);
     this._itemsSelected = [];
     this._staggeredMap = new Map<number, number>();
     this._random = new java.util.Random();
     this.listView = new TNS_WearableRecyclerView(
       this._context,
-      new WeakRef(this)
+      new WeakRef<any>(this)
     );
 
     return this.listView;
