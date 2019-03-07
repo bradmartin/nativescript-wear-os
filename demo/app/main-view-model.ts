@@ -19,7 +19,7 @@ export class HelloWorldModel extends Observable {
     },
     {
       title: 'Brad Wayne',
-      image: '~/images/bradmartin.jpeg'
+      image: '~/images/bradmartin.jpg'
     },
     {
       title: 'VS Code',
