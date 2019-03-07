@@ -24,7 +24,6 @@
     "typescript": "~3.1.6"
   },
   "scripts": {
-    "start.demo": "cd ../src && npm run build && npm pack && cd ../demo && tns plugin add ../src/*.tgz && npm i && tns build android --bundle --env.uglify",
     "build.plugin": "cd ../src && npm run build",
     "ci.tslint": "npm i && tslint --config '../tslint.json' 'app/**/*.ts' --exclude '**/node_modules/**' --exclude '**/platforms/**'"
   }
