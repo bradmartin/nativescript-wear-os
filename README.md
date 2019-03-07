@@ -2,6 +2,7 @@
 
 [![npm](https://img.shields.io/npm/v/nativescript-wear-os.svg)](https://www.npmjs.com/package/nativescript-wear-os)
 [![npm](https://img.shields.io/npm/dt/nativescript-wear-os.svg?label=npm%20downloads)](https://www.npmjs.com/package/nativescript-wear-os)
+[![Build Status](https://travis-ci.org/bradmartin/nativescript-wear-os.svg?branch=master)](https://travis-ci.org/bradmartin/nativescript-wear-os)
 
 ## Installation
 
