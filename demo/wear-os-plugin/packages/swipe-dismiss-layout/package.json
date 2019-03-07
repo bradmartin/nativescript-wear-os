@@ -1,0 +1,7 @@
+{
+  "name": "swipe-dismiss-layout",
+  "version": "0.1.0",
+  "description": "NativeScript plugin for WearOS SwipeDismissFrameLayout.",
+  "main": "index",
+  "typings": "index.d.ts"
+}

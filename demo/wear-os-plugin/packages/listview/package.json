@@ -1,0 +1,7 @@
+{
+  "name": "wear-os-listview",
+  "version": "0.1.2",
+  "description": "NativeScript plugin that implements the Wear Os RecyclerView for listviews that are optimized for WearOs devices.",
+  "main": "wear-os-listview",
+  "typings": "index.d.ts"
+}
