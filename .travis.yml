@@ -52,7 +52,7 @@ matrix:
       env:
         - OS="Android28"
       before_script:
-        - echo no | android create avd --force -n test -t android-21 -b armeabi-v7a
+        - echo no | android create avd --force -n test -t android-25 -b armeabi-v7a
         - emulator -avd test -no-audio -no-window &
         - android-wait-for-emulator
       before_install:
@@ -66,8 +66,13 @@ android:
   components:
     - tools
     - platform-tools
+    # The BuildTools version used by your project
     - build-tools-28.0.3
+    # The SDK version used to compile your project
     - android-28
+    # Additional components
+    - extra-google-google_play_services
+    - extra-google-m2repository
     - extra-android-m2repository
     - sys-img-armeabi-v7a-android-21
 
