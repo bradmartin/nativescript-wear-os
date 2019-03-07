@@ -40,8 +40,7 @@ matrix:
       jdk: oraclejdk8
       before_install: nvm install 8.11.4
       script:
-        - cd src && npm run build && npm pack
-        - cd ../demo && tns plugin add ../src/*.tgz
+        - cd demo && npm run build.plugin
         - npm i && tns build android --bundle --env.uglify
     # Tests
     - stage: tests
