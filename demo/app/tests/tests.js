@@ -1,12 +1,17 @@
-var YourPlugin = require("nativescript-yourplugin").YourPlugin;
-var yourPlugin = new YourPlugin();
+describe('imagefilters class', function() {
+  it('can be instantiated', function() {
+    var testListView;
+    var WearOsListView = require('nativescript-wear-os/packages/listview')
+      .WearOsListView;
+    if (WearOsListView) {
+      testListView = new WearOsListView();
+      console.log('WearOsListView instance: ' + testListView);
+    }
 
-describe("greet function", function() {
-    it("exists", function() {
-        expect(yourPlugin.greet).toBeDefined();
-    });
+    expect(function() {
+      return new WearOsListView();
+    }).not.toThrow();
 
-    it("returns a string", function() {
-        expect(yourPlugin.greet()).toEqual("Hello, NS");
-    });
+    expect(new WearOsListView()).toBeDefined();
+  });
 });

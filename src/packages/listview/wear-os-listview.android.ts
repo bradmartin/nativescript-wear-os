@@ -1,8 +1,16 @@
 import { Observable } from 'tns-core-modules/data/observable/observable';
-import { KeyedTemplate, PercentLength, Template, View } from 'tns-core-modules/ui/core/view';
+import {
+  KeyedTemplate,
+  PercentLength,
+  Template,
+  View
+} from 'tns-core-modules/ui/core/view';
 import { ad } from 'tns-core-modules/utils/utils';
 import { TNS_CustomScrollingLayoutCallback } from './tns-custom-scrolling-layout-callback';
-import { ensureWearOsListViewAdapterClass, TNS_WearOsListViewAdapterClass } from './tns-wear-os-adapter';
+import {
+  ensureWearOsListViewAdapterClass,
+  TNS_WearOsListViewAdapterClass
+} from './tns-wear-os-adapter';
 import { TNS_WearableRecyclerView } from './tns-wearable-recyclerview';
 import * as BASE from './wear-os-listview-base';
 
@@ -37,12 +45,13 @@ export class WearOsListView extends BASE.WearOsListViewBase {
   }
 
   public createNativeView() {
+    // const weakRefLocal = new WeakRef<WearOsListView>(this);
     this._itemsSelected = [];
     this._staggeredMap = new Map<number, number>();
     this._random = new java.util.Random();
     this.listView = new TNS_WearableRecyclerView(
       this._context,
-      new WeakRef(this)
+      new WeakRef<any>(this)
     );
 
     return this.listView;

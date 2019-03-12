@@ -51,7 +51,7 @@ export class CircularProgressLayout extends View
     if (!this._androidViewId) {
       this._androidViewId = android.view.View.generateViewId();
     }
-    this._android.setId(this._androidViewId);
+    (this._android as any).setId(this._androidViewId);
     // this._holder.setOrientation(android.widget.LinearLayout.VERTICAL);
     // this._holder.setGravity(android.view.Gravity.FILL_VERTICAL);
     // (this._holder as any).setLayoutParams(

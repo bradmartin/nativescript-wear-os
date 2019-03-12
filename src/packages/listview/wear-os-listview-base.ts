@@ -1,9 +1,25 @@
 import { Observable } from 'tns-core-modules/data/observable';
-import { ChangedData, ObservableArray } from 'tns-core-modules/data/observable-array';
+import {
+  ChangedData,
+  ObservableArray
+} from 'tns-core-modules/data/observable-array';
 import { messageType, write } from 'tns-core-modules/trace';
 import { parse, parseMultipleTemplates } from 'tns-core-modules/ui/builder';
-import { CoercibleProperty, CSSType, KeyedTemplate, makeParser, makeValidator, PercentLength, Property, Template, View } from 'tns-core-modules/ui/core/view';
-import { addWeakEventListener, removeWeakEventListener } from 'tns-core-modules/ui/core/weak-event-listener';
+import {
+  CoercibleProperty,
+  CSSType,
+  KeyedTemplate,
+  makeParser,
+  makeValidator,
+  PercentLength,
+  Property,
+  Template,
+  View
+} from 'tns-core-modules/ui/core/view';
+import {
+  addWeakEventListener,
+  removeWeakEventListener
+} from 'tns-core-modules/ui/core/weak-event-listener';
 import { Label } from 'tns-core-modules/ui/label/label';
 
 export * from 'tns-core-modules/ui/core/view';
@@ -219,6 +235,7 @@ export abstract class WearOsListViewBase extends View {
   private _itemIdGenerator: (item: any, index: number, items: any) => number = (
     _item: any,
     index: number
+    // tslint:disable-next-line:semicolon
   ) => index;
 
   private _itemTemplateSelector: (
