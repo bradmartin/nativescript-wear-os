@@ -84,3 +84,6 @@ This has no effect on square watches.
 ```
 
 ![BoxInsetLayout Usage](./screenshots/box-inset/boxinset.png)
+
+
+## [Change Log](./CHANGELOG.md)
