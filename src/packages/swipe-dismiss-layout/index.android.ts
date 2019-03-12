@@ -70,8 +70,10 @@ export class SwipeDismissLayout extends View implements AddChildFromBuilder {
   public onLoaded(): void {
     super.onLoaded();
     this._childViews.forEach(value => {
-      this._addView(value);
-      this._holder.addView(value.nativeView);
+      if (!value.parent) {
+        this._addView(value);
+        this._holder.addView(value.nativeView);
+      }
     });
   }
 
