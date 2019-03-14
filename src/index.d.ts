@@ -1,4 +1,4 @@
-export * from './packages/utils/confirmation-activity';
+export * from './utils';
 export * from './packages/box-inset-layout';
 export * from './packages/circular-progress-layout';
 export * from './packages/listview';

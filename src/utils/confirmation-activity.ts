@@ -1,5 +1,5 @@
-/// <reference path="../../typings/wearable-support-2.4.0.d.ts" />
-/// <reference path="../../node_modules/tns-platform-declarations/android-25.d.ts" />
+/// <reference path="../typings/wearable-support-2.4.0.d.ts" />
+/// <reference path="../node_modules/tns-platform-declarations/android-25.d.ts" />
 
 import { ad as androidUtils } from 'tns-core-modules/utils/utils';
 import * as app from 'tns-core-modules/application';
