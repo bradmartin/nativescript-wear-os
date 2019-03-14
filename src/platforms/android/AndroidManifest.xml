@@ -4,4 +4,8 @@
 	<uses-sdk
 		android:minSdkVersion="23"
 		android:targetSdkVersion="__APILEVEL__"/>
+
+	<activity
+        	android:name="android.support.wearable.activity.ConfirmationActivity">
+    </activity>
 </manifest>
