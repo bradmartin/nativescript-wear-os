@@ -4,13 +4,16 @@
 import { ad as androidUtils } from 'tns-core-modules/utils/utils';
 import * as app from 'tns-core-modules/application';
 
-const CONFIRMATION_SUCCESS_REQUEST_CODE = 5673;
-const CONFIRMATION_FAILURE_REQUEST_CODE = 5674;
-const OPEN_ON_PHONE_REQUEST_CODE = 5675;
+const CONFIRMATION_ACTIVITY_REQUEST_CODE = 5673;
 
-export function showSuccessActivity(message: string) {
+export function showConfirmationActivity(
+  message: string,
+  type: ConfirmationActivityType
+) {
   return new Promise((resolve, reject) => {
     try {
+      const activityType = _getActivityType(type);
+
       // create the intent
       const intent = new android.content.Intent(
         androidUtils.getApplicationContext(),
@@ -19,7 +22,7 @@ export function showSuccessActivity(message: string) {
       intent.putExtra(
         android.support.wearable.activity.ConfirmationActivity
           .EXTRA_ANIMATION_TYPE,
-        android.support.wearable.activity.ConfirmationActivity.SUCCESS_ANIMATION
+        activityType
       );
       intent.putExtra(
         android.support.wearable.activity.ConfirmationActivity.EXTRA_MESSAGE,
@@ -31,7 +34,7 @@ export function showSuccessActivity(message: string) {
         app.AndroidApplication.activityResultEvent,
         (args: app.AndroidActivityResultEventData) => {
           if (
-            args.requestCode === CONFIRMATION_SUCCESS_REQUEST_CODE &&
+            args.requestCode === CONFIRMATION_ACTIVITY_REQUEST_CODE &&
             args.resultCode === android.app.Activity.RESULT_OK
           ) {
             const intentData = args.intent as android.content.Intent;
@@ -45,7 +48,7 @@ export function showSuccessActivity(message: string) {
         app.android.foregroundActivity || app.android.startActivity;
       activity.startActivityForResult(
         intent,
-        CONFIRMATION_SUCCESS_REQUEST_CODE
+        CONFIRMATION_ACTIVITY_REQUEST_CODE
       );
     } catch (error) {
       reject(error);
@@ -53,89 +56,25 @@ export function showSuccessActivity(message: string) {
   });
 }
 
-export function showFailureActivity(message: string) {
-  return new Promise((resolve, reject) => {
-    try {
-      // create the intent
-      const intent = new android.content.Intent(
-        androidUtils.getApplicationContext(),
-        android.support.wearable.activity.ConfirmationActivity.class
-      ) as android.content.Intent;
-      intent.putExtra(
-        android.support.wearable.activity.ConfirmationActivity
-          .EXTRA_ANIMATION_TYPE,
-        android.support.wearable.activity.ConfirmationActivity.FAILURE_ANIMATION
-      );
-      intent.putExtra(
-        android.support.wearable.activity.ConfirmationActivity.EXTRA_MESSAGE,
-        message
-      );
-
-      // handle the speech result
-      app.android.on(
-        app.AndroidApplication.activityResultEvent,
-        (args: app.AndroidActivityResultEventData) => {
-          if (
-            args.requestCode === CONFIRMATION_FAILURE_REQUEST_CODE &&
-            args.resultCode === android.app.Activity.RESULT_OK
-          ) {
-            const intentData = args.intent as android.content.Intent;
-            resolve(intentData);
-          }
-        }
-      );
-
-      // start the speech activity
-      const activity: android.app.Activity =
-        app.android.foregroundActivity || app.android.startActivity;
-      activity.startActivityForResult(
-        intent,
-        CONFIRMATION_FAILURE_REQUEST_CODE
-      );
-    } catch (error) {
-      reject(error);
-    }
-  });
+export enum ConfirmationActivityType {
+  'SUCCESS' = 'SUCCESS',
+  'FAILURE' = 'FAILURE',
+  'OPEN_ON_PHONE' = 'OPEN_ON_PHONE'
 }
 
-export function showOpenOnPhoneActivity(message: string) {
-  return new Promise((resolve, reject) => {
-    try {
-      // create the intent
-      const intent = new android.content.Intent(
-        androidUtils.getApplicationContext(),
-        android.support.wearable.activity.ConfirmationActivity.class
-      ) as android.content.Intent;
-      intent.putExtra(
-        android.support.wearable.activity.ConfirmationActivity
-          .EXTRA_ANIMATION_TYPE,
-        android.support.wearable.activity.ConfirmationActivity.FAILURE_ANIMATION
-      );
-      intent.putExtra(
-        android.support.wearable.activity.ConfirmationActivity.EXTRA_MESSAGE,
-        message
-      );
-
-      // handle the speech result
-      app.android.on(
-        app.AndroidApplication.activityResultEvent,
-        (args: app.AndroidActivityResultEventData) => {
-          if (
-            args.requestCode === OPEN_ON_PHONE_REQUEST_CODE &&
-            args.resultCode === android.app.Activity.RESULT_OK
-          ) {
-            const intentData = args.intent as android.content.Intent;
-            resolve(intentData);
-          }
-        }
-      );
-
-      // start the speech activity
-      const activity: android.app.Activity =
-        app.android.foregroundActivity || app.android.startActivity;
-      activity.startActivityForResult(intent, OPEN_ON_PHONE_REQUEST_CODE);
-    } catch (error) {
-      reject(error);
-    }
-  });
+function _getActivityType(type: ConfirmationActivityType) {
+  switch (type) {
+    case ConfirmationActivityType.SUCCESS:
+      return android.support.wearable.activity.ConfirmationActivity
+        .SUCCESS_ANIMATION;
+    case ConfirmationActivityType.FAILURE:
+      return android.support.wearable.activity.ConfirmationActivity
+        .FAILURE_ANIMATION;
+    case ConfirmationActivityType.OPEN_ON_PHONE:
+      return android.support.wearable.activity.ConfirmationActivity
+        .OPEN_ON_PHONE_ANIMATION;
+    default:
+      return android.support.wearable.activity.ConfirmationActivity
+        .SUCCESS_ANIMATION;
+  }
 }
