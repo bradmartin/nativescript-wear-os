@@ -85,5 +85,31 @@ This has no effect on square watches.
 
 ![BoxInsetLayout Usage](./screenshots/box-inset/boxinset.png)
 
+### Confirmation Activity
+
+[Showing confirmations on WearOS](https://developer.android.com/training/wearables/ui/confirm)
+
+WearOS provides the `ConfirmationActivity` class to show success, failure, and open on phone confirmations to the user.
+
+![Confirmation Activity Success](./screenshots/confirmation_activity.png)
+
+#### Example
+
+```typescript
+import {
+  showConfirmationActivity,
+  ConfirmationActivityType
+} from 'nativescript-wear-os/utils';
+
+function someFunctionInYourApp() {
+  // do something and show the built in confirmation activity
+  showConfirmationActivity(
+    'No SmartDrives found nearby.',
+    ConfirmationActivityType.FAILURE
+  ).then(() => {
+    console.log('confirmation shown');
+  });
+}
+```
 
 ## [Change Log](./CHANGELOG.md)
