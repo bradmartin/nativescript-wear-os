@@ -1,6 +1,6 @@
 {
   "name": "nativescript-wear-os",
-  "version": "0.2.01",
+  "version": "0.2.2",
   "description": "NativeScript plugin that implements Wear OS specific components and layouts.",
   "main": "index",
   "typings": "index.d.ts",
