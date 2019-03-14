@@ -5,7 +5,7 @@
     "skipLibCheck": true,
     "removeComments": true,
     "experimentalDecorators": true,
-    "declaration": false,
+    "declaration": true,
     "noEmitOnError": false,
     "noEmitHelpers": true,
     "noImplicitUseStrict": true,
