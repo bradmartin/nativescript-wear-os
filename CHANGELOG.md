@@ -1,5 +1,17 @@
 # Change Log
 
+## [0.3.0](https://github.com/bradmartin/nativescript-wear-os/tree/0.3.0) (2019-03-18)
+[Full Changelog](https://github.com/bradmartin/nativescript-wear-os/compare/0.1.42...0.3.0)
+
+**Implemented enhancements:**
+
+- Feature: ConfirmationActivity  [\#3](https://github.com/bradmartin/nativescript-wear-os/issues/3)
+
+**Merged pull requests:**
+
+- bump minor [\#5](https://github.com/bradmartin/nativescript-wear-os/pull/5) ([bradmartin](https://github.com/bradmartin))
+- closes \#3 [\#4](https://github.com/bradmartin/nativescript-wear-os/pull/4) ([bradmartin](https://github.com/bradmartin))
+
 ## [0.1.42](https://github.com/bradmartin/nativescript-wear-os/tree/0.1.42) (2019-03-12)
 **Closed issues:**
 
