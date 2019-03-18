@@ -80,29 +80,19 @@ export class WearOsListView extends BASE.WearOsListViewBase {
 
     // Only square watches you typically don't want to use the custom layout scaling for items to rotate around the circle
     // so we'll check if the device screen is round or not
-    const androidConfig = (ad.getApplicationContext() as android.content.Context)
-      .getResources()
-      .getConfiguration();
-    // https://developer.android.com/reference/android/content/res/Configuration.html#isScreenRound()
-    const isCircleWatch = (androidConfig as any).isScreenRound();
+    // const androidConfig = (ad.getApplicationContext() as android.content.Context)
+    //   .getResources()
+    //   .getConfiguration();
 
-    if (isCircleWatch === true) {
-      // create the custom scrolling layout callback - this is how the items are scaled/animated on scrolling
-      const customScrollingLayoutCallback = new TNS_CustomScrollingLayoutCallback();
-      this.listView.setLayoutManager(
-        new (android.support.wear.widget.WearableLinearLayoutManager as any)(
-          this._context,
-          customScrollingLayoutCallback
-        )
-      );
-    } else {
-      // normal layout manager with no animation on square watches
-      this.listView.setLayoutManager(
-        new (android.support.wear.widget.WearableLinearLayoutManager as any)(
-          this._context
-        )
-      );
-    }
+    // https://developer.android.com/reference/android/content/res/Configuration.html#isScreenRound()
+    // const isCircleWatch = (androidConfig as any).isScreenRound();
+
+    // normal layout manager with no animation on square watches
+    this.listView.setLayoutManager(
+      new (android.support.wear.widget.WearableLinearLayoutManager as any)(
+        this._context
+      )
+    );
 
     // By default, circular scrolling is disabled in the WearableRecyclerView. If you want to enable a circular scrolling gesture in your child view, use the WearableRecyclerView’s setCircularScrollingGestureEnabled() method.
     if (this.circularScrollingEnabled === true) {
