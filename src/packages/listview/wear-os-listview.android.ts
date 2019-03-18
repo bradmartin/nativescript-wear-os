@@ -23,6 +23,7 @@ export class WearOsListView extends BASE.WearOsListViewBase {
   nativeViewProtected: any;
   listView: TNS_WearableRecyclerView;
   circularScrollingEnabled: boolean = false;
+  useScalingScroll: boolean = false;
   _itemWidth: any;
   _itemHeight: any;
   itemWidth: PercentLength;
@@ -86,7 +87,8 @@ export class WearOsListView extends BASE.WearOsListViewBase {
     // https://developer.android.com/reference/android/content/res/Configuration.html#isScreenRound()
     const isCircleWatch = (androidConfig as any).isScreenRound();
 
-    if (isCircleWatch === true) {
+    // only if the user wants to use scaling scroll for circle watches
+    if (isCircleWatch === true && this.useScalingScroll) {
       // create the custom scrolling layout callback - this is how the items are scaled/animated on scrolling
       const customScrollingLayoutCallback = new TNS_CustomScrollingLayoutCallback();
       this.listView.setLayoutManager(

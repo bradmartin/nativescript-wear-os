@@ -430,3 +430,9 @@ export const circularScrollingEnabled = new Property<
   defaultValue: false
 });
 circularScrollingEnabled.register(WearOsListViewBase);
+
+export const useScalingScroll = new Property<WearOsListViewBase, boolean>({
+  name: 'useScalingScroll',
+  defaultValue: false
+});
+useScalingScroll.register(WearOsListViewBase);
