@@ -5,8 +5,7 @@ import {
   Template,
   View
 } from 'tns-core-modules/ui/core/view';
-import { ad } from 'tns-core-modules/utils/utils';
-import { TNS_CustomScrollingLayoutCallback } from './tns-custom-scrolling-layout-callback';
+// import { TNS_CustomScrollingLayoutCallback } from './tns-custom-scrolling-layout-callback';
 import {
   ensureWearOsListViewAdapterClass,
   TNS_WearOsListViewAdapterClass
