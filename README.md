@@ -93,7 +93,15 @@ WearOS provides the `ConfirmationActivity` class to show success, failure, and o
 
 ![Confirmation Activity Success](./screenshots/confirmation_activity.png)
 
-#### Example
+#### Usage
+
+1. Modify your project's `AndroidManifest.xml` to include the `ConfirmationActivity` (see demo app for example):
+
+```xml
+<activity
+    android:name="android.support.wearable.activity.ConfirmationActivity">
+</activity>
+```
 
 ```typescript
 import {

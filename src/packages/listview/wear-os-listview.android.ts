@@ -84,6 +84,7 @@ export class WearOsListView extends BASE.WearOsListViewBase {
     const androidConfig = (ad.getApplicationContext() as android.content.Context)
       .getResources()
       .getConfiguration();
+
     // https://developer.android.com/reference/android/content/res/Configuration.html#isScreenRound()
     const isCircleWatch = (androidConfig as any).isScreenRound();
 
