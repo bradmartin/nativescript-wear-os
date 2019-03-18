@@ -50,7 +50,7 @@ This has no effect on square watches.
 <Page xmlns="http://schemas.nativescript.org/tns.xsd"
   xmlns:wear="nativescript-wear-os/packages/listview">
   <StackLayout>
-    <wear:WearOsListView height="100%" items="{{ items }}">
+    <wear:WearOsListView useScalingScroll="true" height="100%" items="{{ items }}">
       <wear:WearOsListView.itemTemplate>
         <GridLayout rows="*" columns="auto, *">
           <Image src="{{ image }}" row="0" col="0" />
@@ -61,6 +61,10 @@ This has no effect on square watches.
   </StackLayout>
 </Page>
 ```
+
+##### API
+
+_useScalingScroll_ - If true, the items in the listview will scale during the scroll layout change event.
 
 ![ListView Gif](./screenshots/listview/demo.gif)
 
