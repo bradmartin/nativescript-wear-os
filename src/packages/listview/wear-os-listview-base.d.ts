@@ -96,3 +96,4 @@ export declare const maxProperty: Property<WearOsListViewBase, PercentLength>;
 export declare const minProperty: Property<WearOsListViewBase, PercentLength>;
 export declare const hideScrollBarProperty: Property<WearOsListViewBase, boolean>;
 export declare const circularScrollingEnabled: Property<WearOsListViewBase, boolean>;
+export declare const useScalingScroll: Property<WearOsListViewBase, boolean>;

@@ -8,6 +8,7 @@ export declare class WearOsListView extends BASE.WearOsListViewBase {
     nativeViewProtected: any;
     listView: TNS_WearableRecyclerView;
     circularScrollingEnabled: boolean;
+    useScalingScroll: boolean;
     _itemWidth: any;
     _itemHeight: any;
     itemWidth: PercentLength;
