@@ -10,6 +10,16 @@
 tns plugin add nativescript-wear-os
 ```
 
+### Ambient Mode Support
+
+1. Add the `WAKE_LOCK` permission to your AndroidManifest.xml
+
+```xml
+	<uses-permission android:name="android.permission.WAKE_LOCK" />
+```
+
+2. Copy the `ambient-activity.ts` in the root of this project and use it to replace the default Android Activity loaded by NativeScript. [NativeScript docs HERE.](https://docs.nativescript.org/core-concepts/android-runtime/advanced-topics/extend-application-activity#extending-activity)
+
 ### WearOsLayout
 
 A base layout for Wear OS apps built with NativeScript that automatically handles calculating the inset for circle watch faces. The layout base is an Android ScrollView so when your layout exceeds the screen height, it will scroll by default, removing the need to handle in your layout.
