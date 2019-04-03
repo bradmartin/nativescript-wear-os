@@ -31,15 +31,17 @@ export function ensureWearOsListViewAdapterClass() {
         return null;
       }
       const template = owner._itemTemplatesInternal[viewType];
-      const view: View =
-        template.createView() || owner._getDefaultItemContent(viewType);
+      
+      let view: View =
+        template.createView();
 
       if (view instanceof View && !(view instanceof ProxyViewContainer)) {
         owner._addView(view);
       } else {
         const sp = new StackLayout();
-        sp.addChild(view);
+        sp.addChild(view || owner._getDefaultItemContent(viewType));
         owner._addView(sp);
+        view = sp;
       }
 
       owner._realizedItems.set(view.nativeView, view);
@@ -53,16 +55,26 @@ export function ensureWearOsListViewAdapterClass() {
     public onBindViewHolder(holder: TNS_WearOsListViewHolder, index: number) {
       const owner = this.owner ? this.owner.get() : null;
       if (owner) {
+        let view = holder.view;
         const args = <ItemEventData>{
           eventName: ITEMLOADING,
           object: owner,
           android: holder,
           ios: undefined,
           index,
-          view: holder.view
+          view: view
         };
 
         owner.notify(args);
+
+        if (args.view !== view) {
+          view = args.view;
+          // the view has been changed on the event handler
+          // (holder.view as StackLayout).removeChildren();
+          (holder.view as StackLayout).removeChildren();
+          (holder.view as StackLayout).addChild(args.view);
+          // holder["defaultItemView"] = false;
+        }
 
         if (owner.layoutType === LayoutTypeOptions.STAGGERED) {
           let random;
@@ -84,23 +96,23 @@ export function ensureWearOsListViewAdapterClass() {
               }
               owner._staggeredMap.set(index, random);
             }
-            holder.view.height = random;
+            view.height = random;
           }
         } else {
           if (owner._itemHeight) {
-            holder.view.height = layout.toDeviceIndependentPixels(
+            view.height = layout.toDeviceIndependentPixels(
               owner._effectiveItemHeight
             );
           }
 
           if (owner._itemWidth) {
-            holder.view.width = layout.toDeviceIndependentPixels(
+            view.width = layout.toDeviceIndependentPixels(
               owner._effectiveItemWidth
             );
           }
         }
 
-        owner._prepareItem(holder.view, index);
+        owner._prepareItem(view, index);
       }
     }
 
