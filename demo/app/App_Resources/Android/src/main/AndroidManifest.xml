@@ -3,7 +3,7 @@
 
 	<supports-screens android:smallScreens="true" android:normalScreens="true" android:largeScreens="true" android:xlargeScreens="true"/>
 
-	<uses-sdk android:minSdkVersion="25" android:targetSdkVersion="__APILEVEL__"/>
+	<uses-sdk android:targetSdkVersion="__APILEVEL__"/>
 
 	<uses-feature android:name="android.hardware.type.watch"/>
 
@@ -26,7 +26,5 @@
 		</activity>
 		<activity android:name="com.tns.ErrorReportActivity"/>
 
-		<activity android:name="android.support.wearable.activity.ConfirmationActivity">
-		</activity>
 	</application>
 </manifest>

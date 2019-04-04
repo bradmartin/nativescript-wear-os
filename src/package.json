@@ -1,6 +1,6 @@
 {
   "name": "nativescript-wear-os",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "NativeScript plugin that implements Wear OS specific components and layouts.",
   "main": "index",
   "typings": "index.d.ts",
@@ -26,7 +26,7 @@
     "make-changelog": "cd ../ && github_changelog_generator -u bradmartin -p nativescript-wear-os"
   },
   "lint-staged": {
-    "*.ts, *.js, *.css, *.scss, *.md": [
+    "*.ts, *.js, *.css, *.scss, *.md, *.html, *.xml": [
       "tslint",
       "prettier --write",
       "git add"
@@ -66,6 +66,7 @@
     "tns-core-modules": "^5.2.2",
     "tns-platform-declarations": "^5.2.2",
     "rimraf": "^2.6.3",
+    "semver": "^5.6.0",
     "tslint": "~5.13.1",
     "typescript": "~3.1.6"
   },

@@ -1,4 +1,8 @@
 import { ItemEventData } from 'nativescript-wear-os/packages/listview';
+import {
+  showFailure,
+  showSuccess
+} from 'nativescript-wear-os/packages/dialogs';
 import { Observable } from 'tns-core-modules/data/observable';
 import { ObservableArray } from 'tns-core-modules/data/observable-array/observable-array';
 import { Frame, topmost } from 'tns-core-modules/ui/frame';
@@ -47,9 +51,11 @@ export class HelloWorldModel extends Observable {
     console.log('tapped item', x);
 
     if (args.index === 0) {
-      frame.navigate('./wear-os-layout-page/wear-os-layout-page');
+      showSuccess('Great choice! NativeScript is awesome.');
+      // frame.navigate('./wear-os-layout-page/wear-os-layout-page');
     } else if (args.index === 1) {
-      frame.navigate('./box-inset-page/box-inset-page');
+      showFailure('Wow... you like Angular. Everyone has their choice.');
+      // frame.navigate('./box-inset-page/box-inset-page');
     } else if (args.index === 2) {
       frame.navigate('./circular-progress-page/circular-progress-page');
     }
