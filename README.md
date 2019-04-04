@@ -99,13 +99,25 @@ _useScalingScroll_ - If true, the items in the listview will scale during the sc
 
 ![BoxInsetLayout Usage](./screenshots/box-inset/boxinset.png)
 
-### Confirmation Activity
+### Dialogs
 
-[Showing confirmations on WearOS](https://developer.android.com/training/wearables/ui/confirm)
+This plugin uses an Android WearOS specific library [Cowabunga](https://github.com/bradmartin/Cowabunga).
 
-WearOS provides the `ConfirmationActivity` class to show success, failure, and open on phone confirmations to the user.
+The plugin has a success dialog and failure/error dialog to present on WearOS. These mimic the behavior of the built in Confirmation Activity on WearOS. With the option of setting the time before it is dismissed/hidden from the user.
 
-![Confirmation Activity Success](./screenshots/confirmation_activity.png)
+#### Usage
+
+```typescript
+import {
+  showFailure,
+  showSuccess
+} from 'nativescript-wear-os/packages/dialogs';
+
+showSuccess('Great choice! NativeScript is awesome.', 4);
+```
+
+![Success Activity](./screenshots/success-activity.png)
+![Failure Activity](./screenshots/failure-activity.png)
 
 #### Usage
 
