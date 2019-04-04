@@ -119,31 +119,4 @@ showSuccess('Great choice! NativeScript is awesome.', 4);
 ![Success Activity](./screenshots/success-activity.png)
 ![Failure Activity](./screenshots/failure-activity.png)
 
-#### Usage
-
-1. Modify your project's `AndroidManifest.xml` to include the `ConfirmationActivity` (see demo app for example):
-
-```xml
-<activity
-    android:name="android.support.wearable.activity.ConfirmationActivity">
-</activity>
-```
-
-```typescript
-import {
-  showConfirmationActivity,
-  ConfirmationActivityType
-} from 'nativescript-wear-os/utils';
-
-function someFunctionInYourApp() {
-  // do something and show the built in confirmation activity
-  showConfirmationActivity(
-    'No SmartDrives found nearby.',
-    ConfirmationActivityType.FAILURE
-  ).then(() => {
-    console.log('confirmation shown');
-  });
-}
-```
-
 ## [Change Log](./CHANGELOG.md)
