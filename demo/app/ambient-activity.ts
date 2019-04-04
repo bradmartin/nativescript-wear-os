@@ -1,6 +1,5 @@
 /// <reference path="./typings/wearable-support.2.4.0.d.ts" />
 /// <reference path="./typings/wear.d.ts" />
-
 /// <reference path="../node_modules/tns-platform-declarations/android-25.d.ts" />
 
 import {
@@ -9,7 +8,7 @@ import {
 } from 'tns-core-modules/ui/frame';
 import * as application from 'tns-core-modules/application';
 
-@JavaProxy('com.permobil.smartdrive.MainActivity')
+@JavaProxy('com.nativescript.AmbientActivity')
 @Interfaces([
   android.support.wear.ambient.AmbientModeSupport.AmbientCallbackProvider
 ])
