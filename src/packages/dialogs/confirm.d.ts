@@ -1,1 +1,6 @@
-export declare const confirm: (msg: string, title?: string) => Promise<{}>;
+export declare const confirm: (options: ConfirmOptions) => Promise<{}>;
+export interface ConfirmOptions {
+    message: string;
+    title?: string;
+    autoCloseTime?: number;
+}

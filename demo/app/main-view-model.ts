@@ -58,7 +58,11 @@ export class HelloWorldModel extends Observable {
       showFailure('Wow... you like Angular. Everyone has their choice.');
       // frame.navigate('./box-inset-page/box-inset-page');
     } else if (args.index === 2) {
-      confirm('Do you like this?').then(result => {
+      confirm({
+        message: 'Do you like WearOS?',
+        title: 'Pick Something',
+        autoCloseTime: 3
+      }).then(result => {
         if (result === true) {
           console.log('yay');
         } else {

@@ -4,10 +4,9 @@ const CONFIRMATION_ACTIVITY_REQUEST_CODE = 5673;
 
 /**
  * Show the Failure Activity from the Cowabunga Library.
- * @param msg [string] - The message to show for failure/error action.
- * @param title? [string] - The title of the dialog
+ * @param options [ConfirmOptions] - Options for the confirmation dialog.
  */
-export const confirm = (msg: string, title?: string) => {
+export const confirm = (options: ConfirmOptions) => {
   return new Promise((resolve, reject) => {
     // create the intent
     const intent = new android.content.Intent(
@@ -15,9 +14,12 @@ export const confirm = (msg: string, title?: string) => {
       (com as any).github.bradmartin.cowabunga.ConfirmationActivity.class
     );
 
-    intent.putExtra('MESSAGE', msg);
-    if (title) {
-      intent.putExtra('TITLE', title);
+    intent.putExtra('MESSAGE', options.message);
+    if (options.title) {
+      intent.putExtra('TITLE', options.title);
+    }
+    if (options.autoCloseTime) {
+      intent.putExtra('AUTO_CLOSE_TIME', options.autoCloseTime);
     }
 
     // start the failure activity
@@ -39,3 +41,21 @@ export const confirm = (msg: string, title?: string) => {
     };
   });
 };
+
+export interface ConfirmOptions {
+  /**
+   * The message to show for failure/error action.
+   */
+  message: string;
+
+  /**
+   * The title of the dialog
+   */
+  title?: string;
+
+  /**
+   * Time in seconds to auto close the confirm dialog.
+   * Will result in the promise resolving false if user makes no selection after the provided time.
+   */
+  autoCloseTime?: number;
+}
