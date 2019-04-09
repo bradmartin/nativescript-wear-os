@@ -101,7 +101,7 @@ _useScalingScroll_ - If true, the items in the listview will scale during the sc
 
 ### Dialogs
 
-This plugin uses an Android WearOS specific library [Cowabunga](https://github.com/bradmartin/Cowabunga).
+This plugin uses an Android WearOS specific library [SmartWearOs](https://github.com/bradmartin/SmartWearOs).
 
 The plugin has a success dialog and failure/error dialog to present on WearOS. These mimic the behavior of the built in Confirmation Activity on WearOS. With the option of setting the time before it is dismissed/hidden from the user.
 
