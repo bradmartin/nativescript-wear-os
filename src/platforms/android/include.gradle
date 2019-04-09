@@ -10,7 +10,7 @@ dependencies {
     implementation 'com.android.support:support-compat:28.0.0'
     implementation 'com.android.support:support-core-utils:28.0.0'
     implementation 'com.android.support:support-core-ui:28.0.0'
-    implementation 'com.github.bradmartin:Cowabunga:0.2.0'
+    implementation 'com.github.bradmartin:SmartWearOs:0.1.0'
     compileOnly 'com.google.android.wearable:wearable:2.4.0'
 }
 
