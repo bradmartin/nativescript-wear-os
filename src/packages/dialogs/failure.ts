@@ -11,7 +11,7 @@ export const showFailure = (msg?: string, dismissTime = 3) => {
   // create the intent
   const intent = new android.content.Intent(
     androidUtils.getApplicationContext(),
-    (com as any).github.bradmartin.cowabunga.FailureActivity.class
+    (com as any).github.bradmartin.smartwearos.FailureActivity.class
   );
   intent.putExtra('MESSAGE', msg);
   intent.putExtra('DISMISS_TIMEOUT', dismissTime);

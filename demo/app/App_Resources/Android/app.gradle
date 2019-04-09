@@ -2,7 +2,7 @@
 
 // Uncomment to add recyclerview-v7 dependency
 // dependencies {
-// 	implementation 'com.github.bradmartin:Cowabunga:0.0.7-rc.2'
+// 	implementation 'com.github.bradmartin:SmartWearOs:0.1.0'
 // }
 
 android {  
