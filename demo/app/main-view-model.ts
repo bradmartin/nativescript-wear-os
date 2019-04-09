@@ -1,7 +1,8 @@
 import { ItemEventData } from 'nativescript-wear-os/packages/listview';
 import {
   showFailure,
-  showSuccess
+  showSuccess,
+  confirm
 } from 'nativescript-wear-os/packages/dialogs';
 import { Observable } from 'tns-core-modules/data/observable';
 import { ObservableArray } from 'tns-core-modules/data/observable-array/observable-array';
@@ -57,7 +58,18 @@ export class HelloWorldModel extends Observable {
       showFailure('Wow... you like Angular. Everyone has their choice.');
       // frame.navigate('./box-inset-page/box-inset-page');
     } else if (args.index === 2) {
-      frame.navigate('./circular-progress-page/circular-progress-page');
+      confirm({
+        message: 'Do you like WearOS?',
+        title: 'Pick Something',
+        autoCloseTime: 3
+      }).then(result => {
+        if (result === true) {
+          console.log('yay');
+        } else {
+          console.log('boo');
+        }
+      });
+      // frame.navigate('./circular-progress-page/circular-progress-page');
     }
   }
 }
