@@ -3,7 +3,7 @@ import * as app from 'tns-core-modules/application';
 const CONFIRMATION_ACTIVITY_REQUEST_CODE = 5673;
 
 /**
- * Show the Failure Activity from the Cowabunga Library.
+ * Show the Failure Activity from the SmartWearOs Library.
  * @param options [ConfirmOptions] - Options for the confirmation dialog.
  */
 export const confirm = (options: ConfirmOptions) => {
@@ -11,7 +11,7 @@ export const confirm = (options: ConfirmOptions) => {
     // create the intent
     const intent = new android.content.Intent(
       androidUtils.getApplicationContext(),
-      (com as any).github.bradmartin.cowabunga.ConfirmationActivity.class
+      (com as any).github.bradmartin.smartwearos.ConfirmationActivity.class
     );
 
     intent.putExtra('MESSAGE', options.message);
