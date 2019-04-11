@@ -1,6 +1,6 @@
 android {
 	defaultConfig {  
-    minSdkVersion 26 // WearOS 2.0 minimum SDK is 25 - https://developer.android.com/training/wearables/apps/packaging.html
+    minSdkVersion 23 // WearOS 2.0 minimum SDK is 25 - https://developer.android.com/training/wearables/apps/packaging.html
   }  
 }
 
