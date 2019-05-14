@@ -1,4 +1,3 @@
-/// <reference path="../../node_modules/tns-platform-declarations/android.d.ts" />
 /// <reference path="../../typings/wear-27.1.1.d.ts" />
 import { AddChildFromBuilder, View } from 'tns-core-modules/ui/core/view';
 export declare class CircularProgressLayout extends View implements AddChildFromBuilder {

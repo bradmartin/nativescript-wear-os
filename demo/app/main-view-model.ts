@@ -52,8 +52,8 @@ export class HelloWorldModel extends Observable {
     console.log('tapped item', x);
 
     if (args.index === 0) {
-      showSuccess('Great choice! NativeScript is awesome.', 4);
-      // frame.navigate('./wear-os-layout-page/wear-os-layout-page');
+      // showSuccess('Great choice! NativeScript is awesome.', 4);
+      frame.navigate('./wear-os-layout-page/wear-os-layout-page');
     } else if (args.index === 1) {
       showFailure('Wow... you like Angular. Everyone has their choice.');
       // frame.navigate('./box-inset-page/box-inset-page');

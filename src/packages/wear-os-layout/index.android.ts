@@ -3,12 +3,16 @@ import { AddChildFromBuilder } from 'tns-core-modules/ui/content-view';
 import { View } from 'tns-core-modules/ui/core/view';
 import { ad } from 'tns-core-modules/utils/utils';
 
+declare const com: any;
+
 export class WearOsLayout extends View implements AddChildFromBuilder {
-  private _android: android.widget.ScrollView;
+  private _android: any;
   private _holder: android.widget.LinearLayout;
   private _androidViewId: number;
   private _childViews: Map<number, View>;
   private static SCALE_FACTOR = 0.146467; // c = a * sqrt(2)
+
+  public scrollable = false;
 
   constructor() {
     super();
@@ -18,8 +22,26 @@ export class WearOsLayout extends View implements AddChildFromBuilder {
     return this._android;
   }
 
+  set scrollEnabled(value: boolean) {
+    if (value) {
+      this.scrollable = value;
+      this._android.setEnableScrolling(value);
+    }
+  }
+
   createNativeView() {
-    this._android = new android.widget.ScrollView(this._context);
+    this._android = new com.github.bradmartin.LockableNestedScrollView(
+      this._context
+    );
+
+    console.log('scrollable on wearos layout: ', this.scrollable);
+    // check if user wants to disable scroll
+    if (this.scrollable === false) {
+      console.log('setting scroll to false');
+      this._android.setEnableScrolling(false);
+      console.log(this._android);
+    }
+
     this._holder = new android.widget.LinearLayout(this._context);
     if (!this._androidViewId) {
       this._androidViewId = android.view.View.generateViewId();

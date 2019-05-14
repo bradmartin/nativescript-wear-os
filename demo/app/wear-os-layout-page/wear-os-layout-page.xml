@@ -1,6 +1,6 @@
 <Page xmlns="http://schemas.nativescript.org/tns.xsd" actionBarHidden="true" loaded="pageLoaded" 
     xmlns:ui="nativescript-wear-os/packages/wear-os-layout">
-    <ui:WearOsLayout>
+    <ui:WearOsLayout loaded="layoutLoaded" scrollable="false">
         <StackLayout>
             <Label text="Going to put a long string of text so we can fill the screen with other view components to show how this works on Circle and Square watch faces." class="c-white" textWrap="true"/>
             <GridLayout rows="auto, auto, auto" columns="*, *, *">

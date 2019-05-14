@@ -24,6 +24,8 @@ tns plugin add nativescript-wear-os
 
 A base layout for Wear OS apps built with NativeScript that automatically handles calculating the inset for circle watch faces. The layout base is an Android ScrollView so when your layout exceeds the screen height, it will scroll by default, removing the need to handle in your layout.
 
+The WearOsLayout provides an option to disable scrolling. Set `disableScroll="true"` on your WearOsLayout instance to disable the scrolling of the layout.
+
 This has no effect on square watches.
 
 ```xml

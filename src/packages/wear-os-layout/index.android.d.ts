@@ -6,9 +6,11 @@ export declare class WearOsLayout extends View implements AddChildFromBuilder {
     private _androidViewId;
     private _childViews;
     private static SCALE_FACTOR;
+    scrollable: boolean;
     constructor();
-    readonly android: globalAndroid.widget.ScrollView;
-    createNativeView(): globalAndroid.widget.ScrollView;
+    readonly android: any;
+    scrollEnabled: boolean;
+    createNativeView(): any;
     initNativeView(): void;
     disposeNativeView(): void;
     onLoaded(): void;
