@@ -11,6 +11,7 @@ export declare class SwipeDismissLayout extends View implements AddChildFromBuil
     private _childViews;
     constructor();
     readonly android: globalAndroid.support.wear.widget.SwipeDismissFrameLayout;
+    swipeable: boolean;
     createNativeView(): globalAndroid.support.wear.widget.SwipeDismissFrameLayout;
     initNativeView(): void;
     disposeNativeView(): void;

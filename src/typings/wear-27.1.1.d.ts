@@ -997,6 +997,8 @@ declare module android {
           public removeCallback(
             param0: android.support.wear.widget.SwipeDismissFrameLayout.Callback
           ): void;
+          
+          public setSwipeable(param0: boolean): void;
           public constructor(
             param0: android.content.Context,
             param1: android.util.AttributeSet,

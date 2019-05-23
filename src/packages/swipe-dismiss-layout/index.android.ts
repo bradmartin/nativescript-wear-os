@@ -15,7 +15,6 @@ export class SwipeDismissLayout extends View implements AddChildFromBuilder {
    * String value for hooking into the layout dismissed event. This event fires when the swipe layout has been dismissed.
    */
   public static swipeStartedEvent = 'swipeStarted';
-
   private _android: android.support.wear.widget.SwipeDismissFrameLayout;
   private _holder: android.widget.LinearLayout;
   private _callback: TNS_SwipeDismissFrameLayoutCallback;
@@ -27,6 +26,14 @@ export class SwipeDismissLayout extends View implements AddChildFromBuilder {
   }
   get android() {
     return this._android;
+  }
+
+  get swipeable() {
+    return (this._android as any).isSwipeable();
+  }
+
+  set swipeable(value: boolean) {
+    this._android.setSwipeable(value);
   }
 
   createNativeView() {
