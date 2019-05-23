@@ -6,9 +6,17 @@ import {
 } from 'nativescript-wear-os/packages/dialogs';
 import { Observable } from 'tns-core-modules/data/observable';
 import { ObservableArray } from 'tns-core-modules/data/observable-array/observable-array';
-import { Frame, topmost } from 'tns-core-modules/ui/frame';
+import { Frame, topmost, View, Page } from 'tns-core-modules/ui/frame';
+import { SwipeDismissLayout } from 'nativescript-wear-os';
+import { Button } from 'tns-core-modules/ui/button';
+import { Prop } from './prop';
+import { showOffScreenLayout, hideOffScreenLayout } from './utils';
 
 export class HelloWorldModel extends Observable {
+  @Prop()
+  public isSwipeLayoutVisible = false;
+
+  @Prop()
   public items = new ObservableArray([
     <any>{
       title: 'NativeScript',
@@ -39,10 +47,20 @@ export class HelloWorldModel extends Observable {
       image: '~/images/permobil.png'
     }
   ]);
+  private _swipeLayout: SwipeDismissLayout;
 
-  constructor() {
+  constructor(page: Page) {
     super();
-    this.set('items', this.items);
+
+    const x = page.getViewById('swipePage');
+    this._swipeLayout = x as SwipeDismissLayout;
+    console.log(this._swipeLayout.android);
+    this._swipeLayout.on(SwipeDismissLayout.dimissedEvent, args => {
+      console.log('dimissedEvent', args.object);
+      // hide the offscreen layout when dismissed
+      hideOffScreenLayout(this._swipeLayout, { x: 500, y: 0 });
+      this.isSwipeLayoutVisible = false;
+    });
   }
 
   onItemTap(args: ItemEventData) {
@@ -70,6 +88,19 @@ export class HelloWorldModel extends Observable {
         }
       });
       // frame.navigate('./circular-progress-page/circular-progress-page');
+    } else if (args.index === 3) {
+      showOffScreenLayout(this._swipeLayout);
+      this.isSwipeLayoutVisible = true;
+    }
+  }
+
+  toggleSwipeBehavior() {
+    const x = (this._swipeLayout as any).swipeable;
+    console.log('is the swipe layout swipeable?', x);
+    if (x) {
+      this._swipeLayout.swipeable = false;
+    } else {
+      this._swipeLayout.swipeable = true;
     }
   }
 }

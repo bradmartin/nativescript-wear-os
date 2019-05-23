@@ -1,7 +1,10 @@
-<Page xmlns="http://schemas.nativescript.org/tns.xsd" loaded="pageLoaded" 
-  xmlns:wear="nativescript-wear-os/packages/listview">
-  <StackLayout>
-    <wear:WearOsListView margin="4" height="100%" useScalingScroll="true" circularScrollingEnabled="true" items="{{ items }}" itemTap="{{ onItemTap }}">
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="navigatingTo" actionBarHidden="true" 
+  xmlns:wear="nativescript-wear-os/packages/listview" 
+  xmlns:wol="nativescript-wear-os/packages/wear-os-layout" 
+  xmlns:sdl="nativescript-wear-os/packages/swipe-dismiss-layout">
+  <GridLayout rows="*, *" columns="*">
+
+    <wear:WearOsListView height="100%" width="100%" col="0" row="0" rowSpan="2" useScalingScroll="true" circularScrollingEnabled="true" items="{{ items }}" itemTap="{{ onItemTap }}">
       <wear:WearOsListView.itemTemplate>
         <GridLayout rows="*" columns="auto, *">
           <Image src="{{ image }}" class="image" stretch="aspectFit" row="0" col="0" />
@@ -9,5 +12,15 @@
         </GridLayout>
       </wear:WearOsListView.itemTemplate>
     </wear:WearOsListView>
-  </StackLayout>
+
+    // Swipe Layout "Page" 
+    <sdl:SwipeDismissLayout id="swipePage" row="0" col="0" rowSpan="2" class="page" translateX="500" visibility="{{ isSwipeLayoutVisible ? 'visible' : 'collapsed' }}">
+      <wol:WearOsLayout height="100%" width="100%">
+        <StackLayout width="100%" height="100%">
+          <Button id="swipeToggleButton" text="Enable/Disable Swipe Behavior" tap="{{ toggleSwipeBehavior }}" />
+        </StackLayout>
+      </wol:WearOsLayout>
+    </sdl:SwipeDismissLayout>
+
+  </GridLayout>
 </Page>
