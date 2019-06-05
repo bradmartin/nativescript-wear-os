@@ -14,10 +14,10 @@
     </wear:WearOsListView>
 
     // Swipe Layout "Page" 
-    <sdl:SwipeDismissLayout id="swipePage" row="0" col="0" rowSpan="2" class="page" translateX="500" visibility="{{ isSwipeLayoutVisible ? 'visible' : 'collapsed' }}">
-      <wol:WearOsLayout height="100%" width="100%">
+    <sdl:SwipeDismissLayout id="swipePage" class="swipePage" row="0" col="0" rowSpan="2" translateX="500" visibility="{{ isSwipeLayoutVisible ? 'visible' : 'collapsed' }}">
+      <wol:WearOsLayout class="swipePage" height="100%" width="100%">
         <StackLayout width="100%" height="100%">
-          <Button id="swipeToggleButton" text="Enable/Disable Swipe Behavior" tap="{{ toggleSwipeBehavior }}" />
+          <Button id="swipeToggleButton" class="purpleButton" text="Enable/Disable Swipe Behavior" tap="{{ toggleSwipeBehavior }}" />
         </StackLayout>
       </wol:WearOsLayout>
     </sdl:SwipeDismissLayout>

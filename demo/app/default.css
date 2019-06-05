@@ -1,4 +1,4 @@
-﻿@import '~nativescript-theme-core/css/core.light.css';
+@import '~nativescript-theme-core/css/core.light.css';
 
 Page {
   background-color: #333;
@@ -37,6 +37,7 @@ ListView {
 #swipePage {
   background-color: white;
 }
+
 .purpleButton {
   background-color: purple;
   color: white;

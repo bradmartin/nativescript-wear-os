@@ -5,7 +5,7 @@
         <StackLayout height="100%" width="100%">
             <Label text="This is a box inset layout. If you need your layout to scroll for sizing purposes, use the WearOsLayout." class="text-white" textWrap="true"/>
             <GridLayout rows="50" columns="*, *">
-                <Button col="0" text="Go Back" class="greyBtn" tap="navBack" />
+                <Button col="0" text="Back" class="greyBtn" tap="navBack" />
                 <Button col="1" text="Okay" class="yellowBtn" />
             </GridLayout>
         </StackLayout>

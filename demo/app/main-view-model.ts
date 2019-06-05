@@ -1,16 +1,17 @@
-import { ItemEventData } from 'nativescript-wear-os/packages/listview';
+import * as themes from 'nativescript-themes';
+import { SwipeDismissLayout } from 'nativescript-wear-os';
 import {
+  confirm,
   showFailure,
-  showSuccess,
-  confirm
+  showSuccess
 } from 'nativescript-wear-os/packages/dialogs';
+import { ItemEventData } from 'nativescript-wear-os/packages/listview';
+import * as application from 'tns-core-modules/application';
 import { Observable } from 'tns-core-modules/data/observable';
 import { ObservableArray } from 'tns-core-modules/data/observable-array/observable-array';
-import { Frame, topmost, View, Page } from 'tns-core-modules/ui/frame';
-import { SwipeDismissLayout } from 'nativescript-wear-os';
-import { Button } from 'tns-core-modules/ui/button';
+import { Frame, Page, topmost } from 'tns-core-modules/ui/frame';
 import { Prop } from './prop';
-import { showOffScreenLayout, hideOffScreenLayout } from './utils';
+import { hideOffScreenLayout, showOffScreenLayout } from './utils';
 
 export class HelloWorldModel extends Observable {
   @Prop()
@@ -61,6 +62,16 @@ export class HelloWorldModel extends Observable {
       hideOffScreenLayout(this._swipeLayout, { x: 500, y: 0 });
       this.isSwipeLayoutVisible = false;
     });
+
+    application.on('exitAmbient', args => {
+      console.log('app has EXITED ambient mode...');
+      themes.applyTheme('default.css');
+    });
+
+    application.on('enterAmbient', args => {
+      console.log('app has ENTERED ambient mode...');
+      themes.applyTheme('ambient.css');
+    });
   }
 
   onItemTap(args: ItemEventData) {
@@ -83,11 +94,11 @@ export class HelloWorldModel extends Observable {
       }).then(result => {
         if (result === true) {
           console.log('yay');
+          frame.navigate('./box-inset-page/box-inset-page');
         } else {
           console.log('boo');
         }
       });
-      // frame.navigate('./circular-progress-page/circular-progress-page');
     } else if (args.index === 3) {
       showOffScreenLayout(this._swipeLayout);
       this.isSwipeLayoutVisible = true;
@@ -97,10 +108,10 @@ export class HelloWorldModel extends Observable {
   toggleSwipeBehavior() {
     const x = (this._swipeLayout as any).swipeable;
     console.log('is the swipe layout swipeable?', x);
-    if (x) {
-      this._swipeLayout.swipeable = false;
-    } else {
-      this._swipeLayout.swipeable = true;
-    }
+    // if (x) {
+    //   this._swipeLayout.swipeable = false;
+    // } else {
+    //   this._swipeLayout.swipeable = true;
+    // }
   }
 }

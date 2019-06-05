@@ -1,8 +1,12 @@
-import { AddChildFromBuilder } from 'tns-core-modules/ui/content-view';
+import {
+  AddChildFromBuilder,
+  ContentView
+} from 'tns-core-modules/ui/content-view';
 import { View } from 'tns-core-modules/ui/core/view';
 import { TNS_SwipeDismissFrameLayoutCallback } from './callback';
 
-export class SwipeDismissLayout extends View implements AddChildFromBuilder {
+export class SwipeDismissLayout extends ContentView
+  implements AddChildFromBuilder {
   /**
    * String value for hooking into the layout dismissed event. This event fires when the swipe layout has been dismissed.
    */
@@ -19,7 +23,7 @@ export class SwipeDismissLayout extends View implements AddChildFromBuilder {
   private _holder: android.widget.LinearLayout;
   private _callback: TNS_SwipeDismissFrameLayoutCallback;
   private _androidViewId: number;
-  private _childViews: Map<number, View>;
+  private _content: View;
 
   constructor() {
     super();
@@ -61,7 +65,7 @@ export class SwipeDismissLayout extends View implements AddChildFromBuilder {
     return this._android;
   }
 
-  public initNativeView() {
+  initNativeView() {
     super.initNativeView();
     // add the layout callback
     this._callback = new TNS_SwipeDismissFrameLayoutCallback(
@@ -70,26 +74,38 @@ export class SwipeDismissLayout extends View implements AddChildFromBuilder {
     this._android.addCallback(this._callback);
   }
 
-  public disposeNativeView() {
+  disposeNativeView() {
     super.disposeNativeView();
   }
 
-  public onLoaded(): void {
+  onLoaded(): void {
     super.onLoaded();
-    this._childViews.forEach(value => {
-      if (!value.parent) {
-        this._addView(value);
-        this._holder.addView(value.nativeView);
-      }
-    });
+    if (this._content.nativeView.getParent() != null) {
+      (this._content.nativeView.getParent() as android.view.ViewGroup).removeView(
+        this._content.nativeView
+      );
+    }
+    this._holder.addView(this._content.nativeView);
   }
 
-  _addChildFromBuilder(name: string, value: View): void {
-    if (!this._childViews) {
-      this._childViews = new Map<number, View>();
+  get _childrenCount(): number {
+    return this._content ? 1 : 0;
+  }
+
+  public _onContentChanged(oldView: View, newView: View) {
+    //
+  }
+
+  public _addChildFromBuilder(name: string, value: any) {
+    if (value instanceof View) {
+      this.content = value;
     }
-    if (!value.parent) {
-      this._childViews.set(value._domId, value);
+  }
+
+  public eachChildView(callback: (child: View) => boolean) {
+    const content = this._content;
+    if (content) {
+      callback(content);
     }
   }
 }

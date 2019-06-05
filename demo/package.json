@@ -7,6 +7,7 @@
   },
   "dependencies": {
     "nativescript-theme-core": "^1.0.4",
+    "nativescript-themes": "^2.0.1",
     "nativescript-unit-test-runner": "^0.5.1",
     "nativescript-wear-os": "file:../src",
     "tns-core-modules": "^5.3.1"

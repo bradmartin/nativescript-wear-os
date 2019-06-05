@@ -1,6 +1,6 @@
-import { AddChildFromBuilder } from 'tns-core-modules/ui/content-view';
+import { AddChildFromBuilder, ContentView } from 'tns-core-modules/ui/content-view';
 import { View } from 'tns-core-modules/ui/core/view';
-export declare class SwipeDismissLayout extends View implements AddChildFromBuilder {
+export declare class SwipeDismissLayout extends ContentView implements AddChildFromBuilder {
     static dimissedEvent: string;
     static swipeCanceledEvent: string;
     static swipeStartedEvent: string;
@@ -8,7 +8,7 @@ export declare class SwipeDismissLayout extends View implements AddChildFromBuil
     private _holder;
     private _callback;
     private _androidViewId;
-    private _childViews;
+    private _content;
     constructor();
     readonly android: globalAndroid.support.wear.widget.SwipeDismissFrameLayout;
     swipeable: boolean;
@@ -16,5 +16,8 @@ export declare class SwipeDismissLayout extends View implements AddChildFromBuil
     initNativeView(): void;
     disposeNativeView(): void;
     onLoaded(): void;
-    _addChildFromBuilder(name: string, value: View): void;
+    readonly _childrenCount: number;
+    _onContentChanged(oldView: View, newView: View): void;
+    _addChildFromBuilder(name: string, value: any): void;
+    eachChildView(callback: (child: View) => boolean): void;
 }

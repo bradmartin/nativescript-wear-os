@@ -1,0 +1,43 @@
+@import '~nativescript-theme-core/css/core.light.css';
+
+Page {
+  background-color: #000;
+}
+
+ListView {
+  background-color: #000;
+}
+
+.image {
+  height: 50;
+  width: 50;
+}
+
+.label {
+  color: #ddd;
+  font-size: 20;
+  margin: 4;
+  vertical-align: middle;
+}
+
+.text-white {
+  color: #ddd;
+}
+
+.greyBtn {
+  background-color: black;
+  color: #ddd;
+}
+
+.yellowBtn {
+  background-color: black;
+  color: #ddd;
+}
+
+#swipePage {
+  background-color: black;
+}
+.purpleButton {
+  background-color: black;
+  color: #ddd;
+}

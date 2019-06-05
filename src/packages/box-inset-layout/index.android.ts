@@ -1,13 +1,14 @@
 /// <reference path="../../node_modules/tns-platform-declarations/android.d.ts" />
 /// <reference path="../../typings/wear-27.1.1.d.ts" />
 
+import { ContentView } from 'tns-core-modules/ui/content-view';
 import { AddChildFromBuilder, View } from 'tns-core-modules/ui/core/view';
 
-export class BoxInsetLayout extends View implements AddChildFromBuilder {
+export class BoxInsetLayout extends ContentView implements AddChildFromBuilder {
   private _android: android.support.wear.widget.BoxInsetLayout;
   private _holder: android.widget.LinearLayout;
   private _androidViewId: number;
-  private _childViews: Map<number, View>;
+  private _content: View;
 
   constructor() {
     super();
@@ -53,20 +54,32 @@ export class BoxInsetLayout extends View implements AddChildFromBuilder {
 
   onLoaded(): void {
     super.onLoaded();
-    this._childViews.forEach(value => {
-      if (!value.parent) {
-        this._addView(value);
-        this._holder.addView(value.nativeView);
-      }
-    });
+    if (this._content.nativeView.getParent() != null) {
+      (this._content.nativeView.getParent() as android.view.ViewGroup).removeView(
+        this._content.nativeView
+      );
+    }
+    this._holder.addView(this._content.nativeView);
   }
 
-  _addChildFromBuilder(name: string, value: View): void {
-    if (!this._childViews) {
-      this._childViews = new Map<number, View>();
+  get _childrenCount(): number {
+    return this._content ? 1 : 0;
+  }
+
+  public _onContentChanged(oldView: View, newView: View) {
+    //
+  }
+
+  public _addChildFromBuilder(name: string, value: any) {
+    if (value instanceof View) {
+      this.content = value;
     }
-    if (!value.parent) {
-      this._childViews.set(value._domId, value);
+  }
+
+  public eachChildView(callback: (child: View) => boolean) {
+    const content = this._content;
+    if (content) {
+      callback(content);
     }
   }
 }
