@@ -1,13 +1,16 @@
 import { screen } from 'tns-core-modules/platform';
-import { AddChildFromBuilder } from 'tns-core-modules/ui/content-view';
+import {
+  AddChildFromBuilder,
+  ContentView
+} from 'tns-core-modules/ui/content-view';
 import { View } from 'tns-core-modules/ui/core/view';
 import { ad } from 'tns-core-modules/utils/utils';
 
-export class WearOsLayout extends View implements AddChildFromBuilder {
+export class WearOsLayout extends ContentView implements AddChildFromBuilder {
   private _android: android.widget.ScrollView;
   private _holder: android.widget.LinearLayout;
   private _androidViewId: number;
-  private _childViews: Map<number, View>;
+  private _content: View;
   private static SCALE_FACTOR = 0.146467; // c = a * sqrt(2)
 
   constructor() {
@@ -46,30 +49,42 @@ export class WearOsLayout extends View implements AddChildFromBuilder {
     return this._android;
   }
 
-  public initNativeView() {
+  initNativeView() {
     super.initNativeView();
   }
 
-  public disposeNativeView() {
+  disposeNativeView() {
     super.disposeNativeView();
   }
 
-  public onLoaded(): void {
+  onLoaded(): void {
     super.onLoaded();
-    this._childViews.forEach(value => {
-      if (!value.parent) {
-        this._addView(value);
-        this._holder.addView(value.nativeView);
-      }
-    });
+    if (this._content.nativeView.getParent() != null) {
+      (this._content.nativeView.getParent() as android.view.ViewGroup).removeView(
+        this._content.nativeView
+      );
+    }
+    this._holder.addView(this._content.nativeView);
   }
 
-  _addChildFromBuilder(name: string, value: View): void {
-    if (!this._childViews) {
-      this._childViews = new Map<number, View>();
+  get _childrenCount(): number {
+    return this._content ? 1 : 0;
+  }
+
+  _onContentChanged(oldView: View, newView: View) {
+    //
+  }
+
+  _addChildFromBuilder(name: string, value: any) {
+    if (value instanceof View) {
+      this.content = value;
     }
-    if (!value.parent) {
-      this._childViews.set(value._domId, value);
+  }
+
+  public eachChildView(callback: (child: View) => boolean) {
+    const content = this._content;
+    if (content) {
+      callback(content);
     }
   }
 
