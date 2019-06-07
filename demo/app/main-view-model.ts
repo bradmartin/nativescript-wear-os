@@ -74,6 +74,10 @@ export class HelloWorldModel extends Observable {
     });
   }
 
+  labelLoaded(args) {
+    console.log('label loaded BITCH');
+  }
+
   onItemTap(args: ItemEventData) {
     const x = this.items.getItem(args.index);
     const frame = topmost().currentPage.frame as Frame;
