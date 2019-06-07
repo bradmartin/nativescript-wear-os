@@ -2,13 +2,12 @@ import { AddChildFromBuilder, ContentView } from 'tns-core-modules/ui/content-vi
 import { View } from 'tns-core-modules/ui/core/view';
 export declare class WearOsLayout extends ContentView implements AddChildFromBuilder {
     private _android;
-    private _holder;
     private _androidViewId;
     private _content;
     private static SCALE_FACTOR;
     constructor();
-    readonly android: globalAndroid.widget.ScrollView;
-    createNativeView(): globalAndroid.widget.ScrollView;
+    readonly android: globalAndroid.widget.LinearLayout;
+    createNativeView(): globalAndroid.widget.LinearLayout;
     initNativeView(): void;
     disposeNativeView(): void;
     onLoaded(): void;

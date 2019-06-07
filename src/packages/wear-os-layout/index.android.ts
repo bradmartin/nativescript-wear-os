@@ -7,8 +7,7 @@ import { View } from 'tns-core-modules/ui/core/view';
 import { ad } from 'tns-core-modules/utils/utils';
 
 export class WearOsLayout extends ContentView implements AddChildFromBuilder {
-  private _android: android.widget.ScrollView;
-  private _holder: android.widget.LinearLayout;
+  private _android: android.widget.LinearLayout;
   private _androidViewId: number;
   private _content: View;
   private static SCALE_FACTOR = 0.146467; // c = a * sqrt(2)
@@ -22,29 +21,26 @@ export class WearOsLayout extends ContentView implements AddChildFromBuilder {
   }
 
   createNativeView() {
-    this._android = new android.widget.ScrollView(this._context);
-    this._holder = new android.widget.LinearLayout(this._context);
+    this._android = new android.widget.LinearLayout(this._context);
     if (!this._androidViewId) {
       this._androidViewId = android.view.View.generateViewId();
     }
     this._android.setId(this._androidViewId);
 
-    this._holder.setOrientation(android.widget.LinearLayout.VERTICAL);
-    this._holder.setGravity(android.view.Gravity.FILL_VERTICAL);
-    this._holder.setLayoutParams(
+    this._android.setOrientation(android.widget.LinearLayout.VERTICAL);
+    this._android.setGravity(android.view.Gravity.FILL_VERTICAL);
+    this._android.setLayoutParams(
       new android.view.ViewGroup.LayoutParams(
         android.view.ViewGroup.LayoutParams.FILL_PARENT,
         android.view.ViewGroup.LayoutParams.FILL_PARENT
       )
     );
 
-    // Check for inset here and if we have it apply he default padding for circle watches
+    // Check for inset here and if we have it apply the default padding for circle watches
     const inset = this._adjustInset();
     if (inset) {
-      this._holder.setPadding(inset, inset, inset, inset);
+      this._android.setPadding(inset, inset, inset, inset);
     }
-
-    this._android.addView(this._holder);
 
     return this._android;
   }
@@ -59,16 +55,17 @@ export class WearOsLayout extends ContentView implements AddChildFromBuilder {
 
   onLoaded(): void {
     super.onLoaded();
-    if (this._content.nativeView.getParent() != null) {
-      (this._content.nativeView.getParent() as android.view.ViewGroup).removeView(
-        this._content.nativeView
+    if (this.content.nativeView.getParent() != null) {
+      (this.content.nativeView.getParent() as android.view.ViewGroup).removeView(
+        this.content.nativeView
       );
     }
-    this._holder.addView(this._content.nativeView);
+
+    this._android.addView(this.content.nativeView);
   }
 
   get _childrenCount(): number {
-    return this._content ? 1 : 0;
+    return this.content ? 1 : 0;
   }
 
   _onContentChanged(oldView: View, newView: View) {
