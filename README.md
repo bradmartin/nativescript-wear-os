@@ -22,7 +22,7 @@ tns plugin add nativescript-wear-os
 
 ### WearOsLayout
 
-A base layout for Wear OS apps built with NativeScript that automatically handles calculating the inset for circle watch faces. The layout base is an Android ScrollView so when your layout exceeds the screen height, it will scroll by default, removing the need to handle in your layout.
+A base layout for Wear OS apps built with NativeScript that automatically handles calculating the inset for circle watch faces.
 
 This has no effect on square watches.
 
@@ -30,6 +30,7 @@ This has no effect on square watches.
 <Page xmlns="http://schemas.nativescript.org/tns.xsd" actionBarHidden="true"
     xmlns:ui="nativescript-wear-os/packages/wear-os-layout">
     <ui:WearOsLayout>
+      <ScrollView height="100%">
         <StackLayout>
             <Label text="Going to put a long string of text so we can fill the screen with other view components to show how this works on Circle and Square watch faces." class="c-white" textWrap="true" />
             <GridLayout rows="auto, auto, auto" columns="*, *, *">
@@ -43,7 +44,8 @@ This has no effect on square watches.
                 <Image src="res://icon" stretch="aspectFit" row="2" col="1" />
                 <Button text="Okay" row="2" col="2" />
             </GridLayout>
-        </StackLayout>
+          </StackLayout>
+        </ScrollView>
     </ui:WearOsLayout>
 </Page>
 ```
