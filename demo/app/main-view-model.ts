@@ -1,10 +1,6 @@
 import * as themes from 'nativescript-themes';
 import { SwipeDismissLayout } from 'nativescript-wear-os';
-import {
-  confirm,
-  showFailure,
-  showSuccess
-} from 'nativescript-wear-os/packages/dialogs';
+import { confirm, showFailure, showSuccess } from 'nativescript-wear-os/packages/dialogs';
 import { ItemEventData } from 'nativescript-wear-os/packages/listview';
 import * as application from 'tns-core-modules/application';
 import { Observable } from 'tns-core-modules/data/observable';
@@ -12,10 +8,6 @@ import { ObservableArray } from 'tns-core-modules/data/observable-array/observab
 import { Frame, Page, topmost } from 'tns-core-modules/ui/frame';
 import { Prop } from './prop';
 import { hideOffScreenLayout, showOffScreenLayout } from './utils';
-
-export class HelloWorldModel extends Observable {
-  @Prop()
-  public isSwipeLayoutVisible = false;
 
   @Prop()
   public items = new ObservableArray([
@@ -72,10 +64,6 @@ export class HelloWorldModel extends Observable {
       console.log('app has ENTERED ambient mode...');
       themes.applyTheme('ambient.css');
     });
-  }
-
-  labelLoaded(args) {
-    console.log('label loaded BITCH');
   }
 
   onItemTap(args: ItemEventData) {
