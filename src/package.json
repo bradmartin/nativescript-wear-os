@@ -16,21 +16,13 @@
     "build.native": "node scripts/build-native.js",
     "test.android": "npm i && npm run tsc && npm run tslint && cd ../demo && tns build android && tns test android --justlaunch",
     "test.ios": "npm i && npm run tsc && npm run tslint && cd ../demo && tns build ios && tns test ios --justlaunch",
-    "tslint": "cd .. && tslint \"**/*.ts\" --config tslint.json --exclude \"**/node_modules/**\" --exclude \"*demo*/platforms/**\"",
+    "tslint": "cd .. && tslint \"**/*.ts\" --config tslint.json --exclude \"**/node_modules/**\" --exclude \"*demo*/platforms/**\" --exclude \"**/typings/**\"",
     "plugin.link": "npm link && cd ../demo && npm link nativescript-geolocation && cd ../src",
     "plugin.tscwatch": "npm run tsc -- -w",
     "demo.ios": "npm i && npm run tsc && cd ../demo && tns run ios --syncAllFiles",
     "demo.android": "npm i && npm run tsc && cd ../demo && tns run android --syncAllFiles",
     "ci.tslint": "npm i && tslint '**/*.ts' --config '../tslint.json' --exclude '**/node_modules/**'",
-    "precommit": "lint-staged",
     "make-changelog": "cd ../ && github_changelog_generator -u bradmartin -p nativescript-wear-os"
-  },
-  "lint-staged": {
-    "*.ts, *.js, *.css, *.scss, *.md, *.html, *.xml": [
-      "tslint",
-      "prettier --write",
-      "git add"
-    ]
   },
   "keywords": [
     "NativeScript",
@@ -59,12 +51,24 @@
     "type": "git",
     "url": "git://github.com/bradmartin/nativescript-wear-os"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "pre-push": "tsc && npm run tslint"
+    }
+  },
+  "lint-staged": {
+    "*.ts, *.js, *.json, *.scss, *.css, *.html, *.xml, *.md": [
+      "prettier --write",
+      "git add"
+    ]
+  },
   "devDependencies": {
-    "husky": "^2.4.0",
-    "lint-staged": "^8.1.7",
-    "prettier": "^1.17.1",
-    "tns-core-modules": "^5.4.1",
-    "tns-platform-declarations": "^5.4.1",
+    "husky": "^2.4.1",
+    "lint-staged": "^8.2.1",
+    "prettier": "^1.18.2",
+    "tns-core-modules": "^5.4.2",
+    "tns-platform-declarations": "^5.4.2",
     "rimraf": "^2.6.3",
     "semver": "^5.6.0",
     "tslint": "~5.17.0",

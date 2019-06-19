@@ -31,9 +31,8 @@ export function ensureWearOsListViewAdapterClass() {
         return null;
       }
       const template = owner._itemTemplatesInternal[viewType];
-      
-      let view: View =
-        template.createView();
+
+      let view: View = template.createView();
 
       if (view instanceof View && !(view instanceof ProxyViewContainer)) {
         owner._addView(view);
