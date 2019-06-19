@@ -1,6 +1,7 @@
 import { AddChildFromBuilder, ContentView } from 'tns-core-modules/ui/content-view';
 import { View } from 'tns-core-modules/ui/core/view';
 export declare class WearOsLayout extends ContentView implements AddChildFromBuilder {
+    disableInsetConstraint: boolean;
     private _android;
     private _androidViewId;
     private _content;

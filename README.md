@@ -22,14 +22,14 @@ tns plugin add nativescript-wear-os
 
 ### WearOsLayout
 
-A base layout for Wear OS apps built with NativeScript that automatically handles calculating the inset for circle watch faces.
+A base layout for Wear OS apps built with NativeScript that automatically handles calculating the inset for circle watch faces. To disable the layout from automatically adjusting the inset set `disableInsetConstraint="true"` on the `WearOsLayout` instance. The default is false and does not have to be set.
 
 This has no effect on square watches.
 
 ```xml
 <Page xmlns="http://schemas.nativescript.org/tns.xsd" actionBarHidden="true"
     xmlns:ui="nativescript-wear-os/packages/wear-os-layout">
-    <ui:WearOsLayout>
+    <ui:WearOsLayout disableInsetConstraint="false">
       <ScrollView height="100%">
         <StackLayout>
             <Label text="Going to put a long string of text so we can fill the screen with other view components to show how this works on Circle and Square watch faces." class="c-white" textWrap="true" />

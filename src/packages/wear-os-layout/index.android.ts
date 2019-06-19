@@ -1,12 +1,10 @@
 import { screen } from 'tns-core-modules/platform';
-import {
-  AddChildFromBuilder,
-  ContentView
-} from 'tns-core-modules/ui/content-view';
+import { AddChildFromBuilder, ContentView } from 'tns-core-modules/ui/content-view';
 import { View } from 'tns-core-modules/ui/core/view';
 import { ad } from 'tns-core-modules/utils/utils';
 
 export class WearOsLayout extends ContentView implements AddChildFromBuilder {
+  public disableInsetConstraint: boolean = false;
   private _android: android.widget.LinearLayout;
   private _androidViewId: number;
   private _content: View;
@@ -36,10 +34,12 @@ export class WearOsLayout extends ContentView implements AddChildFromBuilder {
       )
     );
 
-    // Check for inset here and if we have it apply the default padding for circle watches
-    const inset = this._adjustInset();
-    if (inset) {
-      this._android.setPadding(inset, inset, inset, inset);
+    if (this.disableInsetConstraint === false) {
+      // Check for inset here and if we have it apply the default padding for circle watches
+      const inset = this._adjustInset();
+      if (inset) {
+        this._android.setPadding(inset, inset, inset, inset);
+      }
     }
 
     return this._android;
