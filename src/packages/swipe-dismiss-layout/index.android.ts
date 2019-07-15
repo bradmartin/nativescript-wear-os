@@ -3,6 +3,7 @@ import {
   ContentView
 } from 'tns-core-modules/ui/content-view';
 import { View } from 'tns-core-modules/ui/core/view';
+import { AndroidX_WidgetNamespace } from '../../index';
 import { TNS_SwipeDismissFrameLayoutCallback } from './callback';
 
 export class SwipeDismissLayout extends ContentView
@@ -19,7 +20,7 @@ export class SwipeDismissLayout extends ContentView
    * String value for hooking into the layout dismissed event. This event fires when the swipe layout has been dismissed.
    */
   public static swipeStartedEvent = 'swipeStarted';
-  private _android: android.support.wear.widget.SwipeDismissFrameLayout;
+  private _android: any; // androidx.wear.widget.SwipeDismissFrameLayout;
   private _holder: android.widget.LinearLayout;
   private _callback: TNS_SwipeDismissFrameLayoutCallback;
   private _androidViewId: number;
@@ -41,7 +42,7 @@ export class SwipeDismissLayout extends ContentView
   }
 
   createNativeView() {
-    this._android = new android.support.wear.widget.SwipeDismissFrameLayout(
+    this._android = new AndroidX_WidgetNamespace.SwipeDismissFrameLayout(
       this._context
     );
     this._holder = new android.widget.LinearLayout(this._context);

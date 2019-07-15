@@ -1,4 +1,3 @@
-/// <reference path="../../typings/wear-27.1.1.d.ts" />
 import { AddChildFromBuilder, View } from 'tns-core-modules/ui/core/view';
 export declare class CircularProgressLayout extends View implements AddChildFromBuilder {
     private _android;
@@ -6,12 +5,12 @@ export declare class CircularProgressLayout extends View implements AddChildFrom
     private _androidViewId;
     private _childViews;
     constructor();
-    readonly android: globalAndroid.support.wear.widget.CircularProgressLayout;
+    readonly android: any;
     strokeWidth: number;
     indeterminate: boolean;
     totalTime: any;
     backgroundColor: any;
-    createNativeView(): globalAndroid.support.wear.widget.CircularProgressLayout;
+    createNativeView(): any;
     initNativeView(): void;
     disposeNativeView(): void;
     startTimer(): void;

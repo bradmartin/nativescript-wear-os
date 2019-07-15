@@ -1,11 +1,11 @@
-import { Observable } from 'tns-core-modules/data/observable/observable';
+import { Observable } from 'tns-core-modules/data/observable';
 import {
   KeyedTemplate,
   PercentLength,
   Template,
   View
 } from 'tns-core-modules/ui/core/view';
-import { ad } from 'tns-core-modules/utils/utils';
+import { ad as androidUtils } from 'tns-core-modules/utils/utils';
 import { TNS_CustomScrollingLayoutCallback } from './tns-custom-scrolling-layout-callback';
 import {
   ensureWearOsListViewAdapterClass,
@@ -13,6 +13,8 @@ import {
 } from './tns-wear-os-adapter';
 import { TNS_WearableRecyclerView } from './tns-wearable-recyclerview';
 import * as BASE from './wear-os-listview-base';
+// import { RecyclerView_Namespace } from 'index';
+import { RecyclerView_Namespace, AndroidX_WidgetNamespace } from '../../index';
 
 // Need to make sure the base is all exposed
 export * from './wear-os-listview-base';
@@ -81,7 +83,7 @@ export class WearOsListView extends BASE.WearOsListViewBase {
 
     // Only square watches you typically don't want to use the custom layout scaling for items to rotate around the circle
     // so we'll check if the device screen is round or not
-    const androidConfig = (ad.getApplicationContext() as android.content.Context)
+    const androidConfig = (androidUtils.getApplicationContext() as android.content.Context)
       .getResources()
       .getConfiguration();
 
@@ -93,7 +95,7 @@ export class WearOsListView extends BASE.WearOsListViewBase {
       // create the custom scrolling layout callback - this is how the items are scaled/animated on scrolling
       const customScrollingLayoutCallback = new TNS_CustomScrollingLayoutCallback();
       this.listView.setLayoutManager(
-        new (android.support.wear.widget.WearableLinearLayoutManager as any)(
+        new AndroidX_WidgetNamespace.WearableLinearLayoutManager(
           this._context,
           customScrollingLayoutCallback
         )
@@ -101,9 +103,7 @@ export class WearOsListView extends BASE.WearOsListViewBase {
     } else {
       // normal layout manager with no animation on square watches
       this.listView.setLayoutManager(
-        new (android.support.wear.widget.WearableLinearLayoutManager as any)(
-          this._context
-        )
+        new AndroidX_WidgetNamespace.WearableLinearLayoutManager(this._context)
       );
     }
 
@@ -112,9 +112,9 @@ export class WearOsListView extends BASE.WearOsListViewBase {
       this.listView.setCircularScrollingGestureEnabled(true);
     }
 
-    const params = new android.support.v7.widget.RecyclerView.LayoutParams(
-      android.support.v7.widget.RecyclerView.LayoutParams.MATCH_PARENT,
-      android.support.v7.widget.RecyclerView.LayoutParams.MATCH_PARENT
+    const params = new RecyclerView_Namespace.RecyclerView.LayoutParams(
+      -1, // androidx.wear.widget.RecyclerView.LayoutParams.MATCH_PARENT
+      -1 // androidx.wear.widget.RecyclerView.LayoutParams.MATCH_PARENT
     );
     this.listView.setLayoutParams(params);
 

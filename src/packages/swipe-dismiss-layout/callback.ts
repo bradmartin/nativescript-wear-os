@@ -1,15 +1,15 @@
+import { AndroidX_WidgetNamespace } from '../../index';
 import { SwipeDismissLayout } from './index';
 
 // tslint:disable-next-line:class-name
-export class TNS_SwipeDismissFrameLayoutCallback extends android.support.wear
-  .widget.SwipeDismissFrameLayout.Callback {
+export class TNS_SwipeDismissFrameLayoutCallback extends AndroidX_WidgetNamespace
+  .SwipeDismissFrameLayout.Callback {
   constructor(private owner: WeakRef<SwipeDismissLayout>) {
     super();
     return global.__native(this);
   }
 
-  onDismissed(layout: android.support.wear.widget.SwipeDismissFrameLayout) {
-    // console.log('onDismissed', layout);
+  onDismissed(layout: any) {
     const owner = this.owner.get();
     owner.notify({
       eventName: SwipeDismissLayout.dimissedEvent,
@@ -17,8 +17,7 @@ export class TNS_SwipeDismissFrameLayoutCallback extends android.support.wear
     });
   }
 
-  onSwipeCanceled(layout: android.support.wear.widget.SwipeDismissFrameLayout) {
-    // console.log('swipe canceled', layout);
+  onSwipeCanceled(layout) {
     const owner = this.owner.get();
     owner.notify({
       eventName: SwipeDismissLayout.swipeCanceledEvent,
@@ -26,8 +25,7 @@ export class TNS_SwipeDismissFrameLayoutCallback extends android.support.wear
     });
   }
 
-  onSwipeStarted(layout: android.support.wear.widget.SwipeDismissFrameLayout) {
-    // console.log('swipe started', layout);
+  onSwipeStarted(layout) {
     const owner = this.owner.get();
     owner.notify({
       eventName: SwipeDismissLayout.swipeStartedEvent,

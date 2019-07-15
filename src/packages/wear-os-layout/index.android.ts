@@ -1,7 +1,10 @@
 import { screen } from 'tns-core-modules/platform';
-import { AddChildFromBuilder, ContentView } from 'tns-core-modules/ui/content-view';
+import {
+  AddChildFromBuilder,
+  ContentView
+} from 'tns-core-modules/ui/content-view';
 import { View } from 'tns-core-modules/ui/core/view';
-import { ad } from 'tns-core-modules/utils/utils';
+import { ad as androidUtils } from 'tns-core-modules/utils/utils';
 
 export class WearOsLayout extends ContentView implements AddChildFromBuilder {
   public disableInsetConstraint: boolean = false;
@@ -91,7 +94,7 @@ export class WearOsLayout extends ContentView implements AddChildFromBuilder {
   private _adjustInset() {
     let result = null;
 
-    const androidConfig = (ad.getApplicationContext() as android.content.Context)
+    const androidConfig = (androidUtils.getApplicationContext() as android.content.Context)
       .getResources()
       .getConfiguration();
     // https://developer.android.com/reference/android/content/res/Configuration.html#isScreenRound()
