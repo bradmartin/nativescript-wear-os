@@ -1,1 +1,1 @@
-export declare const showFailure: (msg?: string, dismissTime?: number) => void;
+export declare const showFailure: (msg?: string, dismissTime?: number) => Promise<unknown>;
