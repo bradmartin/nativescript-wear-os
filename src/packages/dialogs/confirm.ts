@@ -1,5 +1,5 @@
-import { ad as androidUtils } from 'tns-core-modules/utils/utils';
 import * as app from 'tns-core-modules/application';
+import { ad as androidUtils } from 'tns-core-modules/utils/utils';
 const CONFIRMATION_ACTIVITY_REQUEST_CODE = 5673;
 
 /**
@@ -22,8 +22,8 @@ export const confirm = (options: ConfirmOptions) => {
       intent.putExtra('AUTO_CLOSE_TIME', options.autoCloseTime);
     }
 
-    // start the failure activity
-    const activity =
+    // start the confirm activity
+    const activity: android.app.Activity =
       app.android.foregroundActivity || app.android.startActivity;
     activity.startActivityForResult(intent, CONFIRMATION_ACTIVITY_REQUEST_CODE);
 
