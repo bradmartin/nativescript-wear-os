@@ -1,5 +1,5 @@
 import { WearOsListView } from './wear-os-listview.android';
-export declare class TNS_WearableRecyclerView extends android.support.wear.widget
+export declare class TNS_WearableRecyclerView extends androidx.wear.widget
     .WearableRecyclerView {
     private owner;
     constructor(context: android.content.Context, owner: WeakRef<WearOsListView>);

@@ -1,8 +1,29 @@
-# NativeScript WearOS
+<a align="center" href="https://www.npmjs.com/package/nativescript-wear-os">
+    <h3 align="center">NativeScript Wear OS</h3>
+</a>
+<h4 align="center">
+NativeScript-Wear-OS is a NativeScript plugin that provides layouts and utilities specific to WearOS.
+</h4>
 
-[![npm](https://img.shields.io/npm/v/nativescript-wear-os.svg)](https://www.npmjs.com/package/nativescript-wear-os)
-[![npm](https://img.shields.io/npm/dt/nativescript-wear-os.svg?label=npm%20downloads)](https://www.npmjs.com/package/nativescript-wear-os)
-[![Build Status](https://travis-ci.org/bradmartin/nativescript-wear-os.svg?branch=master)](https://travis-ci.org/bradmartin/nativescript-wear-os)
+<p align="center">
+    <a href="https://www.npmjs.com/package/nativescript-wear-os">
+        <img src="https://img.shields.io/npm/v/nativescript-wear-os.svg" alt="npm">
+    </a>
+    <a href="https://www.npmjs.com/package/nativescript-wear-os">
+        <img src="https://img.shields.io/npm/dt/nativescript-wear-os.svg?label=npm%20downloads" alt="npm">
+    </a>
+    <a href="https://github.com/bradmartin/nativescript-wear-os/stargazers">
+        <img src="https://img.shields.io/github/stars/bradmartin/nativescript-wear-os.svg" alt="stars">
+    </a>
+     <a href="https://github.com/bradmartin/nativescript-wear-os/network">
+        <img src="https://img.shields.io/github/forks/bradmartin/nativescript-wear-os.svg" alt="forks">
+    </a>
+    <a href="https://github.com/bradmartin/nativescript-wear-os/blob/master/LICENSE">
+        <img src="https://img.shields.io/github/license/bradmartin/nativescript-wear-os.svg" alt="license">
+    </a>
+</p>
+
+---
 
 ## Installation
 
@@ -10,7 +31,11 @@
 tns plugin add nativescript-wear-os
 ```
 
+---
+
 ### Ambient Mode Support
+
+##### Documentation: _https://developer.android.com/training/wearables/apps/always-on_
 
 1. Add the `WAKE_LOCK` permission to your AndroidManifest.xml
 
@@ -18,7 +43,26 @@ tns plugin add nativescript-wear-os
 	<uses-permission android:name="android.permission.WAKE_LOCK" />
 ```
 
-2. Copy the `ambient-activity.ts` in the root of this project and use it to replace the default Android Activity loaded by NativeScript. [NativeScript docs HERE.](https://docs.nativescript.org/core-concepts/android-runtime/advanced-topics/extend-application-activity#extending-activity)
+2. Copy the `ambient-activity.ts` in the root of this project's demo app and use it to replace the default Android Activity loaded by NativeScript. [NativeScript docs HERE about using a custom Android Activity.](https://docs.nativescript.org/core-concepts/android-runtime/advanced-topics/extend-application-activity#extending-activity)
+
+3. Update the AndroidManifest.xml for your application to use the correct activity. Change the `android:name` value of the `activity` node to point to the same name used inside the `ambient-activity.ts` file inside the `@JavaProxy()` decorator at the top of the file.
+
+```xml
+		<activity android:name="com.nativescript.AmbientActivity" android:label="@string/title_activity_kimera" android:configChanges="keyboardHidden|orientation|screenSize" android:theme="@style/LaunchScreenTheme">
+```
+
+4. Update your webpack.config to include the custom Android Activity. Snippet below copied from the demo app.
+
+```javascript
+// Add your custom Activities, Services and other Android app components here.
+const appComponents = [
+  'tns-core-modules/ui/frame',
+  'tns-core-modules/ui/frame/activity',
+  resolve(__dirname, 'app/ambient-activity')
+];
+```
+
+---
 
 ### WearOsLayout
 
@@ -115,7 +159,9 @@ import {
   showSuccess
 } from 'nativescript-wear-os/packages/dialogs';
 
-showSuccess('Great choice! NativeScript is awesome.', 4);
+showSuccess('Great choice! NativeScript is awesome.', 4).then(() => {
+  console.log('success dialog complete.');
+});
 ```
 
 ![Success Activity](./screenshots/success-activity.png)

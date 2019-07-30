@@ -3,6 +3,10 @@
   xmlns:wol="nativescript-wear-os/packages/wear-os-layout" 
   xmlns:sdl="nativescript-wear-os/packages/swipe-dismiss-layout">
   <GridLayout rows="*, *" columns="*">
+    <!-- <StackLayout row="0" col="0">
+      <Label text="hello" textWrap="true" />
+
+    </StackLayout> -->
 
     <wear:WearOsListView height="100%" width="100%" col="0" row="0" rowSpan="2" useScalingScroll="true" circularScrollingEnabled="true" items="{{ items }}" itemTap="{{ onItemTap }}">
       <wear:WearOsListView.itemTemplate>

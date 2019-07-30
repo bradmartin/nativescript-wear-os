@@ -1,11 +1,11 @@
-import { Observable } from 'tns-core-modules/data/observable/observable';
+import { Observable } from 'tns-core-modules/data/observable';
 import {
   KeyedTemplate,
   PercentLength,
   Template,
   View
 } from 'tns-core-modules/ui/core/view';
-import { ad } from 'tns-core-modules/utils/utils';
+import { ad as androidUtils } from 'tns-core-modules/utils/utils';
 import { TNS_CustomScrollingLayoutCallback } from './tns-custom-scrolling-layout-callback';
 import {
   ensureWearOsListViewAdapterClass,
@@ -43,6 +43,8 @@ export class WearOsListView extends BASE.WearOsListViewBase {
 
   constructor() {
     super();
+
+    console.log(androidx.wear.widget);
   }
 
   public createNativeView() {
@@ -76,12 +78,14 @@ export class WearOsListView extends BASE.WearOsListViewBase {
     const adapter = new TNS_WearOsListViewAdapterClass(new WeakRef(this));
     adapter.owner = that;
     adapter.setHasStableIds(true);
-    this.listView.setAdapter(adapter);
+
+    // assigning to any bc typings don't have the inherited methods for some unknown reason
+    (this.listView as any).setAdapter(adapter);
     (<any>this.listView).adapter = adapter;
 
     // Only square watches you typically don't want to use the custom layout scaling for items to rotate around the circle
     // so we'll check if the device screen is round or not
-    const androidConfig = (ad.getApplicationContext() as android.content.Context)
+    const androidConfig = (androidUtils.getApplicationContext() as android.content.Context)
       .getResources()
       .getConfiguration();
 
@@ -92,18 +96,19 @@ export class WearOsListView extends BASE.WearOsListViewBase {
     if (isCircleWatch === true && this.useScalingScroll) {
       // create the custom scrolling layout callback - this is how the items are scaled/animated on scrolling
       const customScrollingLayoutCallback = new TNS_CustomScrollingLayoutCallback();
-      this.listView.setLayoutManager(
-        new (android.support.wear.widget.WearableLinearLayoutManager as any)(
+
+      // assigning to any bc typings don't have the inherited methods for some unknown reason
+      (this.listView as any).setLayoutManager(
+        new androidx.wear.widget.WearableLinearLayoutManager(
           this._context,
           customScrollingLayoutCallback
         )
       );
     } else {
       // normal layout manager with no animation on square watches
-      this.listView.setLayoutManager(
-        new (android.support.wear.widget.WearableLinearLayoutManager as any)(
-          this._context
-        )
+      // assigning to any bc typings don't have the inherited methods for some unknown reason
+      (this.listView as any).setLayoutManager(
+        new androidx.wear.widget.WearableLinearLayoutManager(this._context)
       );
     }
 
@@ -112,14 +117,16 @@ export class WearOsListView extends BASE.WearOsListViewBase {
       this.listView.setCircularScrollingGestureEnabled(true);
     }
 
-    const params = new android.support.v7.widget.RecyclerView.LayoutParams(
-      android.support.v7.widget.RecyclerView.LayoutParams.MATCH_PARENT,
-      android.support.v7.widget.RecyclerView.LayoutParams.MATCH_PARENT
+    const params = new androidx.recyclerview.widget.RecyclerView.LayoutParams(
+      -1, // androidx.wear.widget.RecyclerView.LayoutParams.MATCH_PARENT
+      -1 // androidx.wear.widget.RecyclerView.LayoutParams.MATCH_PARENT
     );
-    this.listView.setLayoutParams(params);
 
-    this.listView.setVerticalScrollBarEnabled(true);
-    this.listView.setScrollBarSize(20);
+    // brad  - none of these methods are available need to double check docs
+    // this.listView.setLayoutParams(params);
+
+    // this.listView.setVerticalScrollBarEnabled(true);
+    // this.listView.setScrollBarSize(20);
 
     BASE.itemWidthProperty.coerce(this);
     BASE.itemHeightProperty.coerce(this);
@@ -153,7 +160,8 @@ export class WearOsListView extends BASE.WearOsListViewBase {
   }
 
   public refresh(): void {
-    const nativeView = this.listView;
+    // assigning to any bc typings don't have the inherited methods for some unknown reason
+    const nativeView = this.listView as any;
     if (!nativeView || !nativeView.getAdapter()) {
       return;
     }
@@ -226,7 +234,8 @@ export class WearOsListView extends BASE.WearOsListViewBase {
     if (value) {
       this._itemTemplatesInternal = this._itemTemplatesInternal.concat(value);
     }
-    this.listView.setAdapter(
+    // assigning to any bc typings don't have the inherited methods for some unknown reason
+    (this.listView as any).setAdapter(
       new TNS_WearOsListViewAdapterClass(new WeakRef(this))
     );
     this.refresh();

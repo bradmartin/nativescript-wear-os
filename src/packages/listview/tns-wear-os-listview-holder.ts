@@ -1,16 +1,18 @@
 import { View } from 'tns-core-modules/ui/core/view';
-import { ITEMDESELECTED, ItemEventData, ITEMSELECTED, ITEMTAP } from './wear-os-listview-base';
+import {
+  ITEMDESELECTED,
+  ItemEventData,
+  ITEMSELECTED,
+  ITEMTAP
+} from './wear-os-listview-base';
 import { WearOsListView } from './wear-os-listview.android';
 
 @Interfaces([
   android.view.View.OnClickListener,
   android.view.View.OnLongClickListener
 ])
-export class TNS_WearOsListViewHolder
-  extends android.support.v7.widget.RecyclerView.ViewHolder
-  implements
-    android.view.View.OnClickListener,
-    android.view.View.OnLongClickListener {
+export class TNS_WearOsListViewHolder extends androidx.recyclerview.widget
+  .RecyclerView.ViewHolder {
   _selected: boolean = false;
 
   constructor(

@@ -1,5 +1,5 @@
-export class TNS_CustomScrollingLayoutCallback extends android.support.wear
-  .widget.WearableLinearLayoutManager.LayoutCallback {
+export class TNS_CustomScrollingLayoutCallback extends androidx.wear.widget
+  .WearableLinearLayoutManager.LayoutCallback {
   /** How much should we scale the icon at most. */
   private static MAX_ICON_PROGRESS = 2;
 
@@ -9,7 +9,7 @@ export class TNS_CustomScrollingLayoutCallback extends android.support.wear
 
   onLayoutFinished(
     child: android.view.View,
-    parent: android.support.v7.widget.RecyclerView
+    parent: any // androidx.recyclerview.widget.RecyclerView
   ) {
     // Figure out % progress from top to bottom
     const centerOffset = child.getHeight() / 2.0 / parent.getHeight();

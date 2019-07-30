@@ -1,49 +1,43 @@
-/// <reference path="./typings/wearable-support.2.4.0.d.ts" />
-/// <reference path="./typings/wear.d.ts" />
-/// <reference path="../node_modules/tns-platform-declarations/android-25.d.ts" />
+/// <reference path="./typings/androidx-wear-1.0.0.d.ts" />
+/// <reference path="../node_modules/tns-platform-declarations/android.d.ts" />
 
-import {
-  setActivityCallbacks,
-  AndroidActivityCallbacks
-} from 'tns-core-modules/ui/frame';
 import * as application from 'tns-core-modules/application';
+import {
+  AndroidActivityCallbacks,
+  setActivityCallbacks
+} from 'tns-core-modules/ui/frame';
 
 @JavaProxy('com.nativescript.AmbientActivity')
-@Interfaces([
-  android.support.wear.ambient.AmbientModeSupport.AmbientCallbackProvider
-])
-class AmbientActivity extends android.support.v7.app.AppCompatActivity
-  implements
-    android.support.wear.ambient.AmbientModeSupport.AmbientCallbackProvider {
-  constructor() {
-    super();
-  }
+@Interfaces([androidx.wear.ambient.AmbientModeSupport.AmbientCallbackProvider])
+class Activity extends androidx.appcompat.app.AppCompatActivity
+  implements androidx.wear.ambient.AmbientModeSupport.AmbientCallbackProvider {
+  private _callbacks: AndroidActivityCallbacks;
 
   /**
    * Ambient mode controller attached to this display. Used by Activity to see if it is in ambient
    * mode.
    */
-  public ambientController: android.support.wear.ambient.AmbientModeSupport.AmbientController;
+  public ambientController: androidx.wear.ambient.AmbientModeSupport.AmbientController;
 
   public isNativeScriptActivity;
 
-  private _callbacks: AndroidActivityCallbacks;
-
-  public getAmbientCallback(): android.support.wear.ambient.AmbientModeSupport.AmbientCallback {
+  public getAmbientCallback() {
     return new MyAmbientCallback();
   }
 
   public onCreate(savedInstanceState: android.os.Bundle): void {
-    // Set the isNativeScriptActivity in onCreate (as done in the original NativeScript activity code)
-    // The JS constructor might not be called because the activity is created from Android.
-    this.isNativeScriptActivity = true;
     if (!this._callbacks) {
       setActivityCallbacks(this);
     }
 
-    this._callbacks.onCreate(this, savedInstanceState, super.onCreate);
+    this._callbacks.onCreate(
+      this,
+      savedInstanceState,
+      this.getIntent(),
+      super.onCreate
+    );
 
-    this.ambientController = android.support.wear.ambient.AmbientModeSupport.attach(
+    this.ambientController = androidx.wear.ambient.AmbientModeSupport.attach(
       this
     );
   }
@@ -101,7 +95,7 @@ class AmbientActivity extends android.support.v7.app.AppCompatActivity
   }
 }
 
-class MyAmbientCallback extends android.support.wear.ambient.AmbientModeSupport
+class MyAmbientCallback extends androidx.wear.ambient.AmbientModeSupport
   .AmbientCallback {
   /** If the display is low-bit in ambient mode. i.e. it requires anti-aliased fonts. */
   public mIsLowBitAmbient: boolean;
@@ -114,11 +108,11 @@ class MyAmbientCallback extends android.support.wear.ambient.AmbientModeSupport
 
   public onEnterAmbient(ambientDetails: android.os.Bundle): void {
     this.mIsLowBitAmbient = ambientDetails.getBoolean(
-      android.support.wear.ambient.AmbientModeSupport.EXTRA_LOWBIT_AMBIENT,
+      androidx.wear.ambient.AmbientModeSupport.EXTRA_LOWBIT_AMBIENT,
       false
     );
     this.mDoBurnInProtection = ambientDetails.getBoolean(
-      android.support.wear.ambient.AmbientModeSupport.EXTRA_BURN_IN_PROTECTION,
+      androidx.wear.ambient.AmbientModeSupport.EXTRA_BURN_IN_PROTECTION,
       false
     );
 

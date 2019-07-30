@@ -1,6 +1,6 @@
 import { WearOsListView } from './wear-os-listview.android';
 
-export class TNS_WearableRecyclerView extends android.support.wear.widget
+export class TNS_WearableRecyclerView extends androidx.wear.widget
   .WearableRecyclerView {
   constructor(
     context: android.content.Context,
@@ -21,6 +21,7 @@ export class TNS_WearableRecyclerView extends android.support.wear.widget
       const owner = this.owner.get();
       owner.onLayout(l, t, r, b);
     }
+    // @ts-ignore
     super.onLayout(changed, l, t, r, b);
   }
 }
