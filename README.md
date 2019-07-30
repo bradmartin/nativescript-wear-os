@@ -29,6 +29,10 @@ NativeScript-Wear-OS is a NativeScript plugin that provides layouts and utilitie
 
 ```bash
 tns plugin add nativescript-wear-os
+
+// if you are not using AndroidX then use the old version by installing
+
+tns plugin add nativescript-wear-os@0.1.0
 ```
 
 ---
