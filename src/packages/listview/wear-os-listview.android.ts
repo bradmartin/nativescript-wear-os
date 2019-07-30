@@ -43,8 +43,6 @@ export class WearOsListView extends BASE.WearOsListViewBase {
 
   constructor() {
     super();
-
-    console.log(androidx.wear.widget);
   }
 
   public createNativeView() {

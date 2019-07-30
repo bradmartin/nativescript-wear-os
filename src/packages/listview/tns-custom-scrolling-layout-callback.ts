@@ -9,7 +9,7 @@ export class TNS_CustomScrollingLayoutCallback extends androidx.wear.widget
 
   onLayoutFinished(
     child: android.view.View,
-    parent: any // androidx.recyclerview.widget.RecyclerView
+    parent: androidx.recyclerview.widget.RecyclerView
   ) {
     // Figure out % progress from top to bottom
     const centerOffset = child.getHeight() / 2.0 / parent.getHeight();

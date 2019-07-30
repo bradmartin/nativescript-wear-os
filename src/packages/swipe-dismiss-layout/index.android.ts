@@ -19,7 +19,7 @@ export class SwipeDismissLayout extends ContentView
    * String value for hooking into the layout dismissed event. This event fires when the swipe layout has been dismissed.
    */
   public static swipeStartedEvent = 'swipeStarted';
-  private _android: any; // androidx.wear.widget.SwipeDismissFrameLayout;
+  private _android: androidx.wear.widget.SwipeDismissFrameLayout;
   private _holder: android.widget.LinearLayout;
   private _callback: TNS_SwipeDismissFrameLayoutCallback;
   private _androidViewId: number;
@@ -49,7 +49,7 @@ export class SwipeDismissLayout extends ContentView
     if (!this._androidViewId) {
       this._androidViewId = android.view.View.generateViewId();
     }
-    this._android.setId(this._androidViewId);
+    (this._android as any).setId(this._androidViewId);
 
     this._holder.setOrientation(android.widget.LinearLayout.VERTICAL);
     this._holder.setGravity(android.view.Gravity.FILL_VERTICAL);
@@ -60,7 +60,7 @@ export class SwipeDismissLayout extends ContentView
       )
     );
 
-    this._android.addView(this._holder);
+    (this._android as any).addView(this._holder);
 
     return this._android;
   }

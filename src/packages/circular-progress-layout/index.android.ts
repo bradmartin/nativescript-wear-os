@@ -35,7 +35,6 @@ export class CircularProgressLayout extends View
   }
 
   set backgroundColor(value) {
-    console.log(value);
     this.android.setBackgroundColor(new Color(value).android);
   }
 
