@@ -8,7 +8,7 @@ import {
 import { ItemEventData } from 'nativescript-wear-os/packages/listview';
 import * as application from 'tns-core-modules/application';
 import { Observable } from 'tns-core-modules/data/observable';
-import { ObservableArray } from 'tns-core-modules/data/observable-array/observable-array';
+import { ObservableArray } from 'tns-core-modules/data/observable-array';
 import { Frame, Page, topmost } from 'tns-core-modules/ui/frame';
 import { Prop } from './prop';
 import { hideOffScreenLayout, showOffScreenLayout } from './utils';

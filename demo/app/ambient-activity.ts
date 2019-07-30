@@ -1,3 +1,6 @@
+/// <reference path="./typings/androidx-wear-1.0.0.d.ts" />
+/// <reference path="../node_modules/tns-platform-declarations/android.d.ts" />
+
 import * as application from 'tns-core-modules/application';
 import {
   AndroidActivityCallbacks,
@@ -6,21 +9,17 @@ import {
 
 @JavaProxy('com.nativescript.AmbientActivity')
 @Interfaces([androidx.wear.ambient.AmbientModeSupport.AmbientCallbackProvider])
-class AmbientActivity extends androidx.appcompat.app.AppCompatActivity
+class Activity extends androidx.appcompat.app.AppCompatActivity
   implements androidx.wear.ambient.AmbientModeSupport.AmbientCallbackProvider {
-  constructor() {
-    super();
-  }
+  private _callbacks: AndroidActivityCallbacks;
 
   /**
    * Ambient mode controller attached to this display. Used by Activity to see if it is in ambient
    * mode.
    */
-  public ambientController: any; // androidx.wear.ambient.AmbientModeSupport.AmbientController;
+  public ambientController: androidx.wear.ambient.AmbientModeSupport.AmbientController;
 
   public isNativeScriptActivity;
-
-  private _callbacks: AndroidActivityCallbacks;
 
   public getAmbientCallback() {
     return new MyAmbientCallback();
@@ -29,7 +28,7 @@ class AmbientActivity extends androidx.appcompat.app.AppCompatActivity
   public onCreate(savedInstanceState: android.os.Bundle): void {
     // Set the isNativeScriptActivity in onCreate (as done in the original NativeScript activity code)
     // The JS constructor might not be called because the activity is created from Android.
-    this.isNativeScriptActivity = true;
+    // this.isNativeScriptActivity = true;
     if (!this._callbacks) {
       setActivityCallbacks(this);
     }

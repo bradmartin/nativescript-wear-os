@@ -3,18 +3,22 @@
   xmlns:wol="nativescript-wear-os/packages/wear-os-layout" 
   xmlns:sdl="nativescript-wear-os/packages/swipe-dismiss-layout">
   <GridLayout rows="*, *" columns="*">
+    <StackLayout row="0" col="0">
+      <Label text="hello" textWrap="true" />
 
-    <wear:WearOsListView height="100%" width="100%" col="0" row="0" rowSpan="2" useScalingScroll="true" circularScrollingEnabled="true" items="{{ items }}" itemTap="{{ onItemTap }}">
+    </StackLayout>
+
+    <!-- <wear:WearOsListView height="100%" width="100%" col="0" row="0" rowSpan="2" useScalingScroll="true" circularScrollingEnabled="true" items="{{ items }}" itemTap="{{ onItemTap }}">
       <wear:WearOsListView.itemTemplate>
         <GridLayout rows="*" columns="auto, *">
           <Image src="{{ image }}" class="image" stretch="aspectFit" row="0" col="0" />
           <Label text="{{ title }}" class="label" row="0" col="1" textWrap="true"/>
         </GridLayout>
       </wear:WearOsListView.itemTemplate>
-    </wear:WearOsListView>
+    </wear:WearOsListView> -->
 
     // Swipe Layout "Page" 
-    <sdl:SwipeDismissLayout id="swipePage" class="swipePage" row="0" col="0" rowSpan="2" translateX="500" visibility="{{ isSwipeLayoutVisible ? 'visible' : 'collapsed' }}">
+                <!-- <sdl:SwipeDismissLayout id="swipePage" class="swipePage" row="0" col="0" rowSpan="2" translateX="500" visibility="{{ isSwipeLayoutVisible ? 'visible' : 'collapsed' }}">
       <wol:WearOsLayout class="swipePage" height="100%" width="100%">
         <ScrollView height="100%">
           <StackLayout>
@@ -25,7 +29,7 @@
           </StackLayout>
         </ScrollView>
       </wol:WearOsLayout>
-    </sdl:SwipeDismissLayout>
+    </sdl:SwipeDismissLayout> -->
 
   </GridLayout>
 </Page>
