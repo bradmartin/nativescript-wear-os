@@ -1,6 +1,5 @@
 import { Color } from 'tns-core-modules/color';
 import { AddChildFromBuilder, View } from 'tns-core-modules/ui/core/view';
-import { AndroidX_WidgetNamespace } from '../../index';
 
 export class CircularProgressLayout extends View
   implements AddChildFromBuilder {
@@ -41,7 +40,7 @@ export class CircularProgressLayout extends View
   }
 
   public createNativeView() {
-    this._android = new AndroidX_WidgetNamespace.CircularProgressLayout(
+    this._android = new androidx.wear.widget.CircularProgressLayout(
       this._context
     );
     // this._holder = new android.widget.LinearLayout(this._context);
@@ -53,7 +52,7 @@ export class CircularProgressLayout extends View
     // this._holder.setOrientation(android.widget.LinearLayout.VERTICAL);
     // this._holder.setGravity(android.view.Gravity.FILL_VERTICAL);
     // (this._holder as any).setLayoutParams(
-    //   new AndroidX_WidgetNamespace.BoxInsetLayout.LayoutParams(
+    //   new androidx.wear.widget.BoxInsetLayout.LayoutParams(
     //     android.view.ViewGroup.LayoutParams.FILL_PARENT,
     //     android.view.ViewGroup.LayoutParams.FILL_PARENT,
     //     android.view.Gravity.FILL_VERTICAL,
@@ -73,7 +72,7 @@ export class CircularProgressLayout extends View
       this.android.setTotalTime(this.totalTime);
     }
 
-    const timerFinishedListener = new AndroidX_WidgetNamespace.CircularProgressLayout.OnTimerFinishedListener(
+    const timerFinishedListener = new androidx.wear.widget.CircularProgressLayout.OnTimerFinishedListener(
       {
         onTimerFinished(param0) {
           console.log('timer finished');

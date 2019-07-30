@@ -1,7 +1,7 @@
 import { View } from 'tns-core-modules/ui/core/view';
-import { RecyclerView_Namespace } from '../../index';
 import { WearOsListView } from './wear-os-listview.android';
-export declare class TNS_WearOsListViewHolder extends RecyclerView_Namespace.RecyclerView.ViewHolder implements android.view.View.OnClickListener, android.view.View.OnLongClickListener {
+export declare class TNS_WearOsListViewHolder extends androidx.recyclerview.widget
+    .RecyclerView.ViewHolder {
     private owner;
     private list;
     _selected: boolean;

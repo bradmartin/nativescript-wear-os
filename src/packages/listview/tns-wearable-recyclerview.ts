@@ -1,7 +1,7 @@
-import { AndroidX_WidgetNamespace } from '../../index';
 import { WearOsListView } from './wear-os-listview.android';
 
-export class TNS_WearableRecyclerView extends AndroidX_WidgetNamespace.WearableRecyclerView {
+export class TNS_WearableRecyclerView extends androidx.wear.widget
+  .WearableRecyclerView {
   constructor(
     context: android.content.Context,
     private owner: WeakRef<WearOsListView>
@@ -21,6 +21,7 @@ export class TNS_WearableRecyclerView extends AndroidX_WidgetNamespace.WearableR
       const owner = this.owner.get();
       owner.onLayout(l, t, r, b);
     }
+    // @ts-ignore
     super.onLayout(changed, l, t, r, b);
   }
 }

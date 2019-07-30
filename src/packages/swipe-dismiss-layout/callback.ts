@@ -1,8 +1,7 @@
-import { AndroidX_WidgetNamespace } from '../../index';
 import { SwipeDismissLayout } from './index';
 
 // tslint:disable-next-line:class-name
-export class TNS_SwipeDismissFrameLayoutCallback extends AndroidX_WidgetNamespace
+export class TNS_SwipeDismissFrameLayoutCallback extends androidx.wear.widget
   .SwipeDismissFrameLayout.Callback {
   constructor(private owner: WeakRef<SwipeDismissLayout>) {
     super();

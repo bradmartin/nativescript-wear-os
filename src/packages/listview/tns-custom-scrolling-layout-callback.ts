@@ -1,6 +1,4 @@
-import { AndroidX_WidgetNamespace } from '../../index';
-
-export class TNS_CustomScrollingLayoutCallback extends AndroidX_WidgetNamespace
+export class TNS_CustomScrollingLayoutCallback extends androidx.wear.widget
   .WearableLinearLayoutManager.LayoutCallback {
   /** How much should we scale the icon at most. */
   private static MAX_ICON_PROGRESS = 2;

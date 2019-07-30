@@ -1,6 +1,5 @@
 import { ContentView } from 'tns-core-modules/ui/content-view';
 import { AddChildFromBuilder, View } from 'tns-core-modules/ui/core/view';
-import { AndroidX_WidgetNamespace } from '../../index';
 
 export class BoxInsetLayout extends ContentView implements AddChildFromBuilder {
   private _android: any;
@@ -17,7 +16,7 @@ export class BoxInsetLayout extends ContentView implements AddChildFromBuilder {
   }
 
   createNativeView() {
-    this._android = new AndroidX_WidgetNamespace.BoxInsetLayout(this._context);
+    this._android = new androidx.wear.widget.BoxInsetLayout(this._context);
     this._holder = new android.widget.LinearLayout(this._context);
 
     if (!this._androidViewId) {
@@ -27,7 +26,7 @@ export class BoxInsetLayout extends ContentView implements AddChildFromBuilder {
     this._holder.setOrientation(android.widget.LinearLayout.VERTICAL);
     this._holder.setGravity(android.view.Gravity.FILL_VERTICAL);
     (this._holder as any).setLayoutParams(
-      new AndroidX_WidgetNamespace.BoxInsetLayout.LayoutParams(
+      new androidx.wear.widget.BoxInsetLayout.LayoutParams(
         android.view.ViewGroup.LayoutParams.FILL_PARENT,
         android.view.ViewGroup.LayoutParams.FILL_PARENT,
         android.view.Gravity.FILL_VERTICAL,

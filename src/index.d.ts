@@ -4,5 +4,3 @@ export * from './packages/listview';
 export * from './packages/swipe-dismiss-layout';
 export * from './packages/wear-os-layout';
 export * from './utils';
-export declare const AndroidX_WidgetNamespace: any;
-export declare const RecyclerView_Namespace: any;

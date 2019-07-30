@@ -3,7 +3,6 @@ import {
   ContentView
 } from 'tns-core-modules/ui/content-view';
 import { View } from 'tns-core-modules/ui/core/view';
-import { AndroidX_WidgetNamespace } from '../../index';
 import { TNS_SwipeDismissFrameLayoutCallback } from './callback';
 
 export class SwipeDismissLayout extends ContentView
@@ -42,7 +41,7 @@ export class SwipeDismissLayout extends ContentView
   }
 
   createNativeView() {
-    this._android = new AndroidX_WidgetNamespace.SwipeDismissFrameLayout(
+    this._android = new androidx.wear.widget.SwipeDismissFrameLayout(
       this._context
     );
     this._holder = new android.widget.LinearLayout(this._context);

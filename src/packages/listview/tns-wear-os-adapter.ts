@@ -1,7 +1,6 @@
 import { View } from 'tns-core-modules/ui/core/view';
 import { StackLayout } from 'tns-core-modules/ui/layouts/stack-layout';
 import { ProxyViewContainer } from 'tns-core-modules/ui/proxy-view-container';
-import { RecyclerView_Namespace } from '../../index';
 import { TNS_WearOsListViewHolder } from './tns-wear-os-listview-holder';
 import {
   ItemEventData,
@@ -18,8 +17,8 @@ export function ensureWearOsListViewAdapterClass() {
     return;
   }
 
-  class TNS_WearOsListViewAdapter extends RecyclerView_Namespace.RecyclerView
-    .Adapter<any> {
+  class TNS_WearOsListViewAdapter extends androidx.recyclerview.widget
+    .RecyclerView.Adapter<any> {
     owner: WeakRef<WearOsListView>;
 
     constructor(owner: WeakRef<WearOsListView>) {

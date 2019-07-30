@@ -1,4 +1,4 @@
-export declare function showConfirmationActivity(message: string, type: ConfirmationActivityType): Promise<{}>;
+export declare function showConfirmationActivity(message: string, type: ConfirmationActivityType): Promise<unknown>;
 export declare enum ConfirmationActivityType {
     'SUCCESS' = "SUCCESS",
     'FAILURE' = "FAILURE",
