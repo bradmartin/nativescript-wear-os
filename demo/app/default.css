@@ -9,13 +9,13 @@ ListView {
 }
 
 .image {
-  height: 50;
-  width: 50;
+  height: 40;
+  width: 40;
 }
 
 .label {
   color: #fff;
-  font-size: 20;
+  font-size: 18;
   margin: 4;
   vertical-align: middle;
 }
