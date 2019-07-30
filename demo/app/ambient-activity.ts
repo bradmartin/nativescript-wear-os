@@ -26,14 +26,16 @@ class Activity extends androidx.appcompat.app.AppCompatActivity
   }
 
   public onCreate(savedInstanceState: android.os.Bundle): void {
-    // Set the isNativeScriptActivity in onCreate (as done in the original NativeScript activity code)
-    // The JS constructor might not be called because the activity is created from Android.
-    // this.isNativeScriptActivity = true;
     if (!this._callbacks) {
       setActivityCallbacks(this);
     }
 
-    this._callbacks.onCreate(this, savedInstanceState, super.onCreate, null);
+    this._callbacks.onCreate(
+      this,
+      savedInstanceState,
+      this.getIntent(),
+      super.onCreate
+    );
 
     this.ambientController = androidx.wear.ambient.AmbientModeSupport.attach(
       this
