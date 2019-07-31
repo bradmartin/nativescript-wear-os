@@ -7,7 +7,7 @@ android {
 dependencies {
     implementation 'com.android.support:wear:28.0.0'
     implementation 'com.google.android.support:wearable:2.4.0'
-    implementation 'com.github.bradmartin:SmartWearOs:0.2.0-rc1'
+    implementation 'com.github.bradmartin:SmartWearOs:0.2.0'
     compileOnly 'com.google.android.wearable:wearable:2.4.0'
 }
 
