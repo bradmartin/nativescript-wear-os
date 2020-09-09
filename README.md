@@ -21,8 +21,14 @@ NativeScript-Wear-OS is a NativeScript plugin that provides layouts and utilitie
 
 ## Installation
 
+NativeScript Version 7+:
 ```bash
 tns plugin add nativescript-wear-os
+```
+
+NativeScript version prior to 7:
+```bash
+tns plugin add nativescript-wear-os@2.1.1
 ```
 
 ---
@@ -50,8 +56,8 @@ tns plugin add nativescript-wear-os
 ```javascript
 // Add your custom Activities, Services and other Android app components here.
 const appComponents = [
-  'tns-core-modules/ui/frame',
-  'tns-core-modules/ui/frame/activity',
+  '@nativescript/core/ui/frame',
+  '@nativescript/core/ui/frame/activity',
   resolve(__dirname, 'app/ambient-activity'),
 ];
 ```
