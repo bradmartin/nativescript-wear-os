@@ -6,14 +6,14 @@ NativeScript-Wear-OS is a NativeScript plugin that provides layouts and utilitie
 </h4>
 
 <p align="center">
+  <a href="https://www.npmjs.com/package/nativescript-gif">
+        <img src="https://github.com/bradmartin/nativescript-wear-os/workflows/Build%20CI/badge.svg" alt="Action Build">
+    </a>
     <a href="https://www.npmjs.com/package/nativescript-wear-os">
         <img src="https://img.shields.io/npm/v/nativescript-wear-os.svg" alt="npm">
     </a>
     <a href="https://www.npmjs.com/package/nativescript-wear-os">
         <img src="https://img.shields.io/npm/dt/nativescript-wear-os.svg?label=npm%20downloads" alt="npm">
-    </a>
-    <a href="https://github.com/bradmartin/nativescript-wear-os/blob/master/LICENSE">
-        <img src="https://img.shields.io/github/license/bradmartin/nativescript-wear-os.svg" alt="license">
     </a>
 </p>
 
@@ -22,11 +22,13 @@ NativeScript-Wear-OS is a NativeScript plugin that provides layouts and utilitie
 ## Installation
 
 NativeScript Version 7+:
+
 ```bash
 tns plugin add nativescript-wear-os
 ```
 
 NativeScript version prior to 7:
+
 ```bash
 tns plugin add nativescript-wear-os@2.1.1
 ```
