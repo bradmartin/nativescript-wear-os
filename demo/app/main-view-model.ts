@@ -55,8 +55,8 @@ export class HelloWorldModel extends Observable {
 
   constructor(page: Page) {
     super();
-
-    this._swipeLayout = page.getViewById('swipePage') as SwipeDismissLayout;
+    const x = page.getViewById('swipePage') as unknown;
+    this._swipeLayout = <SwipeDismissLayout>x;
     console.log(this._swipeLayout.android);
     this._swipeLayout.on(SwipeDismissLayout.dimissedEvent, (args) => {
       console.log('dimissedEvent', args.object);

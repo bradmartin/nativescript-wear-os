@@ -1,13 +1,14 @@
 import { View } from '@nativescript/core';
+import { SwipeDismissLayout } from 'nativescript-wear-os';
 
 export function hideOffScreenLayout(
-  view: View,
+  view: View | SwipeDismissLayout,
   position: { x: number; y: number }
 ) {
   if (view) {
     view.visibility = 'collapse';
     view.animate({
-      target: view,
+      target: view as any,
       duration: 300,
       translate: {
         x: position.x,
@@ -17,11 +18,11 @@ export function hideOffScreenLayout(
   }
 }
 
-export function showOffScreenLayout(view: View) {
+export function showOffScreenLayout(view: View | SwipeDismissLayout) {
   if (view) {
     view.visibility = 'visible';
     view.animate({
-      target: view,
+      target: view as any,
       duration: 400,
       translate: {
         x: 0,
