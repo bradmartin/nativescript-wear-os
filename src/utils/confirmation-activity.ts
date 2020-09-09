@@ -1,5 +1,9 @@
-import * as app from 'tns-core-modules/application';
-import { ad as androidUtils } from 'tns-core-modules/utils/utils';
+import {
+  AndroidActivityResultEventData,
+  AndroidApplication,
+  Application,
+  Utils
+} from '@nativescript/core';
 
 const CONFIRMATION_ACTIVITY_REQUEST_CODE = 5673;
 
@@ -13,7 +17,7 @@ export function showConfirmationActivity(
 
       // create the intent
       const intent = new android.content.Intent(
-        androidUtils.getApplicationContext(),
+        Utils.android.getApplicationContext(),
         android.support.wearable.activity.ConfirmationActivity.class
       ) as android.content.Intent;
       intent.putExtra(
@@ -27,9 +31,9 @@ export function showConfirmationActivity(
       );
 
       // handle the speech result
-      app.android.on(
-        app.AndroidApplication.activityResultEvent,
-        (args: app.AndroidActivityResultEventData) => {
+      Application.android.on(
+        AndroidApplication.activityResultEvent,
+        (args: AndroidActivityResultEventData) => {
           if (
             args.requestCode === CONFIRMATION_ACTIVITY_REQUEST_CODE &&
             args.resultCode === android.app.Activity.RESULT_OK
@@ -42,7 +46,8 @@ export function showConfirmationActivity(
 
       // start the speech activity
       const activity: android.app.Activity =
-        app.android.foregroundActivity || app.android.startActivity;
+        Application.android.foregroundActivity ||
+        Application.android.startActivity;
       activity.startActivityForResult(
         intent,
         CONFIRMATION_ACTIVITY_REQUEST_CODE
@@ -56,7 +61,7 @@ export function showConfirmationActivity(
 export enum ConfirmationActivityType {
   'SUCCESS' = 'SUCCESS',
   'FAILURE' = 'FAILURE',
-  'OPEN_ON_PHONE' = 'OPEN_ON_PHONE'
+  'OPEN_ON_PHONE' = 'OPEN_ON_PHONE',
 }
 
 function _getActivityType(type: ConfirmationActivityType) {

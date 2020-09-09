@@ -1,11 +1,8 @@
-import {
-  AddChildFromBuilder,
-  ContentView
-} from 'tns-core-modules/ui/content-view';
-import { View } from 'tns-core-modules/ui/core/view';
+import { AddChildFromBuilder, ContentView, View } from '@nativescript/core';
 import { TNS_SwipeDismissFrameLayoutCallback } from './callback';
 
-export class SwipeDismissLayout extends ContentView
+export class SwipeDismissLayout
+  extends ContentView
   implements AddChildFromBuilder {
   /**
    * String value for hooking into the layout dismissed event. This event fires when the swipe layout has been dismissed.
@@ -28,12 +25,12 @@ export class SwipeDismissLayout extends ContentView
   constructor() {
     super();
   }
-  get android() {
-    return this._android;
-  }
+  // get android() {
+  //   return this._android;
+  // }
 
   get swipeable() {
-    return (this._android as any).isSwipeable();
+    return this._android.isSwipeable();
   }
 
   set swipeable(value: boolean) {

@@ -12,12 +12,6 @@ NativeScript-Wear-OS is a NativeScript plugin that provides layouts and utilitie
     <a href="https://www.npmjs.com/package/nativescript-wear-os">
         <img src="https://img.shields.io/npm/dt/nativescript-wear-os.svg?label=npm%20downloads" alt="npm">
     </a>
-    <a href="https://github.com/bradmartin/nativescript-wear-os/stargazers">
-        <img src="https://img.shields.io/github/stars/bradmartin/nativescript-wear-os.svg" alt="stars">
-    </a>
-     <a href="https://github.com/bradmartin/nativescript-wear-os/network">
-        <img src="https://img.shields.io/github/forks/bradmartin/nativescript-wear-os.svg" alt="forks">
-    </a>
     <a href="https://github.com/bradmartin/nativescript-wear-os/blob/master/LICENSE">
         <img src="https://img.shields.io/github/license/bradmartin/nativescript-wear-os.svg" alt="license">
     </a>
@@ -58,7 +52,7 @@ tns plugin add nativescript-wear-os
 const appComponents = [
   'tns-core-modules/ui/frame',
   'tns-core-modules/ui/frame/activity',
-  resolve(__dirname, 'app/ambient-activity')
+  resolve(__dirname, 'app/ambient-activity'),
 ];
 ```
 
@@ -156,7 +150,7 @@ The plugin has a success dialog and failure/error dialog to present on WearOS. T
 ```typescript
 import {
   showFailure,
-  showSuccess
+  showSuccess,
 } from 'nativescript-wear-os/packages/dialogs';
 
 showSuccess('Great choice! NativeScript is awesome.', 4).then(() => {

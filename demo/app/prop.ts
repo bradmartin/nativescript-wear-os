@@ -1,14 +1,14 @@
-import { Observable } from 'tns-core-modules/data/observable';
+import { Observable } from '@nativescript/core';
 
 export function Prop() {
   return (obj: Observable, key: string) => {
     let storedValue = obj[key];
 
     Object.defineProperty(obj, key, {
-      get: function() {
+      get: function () {
         return storedValue;
       },
-      set: function(value) {
+      set: function (value) {
         if (storedValue === value) {
           return;
         }
@@ -17,11 +17,11 @@ export function Prop() {
           eventName: Observable.propertyChangeEvent,
           propertyName: key,
           object: this,
-          value
+          value,
         });
       },
       enumerable: true,
-      configurable: true
+      configurable: true,
     });
   };
 }

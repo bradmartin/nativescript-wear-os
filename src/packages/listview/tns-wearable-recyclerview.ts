@@ -1,5 +1,6 @@
 import { WearOsListView } from './wear-os-listview.android';
 
+@NativeClass()
 export class TNS_WearableRecyclerView extends androidx.wear.widget
   .WearableRecyclerView {
   constructor(

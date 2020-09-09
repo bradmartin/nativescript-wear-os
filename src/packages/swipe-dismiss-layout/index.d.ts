@@ -1,6 +1,7 @@
-import { AddChildFromBuilder } from 'tns-core-modules/ui/content-view';
-import { View } from 'tns-core-modules/ui/core/view';
-export declare class SwipeDismissLayout extends View
+import { AddChildFromBuilder, View } from '@nativescript/core';
+
+export declare class SwipeDismissLayout
+  extends View
   implements AddChildFromBuilder {
   static dimissedEvent: string;
   static swipeCanceledEvent: string;

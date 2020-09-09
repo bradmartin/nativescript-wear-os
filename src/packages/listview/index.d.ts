@@ -1,4 +1,4 @@
-import { PercentLength, Template, View } from 'tns-core-modules/ui/core/view';
+import { PercentLength, Template, View } from '@nativescript/core';
 import { TNS_WearableRecyclerView } from './tns-wearable-recyclerview';
 import * as BASE from './wear-os-listview-base';
 

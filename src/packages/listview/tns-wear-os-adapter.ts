@@ -1,11 +1,13 @@
-import { View } from 'tns-core-modules/ui/core/view';
-import { StackLayout } from 'tns-core-modules/ui/layouts/stack-layout';
-import { ProxyViewContainer } from 'tns-core-modules/ui/proxy-view-container';
+import {
+  ProxyViewContainer,
+  StackLayout,
+  Utils,
+  View
+} from '@nativescript/core';
 import { TNS_WearOsListViewHolder } from './tns-wear-os-listview-holder';
 import {
   ItemEventData,
   ITEMLOADING,
-  layout,
   LayoutTypeOptions
 } from './wear-os-listview-base';
 import { WearOsListView } from './wear-os-listview.android';
@@ -17,6 +19,7 @@ export function ensureWearOsListViewAdapterClass() {
     return;
   }
 
+  @NativeClass()
   class TNS_WearOsListViewAdapter extends androidx.recyclerview.widget
     .RecyclerView.Adapter<any> {
     owner: WeakRef<WearOsListView>;
@@ -66,7 +69,7 @@ export function ensureWearOsListViewAdapterClass() {
           android: holder,
           ios: undefined,
           index,
-          view: view
+          view: view,
         };
 
         owner.notify(args);
@@ -82,11 +85,11 @@ export function ensureWearOsListViewAdapterClass() {
 
         if (owner.layoutType === LayoutTypeOptions.STAGGERED) {
           let random;
-          const max = layout.toDeviceIndependentPixels(
+          const max = Utils.layout.toDeviceIndependentPixels(
             owner._effectiveItemHeight
           );
           const min =
-            layout.toDeviceIndependentPixels(owner._effectiveItemHeight) *
+            Utils.layout.toDeviceIndependentPixels(owner._effectiveItemHeight) *
             (1 / 3);
           if (min && max) {
             if (owner._staggeredMap && owner._staggeredMap.has(index)) {
@@ -104,13 +107,13 @@ export function ensureWearOsListViewAdapterClass() {
           }
         } else {
           if (owner._itemHeight) {
-            view.height = layout.toDeviceIndependentPixels(
+            view.height = Utils.layout.toDeviceIndependentPixels(
               owner._effectiveItemHeight
             );
           }
 
           if (owner._itemWidth) {
-            view.width = layout.toDeviceIndependentPixels(
+            view.width = Utils.layout.toDeviceIndependentPixels(
               owner._effectiveItemWidth
             );
           }

@@ -1,28 +1,24 @@
-import { Observable } from 'tns-core-modules/data/observable';
 import {
+  addWeakEventListener,
+  Builder,
   ChangedData,
-  ObservableArray
-} from 'tns-core-modules/data/observable-array';
-import { messageType, write } from 'tns-core-modules/trace';
-import { parse, parseMultipleTemplates } from 'tns-core-modules/ui/builder';
-import {
   CoercibleProperty,
   CSSType,
   KeyedTemplate,
+  Label,
   makeParser,
   makeValidator,
+  Observable,
+  ObservableArray,
   PercentLength,
   Property,
+  removeWeakEventListener,
   Template,
+  Trace,
   View
-} from 'tns-core-modules/ui/core/view';
-import {
-  addWeakEventListener,
-  removeWeakEventListener
-} from 'tns-core-modules/ui/core/weak-event-listener';
-import { Label } from 'tns-core-modules/ui/label/label';
+} from '@nativescript/core';
 
-export * from 'tns-core-modules/ui/core/view';
+export * from '@nativescript/core/ui/core/view';
 
 export const ITEMLOADING = 'itemLoading';
 export const LOADMOREITEMS = 'loadMoreItems';
@@ -50,11 +46,11 @@ export namespace knownCollections {
 export const wearOsListViewTraceCategory = 'ns-wear-os-listview';
 
 export function WearOsListViewLog(message: string): void {
-  write(message, wearOsListViewTraceCategory);
+  Trace.write(message, wearOsListViewTraceCategory);
 }
 
 export function WearOsListViewError(message: string): void {
-  write(message, wearOsListViewTraceCategory, messageType.error);
+  Trace.write(message, wearOsListViewTraceCategory, Trace.messageType.error);
 }
 
 export interface ItemEventData {
@@ -101,10 +97,10 @@ export abstract class WearOsListViewBase extends View {
     key: 'default',
     createView: () => {
       if (this.itemTemplate) {
-        return parse(this.itemTemplate, this);
+        return Builder.parse(this.itemTemplate, this);
       }
       return undefined;
-    }
+    },
   };
   public _itemTemplatesInternal = new Array<KeyedTemplate>(
     this._defaultTemplate
@@ -147,7 +143,7 @@ export abstract class WearOsListViewBase extends View {
       this._itemTemplateSelectorBindable.bind({
         sourceProperty: null,
         targetProperty: 'templateKey',
-        expression: value
+        expression: value,
       });
       this._itemTemplateSelector = (item: any, index: number, items: any) => {
         item['$index'] = index;
@@ -210,7 +206,7 @@ export abstract class WearOsListViewBase extends View {
     const lbl = new Label();
     lbl.bind({
       targetProperty: 'text',
-      sourceProperty: '$value'
+      sourceProperty: '$value',
     });
     return lbl;
   }
@@ -250,7 +246,7 @@ export type LayoutType = 'grid' | 'linear' | 'staggered';
 export enum LayoutTypeOptions {
   GRID = 'grid',
   LINEAR = 'linear',
-  STAGGERED = 'staggered'
+  STAGGERED = 'staggered',
 }
 
 export const itemsProperty = new Property<
@@ -277,7 +273,7 @@ export const itemsProperty = new Property<
       );
     }
     target.refresh();
-  }
+  },
 });
 itemsProperty.register(WearOsListViewBase);
 
@@ -287,9 +283,9 @@ export const itemTemplateProperty = new Property<
 >({
   name: 'itemTemplate',
   affectsLayout: true,
-  valueChanged: target => {
+  valueChanged: (target) => {
     target.refresh();
-  }
+  },
 });
 itemTemplateProperty.register(WearOsListViewBase);
 
@@ -299,18 +295,18 @@ export const itemTemplatesProperty = new Property<
 >({
   name: 'itemTemplates',
   affectsLayout: true,
-  valueConverter: value => {
+  valueConverter: (value) => {
     if (typeof value === 'string') {
-      return parseMultipleTemplates(value);
+      return Builder.parseMultipleTemplates(value);
     }
     return value;
-  }
+  },
 });
 itemTemplatesProperty.register(WearOsListViewBase);
 
 export const layoutTypeProperty = new Property<WearOsListViewBase, LayoutType>({
   name: 'layoutType',
-  affectsLayout: true
+  affectsLayout: true,
 });
 layoutTypeProperty.register(WearOsListViewBase);
 
@@ -318,7 +314,7 @@ export const spanCountProperty = new Property<WearOsListViewBase, number>({
   name: 'spanCount',
   defaultValue: 1,
   affectsLayout: true,
-  valueConverter: v => parseInt(v, 10)
+  valueConverter: (v) => parseInt(v, 10),
 });
 spanCountProperty.register(WearOsListViewBase);
 
@@ -344,7 +340,7 @@ export const itemWidthProperty = new CoercibleProperty<
       target._innerWidth
     );
     target.refresh();
-  }
+  },
 });
 itemWidthProperty.register(WearOsListViewBase);
 
@@ -370,7 +366,7 @@ export const itemHeightProperty = new CoercibleProperty<
       target._innerHeight
     );
     target.refresh();
-  }
+  },
 });
 
 itemHeightProperty.register(WearOsListViewBase);
@@ -392,7 +388,7 @@ export const orientationProperty = new Property<
   ) => {
     target.refresh();
   },
-  valueConverter: converter
+  valueConverter: converter,
 });
 
 orientationProperty.register(WearOsListViewBase);
@@ -402,7 +398,7 @@ export const maxProperty = new Property<WearOsListViewBase, PercentLength>({
   affectsLayout: true,
   defaultValue: { value: 1, unit: '%' },
   equalityComparer: PercentLength.equals,
-  valueConverter: PercentLength.parse
+  valueConverter: PercentLength.parse,
 });
 
 maxProperty.register(WearOsListViewBase);
@@ -412,13 +408,13 @@ export const minProperty = new Property<WearOsListViewBase, PercentLength>({
   affectsLayout: true,
   defaultValue: { value: 1 / 3, unit: '%' },
   equalityComparer: PercentLength.equals,
-  valueConverter: PercentLength.parse
+  valueConverter: PercentLength.parse,
 });
 
 minProperty.register(WearOsListViewBase);
 
 export const hideScrollBarProperty = new Property<WearOsListViewBase, boolean>({
-  name: 'hideScrollBar'
+  name: 'hideScrollBar',
 });
 hideScrollBarProperty.register(WearOsListViewBase);
 
@@ -427,12 +423,12 @@ export const circularScrollingEnabled = new Property<
   boolean
 >({
   name: 'circularScrollingEnabled',
-  defaultValue: false
+  defaultValue: false,
 });
 circularScrollingEnabled.register(WearOsListViewBase);
 
 export const useScalingScroll = new Property<WearOsListViewBase, boolean>({
   name: 'useScalingScroll',
-  defaultValue: false
+  defaultValue: false,
 });
 useScalingScroll.register(WearOsListViewBase);

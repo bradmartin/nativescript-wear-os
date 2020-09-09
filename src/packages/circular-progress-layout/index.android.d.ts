@@ -1,15 +1,13 @@
-import { AddChildFromBuilder, View } from 'tns-core-modules/ui/core/view';
+import { AddChildFromBuilder, View } from '@nativescript/core';
 export declare class CircularProgressLayout extends View implements AddChildFromBuilder {
     private _android;
     private _holder;
     private _androidViewId;
     private _childViews;
     constructor();
-    readonly android: any;
-    strokeWidth: number;
-    indeterminate: boolean;
-    totalTime: any;
-    backgroundColor: any;
+    set strokeWidth(value: number);
+    set indeterminate(value: boolean);
+    set totalTime(value: any);
     createNativeView(): any;
     initNativeView(): void;
     disposeNativeView(): void;

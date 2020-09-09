@@ -1,5 +1,5 @@
-import * as app from 'tns-core-modules/application';
-import { ad as androidUtils } from 'tns-core-modules/utils/utils';
+import { Application, Utils } from '@nativescript/core';
+
 const SUCCESS_ACTIVITY_REQUEST_CODE = 5674;
 
 /**
@@ -11,7 +11,7 @@ export const showSuccess = (msg?: string, dismissTime = 3) => {
   return new Promise((resolve, reject) => {
     // create the intent
     const intent = new android.content.Intent(
-      androidUtils.getApplicationContext(),
+      Utils.android.getApplicationContext(),
       (com as any).github.bradmartin.smartwearos.SuccessActivity.class
     );
 
@@ -22,7 +22,8 @@ export const showSuccess = (msg?: string, dismissTime = 3) => {
 
     // start the success activity
     const activity: android.app.Activity =
-      app.android.foregroundActivity || app.android.startActivity;
+      Application.android.foregroundActivity ||
+      Application.android.startActivity;
     activity.startActivityForResult(intent, SUCCESS_ACTIVITY_REQUEST_CODE);
 
     activity.onActivityResult = (requestCode, resultCode, data) => {

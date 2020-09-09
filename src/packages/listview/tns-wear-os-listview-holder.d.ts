@@ -1,4 +1,4 @@
-import { View } from 'tns-core-modules/ui/core/view';
+import { View } from '@nativescript/core';
 import { WearOsListView } from './wear-os-listview.android';
 export declare class TNS_WearOsListViewHolder extends androidx.recyclerview.widget
     .RecyclerView.ViewHolder {
@@ -8,7 +8,7 @@ export declare class TNS_WearOsListViewHolder extends androidx.recyclerview.widg
     constructor(owner: WeakRef<View>, list: WeakRef<WearOsListView>);
     isSelected(): boolean;
     setIsSelected(selected: boolean): void;
-    readonly view: View;
+    get view(): View;
     onClick(v: android.view.View): void;
     onLongClick(v: android.view.View): boolean;
 }

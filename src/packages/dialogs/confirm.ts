@@ -1,5 +1,4 @@
-import * as app from 'tns-core-modules/application';
-import { ad as androidUtils } from 'tns-core-modules/utils/utils';
+import { Application, Utils } from '@nativescript/core';
 const CONFIRMATION_ACTIVITY_REQUEST_CODE = 5673;
 
 /**
@@ -10,7 +9,7 @@ export const confirm = (options: ConfirmOptions) => {
   return new Promise((resolve, reject) => {
     // create the intent
     const intent = new android.content.Intent(
-      androidUtils.getApplicationContext(),
+      Utils.android.getApplicationContext(),
       (com as any).github.bradmartin.smartwearos.ConfirmationActivity.class
     );
 
@@ -24,7 +23,8 @@ export const confirm = (options: ConfirmOptions) => {
 
     // start the confirm activity
     const activity: android.app.Activity =
-      app.android.foregroundActivity || app.android.startActivity;
+      Application.android.foregroundActivity ||
+      Application.android.startActivity;
     activity.startActivityForResult(intent, CONFIRMATION_ACTIVITY_REQUEST_CODE);
 
     activity.onActivityResult = (requestCode, resultCode, data) => {

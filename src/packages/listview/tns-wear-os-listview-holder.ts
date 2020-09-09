@@ -1,4 +1,4 @@
-import { View } from 'tns-core-modules/ui/core/view';
+import { View } from '@nativescript/core';
 import {
   ITEMDESELECTED,
   ItemEventData,
@@ -9,8 +9,9 @@ import { WearOsListView } from './wear-os-listview.android';
 
 @Interfaces([
   android.view.View.OnClickListener,
-  android.view.View.OnLongClickListener
+  android.view.View.OnLongClickListener,
 ])
+@NativeClass()
 export class TNS_WearOsListViewHolder extends androidx.recyclerview.widget
   .RecyclerView.ViewHolder {
   _selected: boolean = false;
@@ -47,7 +48,7 @@ export class TNS_WearOsListViewHolder extends androidx.recyclerview.widget
       index: index,
       view: this.view,
       android: v,
-      ios: undefined
+      ios: undefined,
     });
 
     if (listView.selectionBehavior !== 'Press') return;
@@ -55,7 +56,7 @@ export class TNS_WearOsListViewHolder extends androidx.recyclerview.widget
     const item = items.getItem ? items.getItem(index) : items[index];
     if (listView.multipleSelection) {
       if (this.isSelected()) {
-        listView._itemsSelected = listView._itemsSelected.filter(selected => {
+        listView._itemsSelected = listView._itemsSelected.filter((selected) => {
           if (selected !== item) {
             return selected;
           }
@@ -67,7 +68,7 @@ export class TNS_WearOsListViewHolder extends androidx.recyclerview.widget
           index: index,
           view: this.view,
           android: v,
-          ios: undefined
+          ios: undefined,
         });
       } else {
         this.setIsSelected(true);
@@ -78,7 +79,7 @@ export class TNS_WearOsListViewHolder extends androidx.recyclerview.widget
           index: index,
           view: this.view,
           android: v,
-          ios: undefined
+          ios: undefined,
         });
       }
     } else {
@@ -91,7 +92,7 @@ export class TNS_WearOsListViewHolder extends androidx.recyclerview.widget
           index: index,
           view: this.view,
           android: v,
-          ios: undefined
+          ios: undefined,
         });
       } else {
         this.setIsSelected(true);
@@ -102,7 +103,7 @@ export class TNS_WearOsListViewHolder extends androidx.recyclerview.widget
           index: index,
           view: this.view,
           android: v,
-          ios: undefined
+          ios: undefined,
         });
       }
     }
@@ -116,11 +117,13 @@ export class TNS_WearOsListViewHolder extends androidx.recyclerview.widget
       const item = items.getItem ? items.getItem(index) : items[index];
       if (listView.multipleSelection) {
         if (this.isSelected()) {
-          listView._itemsSelected = listView._itemsSelected.filter(selected => {
-            if (selected !== item) {
-              return selected;
+          listView._itemsSelected = listView._itemsSelected.filter(
+            (selected) => {
+              if (selected !== item) {
+                return selected;
+              }
             }
-          });
+          );
           this.setIsSelected(false);
 
           listView.notify<ItemEventData>({
@@ -129,7 +132,7 @@ export class TNS_WearOsListViewHolder extends androidx.recyclerview.widget
             index: index,
             view: this.view,
             android: v,
-            ios: undefined
+            ios: undefined,
           });
         } else {
           this.setIsSelected(true);
@@ -140,7 +143,7 @@ export class TNS_WearOsListViewHolder extends androidx.recyclerview.widget
             index: index,
             view: this.view,
             android: v,
-            ios: undefined
+            ios: undefined,
           });
         }
       } else {
@@ -153,7 +156,7 @@ export class TNS_WearOsListViewHolder extends androidx.recyclerview.widget
             index: index,
             view: this.view,
             android: v,
-            ios: undefined
+            ios: undefined,
           });
         } else {
           this.setIsSelected(true);
@@ -164,7 +167,7 @@ export class TNS_WearOsListViewHolder extends androidx.recyclerview.widget
             index: index,
             view: this.view,
             android: v,
-            ios: undefined
+            ios: undefined,
           });
         }
       }

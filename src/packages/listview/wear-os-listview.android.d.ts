@@ -1,4 +1,4 @@
-import { PercentLength, Template, View } from 'tns-core-modules/ui/core/view';
+import { PercentLength, Template, View } from '@nativescript/core';
 import { TNS_WearableRecyclerView } from './tns-wearable-recyclerview';
 import * as BASE from './wear-os-listview-base';
 export * from './wear-os-listview-base';
@@ -21,7 +21,6 @@ export declare class WearOsListView extends BASE.WearOsListViewBase {
     _itemsSelected: any[];
     _staggeredMap: Map<number, number>;
     private _androidViewId;
-    readonly android: TNS_WearableRecyclerView;
     constructor();
     createNativeView(): TNS_WearableRecyclerView;
     initNativeView(): void;
@@ -31,7 +30,7 @@ export declare class WearOsListView extends BASE.WearOsListViewBase {
     refresh(): void;
     scrollToIndex(index: number): void;
     scrollToIndexAnimated(index: number): void;
-    readonly _childrenCount: number;
+    get _childrenCount(): number;
     eachChildView(callback: (child: View) => boolean): void;
     private _clearRealizedCells;
 }

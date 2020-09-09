@@ -1,7 +1,7 @@
-import { Color } from 'tns-core-modules/color';
-import { AddChildFromBuilder, View } from 'tns-core-modules/ui/core/view';
+import { AddChildFromBuilder, View } from '@nativescript/core';
 
-export class CircularProgressLayout extends View
+export class CircularProgressLayout
+  extends View
   implements AddChildFromBuilder {
   private _android: any;
   private _holder: android.widget.LinearLayout;
@@ -12,9 +12,9 @@ export class CircularProgressLayout extends View
     super();
   }
 
-  get android() {
-    return this._android;
-  }
+  // get android() {
+  //   return this._android;
+  // }
 
   set strokeWidth(value: number) {
     if (value) {
@@ -34,9 +34,9 @@ export class CircularProgressLayout extends View
     }
   }
 
-  set backgroundColor(value) {
-    this.android.setBackgroundColor(new Color(value).android);
-  }
+  // set backgroundColor(value) {
+  //   this.android.setBackgroundColor(new Color(value).android);
+  // }
 
   public createNativeView() {
     this._android = new androidx.wear.widget.CircularProgressLayout(
@@ -75,7 +75,7 @@ export class CircularProgressLayout extends View
       {
         onTimerFinished(param0) {
           console.log('timer finished');
-        }
+        },
       }
     );
     this.android.setOnTimerFinishedListener(timerFinishedListener);
@@ -95,7 +95,7 @@ export class CircularProgressLayout extends View
 
   public onLoaded(): void {
     super.onLoaded();
-    this._childViews.forEach(value => {
+    this._childViews.forEach((value) => {
       this._addView(value);
       this._holder.addView(value.nativeView);
     });

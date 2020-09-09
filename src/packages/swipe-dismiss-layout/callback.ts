@@ -1,6 +1,5 @@
 import { SwipeDismissLayout } from './index';
 
-// tslint:disable-next-line:class-name
 export class TNS_SwipeDismissFrameLayoutCallback extends androidx.wear.widget
   .SwipeDismissFrameLayout.Callback {
   constructor(private owner: WeakRef<SwipeDismissLayout>) {
@@ -12,7 +11,7 @@ export class TNS_SwipeDismissFrameLayoutCallback extends androidx.wear.widget
     const owner = this.owner.get();
     owner.notify({
       eventName: SwipeDismissLayout.dimissedEvent,
-      object: owner
+      object: owner,
     });
   }
 
@@ -20,7 +19,7 @@ export class TNS_SwipeDismissFrameLayoutCallback extends androidx.wear.widget
     const owner = this.owner.get();
     owner.notify({
       eventName: SwipeDismissLayout.swipeCanceledEvent,
-      object: owner
+      object: owner,
     });
   }
 
@@ -28,7 +27,7 @@ export class TNS_SwipeDismissFrameLayoutCallback extends androidx.wear.widget
     const owner = this.owner.get();
     owner.notify({
       eventName: SwipeDismissLayout.swipeStartedEvent,
-      object: owner
+      object: owner,
     });
   }
 }

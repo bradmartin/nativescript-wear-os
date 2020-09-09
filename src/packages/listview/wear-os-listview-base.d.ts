@@ -1,6 +1,5 @@
-import { ChangedData } from 'tns-core-modules/data/observable-array';
-import { CoercibleProperty, KeyedTemplate, PercentLength, Property, Template, View } from 'tns-core-modules/ui/core/view';
-export * from 'tns-core-modules/ui/core/view';
+import { ChangedData, CoercibleProperty, KeyedTemplate, PercentLength, Property, Template, View } from '@nativescript/core';
+export * from '@nativescript/core/ui/core/view';
 export declare const ITEMLOADING = "itemLoading";
 export declare const LOADMOREITEMS = "loadMoreItems";
 export declare const ITEMTAP = "itemTap";
@@ -67,8 +66,10 @@ export declare abstract class WearOsListViewBase extends View {
     selectionBehavior: 'None' | 'Press' | 'LongPress';
     multipleSelection: boolean;
     constructor();
-    itemIdGenerator: (item: any, index: number, items: any) => number;
-    itemTemplateSelector: string | ((item: any, index: number, items: any) => string);
+    get itemIdGenerator(): (item: any, index: number, items: any) => number;
+    set itemIdGenerator(generatorFn: (item: any, index: number, items: any) => number);
+    get itemTemplateSelector(): string | ((item: any, index: number, items: any) => string);
+    set itemTemplateSelector(value: string | ((item: any, index: number, items: any) => string));
     onLayout(left: number, top: number, right: number, bottom: number): void;
     _getItemTemplate(index: number): KeyedTemplate;
     _prepareItem(item: View, index: number): void;

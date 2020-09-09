@@ -1,4 +1,4 @@
-import { View } from 'tns-core-modules/ui/core/view/view';
+import { View } from '@nativescript/core';
 
 export function hideOffScreenLayout(
   view: View,
@@ -11,8 +11,8 @@ export function hideOffScreenLayout(
       duration: 300,
       translate: {
         x: position.x,
-        y: position.y
-      }
+        y: position.y,
+      },
     });
   }
 }
@@ -25,8 +25,8 @@ export function showOffScreenLayout(view: View) {
       duration: 400,
       translate: {
         x: 0,
-        y: 0
-      }
+        y: 0,
+      },
     });
   }
 }

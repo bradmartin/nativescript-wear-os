@@ -1,11 +1,11 @@
-import { Observable } from 'tns-core-modules/data/observable';
 import {
   KeyedTemplate,
+  Observable,
   PercentLength,
   Template,
+  Utils,
   View
-} from 'tns-core-modules/ui/core/view';
-import { ad as androidUtils } from 'tns-core-modules/utils/utils';
+} from '@nativescript/core';
 import { TNS_CustomScrollingLayoutCallback } from './tns-custom-scrolling-layout-callback';
 import {
   ensureWearOsListViewAdapterClass,
@@ -37,9 +37,9 @@ export class WearOsListView extends BASE.WearOsListViewBase {
   _staggeredMap: Map<number, number>;
   private _androidViewId: number = -1;
 
-  get android(): TNS_WearableRecyclerView {
-    return this.listView;
-  }
+  // get android(): TNS_WearableRecyclerView {
+  //   return this.listView;
+  // }
 
   constructor() {
     super();
@@ -83,7 +83,7 @@ export class WearOsListView extends BASE.WearOsListViewBase {
 
     // Only square watches you typically don't want to use the custom layout scaling for items to rotate around the circle
     // so we'll check if the device screen is round or not
-    const androidConfig = (androidUtils.getApplicationContext() as android.content.Context)
+    const androidConfig = (Utils.android.getApplicationContext() as android.content.Context)
       .getResources()
       .getConfiguration();
 
@@ -134,7 +134,7 @@ export class WearOsListView extends BASE.WearOsListViewBase {
     const nativeView = this.nativeViewProtected;
     nativeView.setAdapter(null);
 
-    this.eachChildView(view => {
+    this.eachChildView((view) => {
       if (view && view.parent) {
         view.parent._removeView(view);
       }
