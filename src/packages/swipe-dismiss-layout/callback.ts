@@ -1,4 +1,4 @@
-import { SwipeDismissLayout } from './swipe-dismiss-layout.android';
+import { SwipeDismissLayout } from './index';
 
 @NativeClass()
 export class TNS_SwipeDismissFrameLayoutCallback extends androidx.wear.widget

@@ -6,8 +6,8 @@
     "skipLibCheck": true,
     "removeComments": true,
     "experimentalDecorators": true,
-    "declaration": true,
-    "noEmitOnError": false,
+    "declaration": false,
+    "noEmitOnError": true,
     "noEmitHelpers": true,
     "noImplicitUseStrict": true,
     "lib": ["es6", "dom"],
@@ -17,7 +17,7 @@
       "*": ["./node_modules/tns-core-modules/*", "./node_modules/*"]
     }
   },
-  "exclude": ["node_modules"],
+  "exclude": ["node_modules", "typings", "platforms", "scripts"],
   "compileOnSave": false,
   "plugins": [
     {
