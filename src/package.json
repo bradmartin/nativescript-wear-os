@@ -20,7 +20,7 @@
     "tslint": "cd .. && tslint \"**/*.ts\" --config tslint.json --exclude \"**/node_modules/**\" --exclude \"*demo*/platforms/**\" --exclude \"**/typings/**\"",
     "demo.ios": "cd ../demo && tns run ios",
     "demo.android": "cd ../demo && tns run android",
-    "ci.tslint": "npm i && tslint '**/*.ts' --config '../tslint.json' --exclude '**/node_modules/**'",
+    "ci.tslint": "npm i && tslint '**/*.ts' --config '../tslint.json' --exclude '**/node_modules/**' --exclude '**/typings/**'",
     "make-changelog": "cd ../ && github_changelog_generator -u bradmartin -p nativescript-wear-os --token=TOKEN"
   },
   "keywords": [
@@ -70,9 +70,7 @@
     "rimraf": "^3.0.2",
     "ts-patch": "^1.3.0",
     "tslint": "~6.1.3",
+    "ts-node": "^9.0.0",
     "typescript": "~3.9.0"
-  },
-  "dependencies": {
-    "ts-node": "^9.0.0"
   }
 }
