@@ -1,15 +1,13 @@
-/// <reference path="./typings/androidx-wear-1.0.0.d.ts" />
-/// <reference path="../node_modules/tns-platform-declarations/android.d.ts" />
-
-import * as application from 'tns-core-modules/application';
 import {
   AndroidActivityCallbacks,
   setActivityCallbacks
-} from 'tns-core-modules/ui/frame';
+} from '@nativescript/core';
 
+@NativeClass()
 @JavaProxy('com.nativescript.AmbientActivity')
 @Interfaces([androidx.wear.ambient.AmbientModeSupport.AmbientCallbackProvider])
-class Activity extends androidx.appcompat.app.AppCompatActivity
+class Activity
+  extends androidx.appcompat.app.AppCompatActivity
   implements androidx.wear.ambient.AmbientModeSupport.AmbientCallbackProvider {
   private _callbacks: AndroidActivityCallbacks;
 
@@ -95,6 +93,7 @@ class Activity extends androidx.appcompat.app.AppCompatActivity
   }
 }
 
+@NativeClass()
 class MyAmbientCallback extends androidx.wear.ambient.AmbientModeSupport
   .AmbientCallback {
   /** If the display is low-bit in ambient mode. i.e. it requires anti-aliased fonts. */
@@ -122,10 +121,10 @@ class MyAmbientCallback extends androidx.wear.ambient.AmbientModeSupport
       object: this,
       data: {
         isLowBitAmbient: this.mIsLowBitAmbient,
-        doBurnInProtection: this.mDoBurnInProtection
-      }
+        doBurnInProtection: this.mDoBurnInProtection,
+      },
     };
-    application.notify(eventData);
+    global.NativeScriptGlobals.events.notify(eventData);
   }
 
   public onExitAmbient(): void {
@@ -135,10 +134,10 @@ class MyAmbientCallback extends androidx.wear.ambient.AmbientModeSupport
       object: this,
       data: {
         isLowBitAmbient: this.mIsLowBitAmbient,
-        doBurnInProtection: this.mDoBurnInProtection
-      }
+        doBurnInProtection: this.mDoBurnInProtection,
+      },
     };
-    application.notify(eventData);
+    global.NativeScriptGlobals.events.notify(eventData);
   }
 
   public onUpdateAmbient(): void {
@@ -148,9 +147,9 @@ class MyAmbientCallback extends androidx.wear.ambient.AmbientModeSupport
       object: this,
       data: {
         isLowBitAmbient: this.mIsLowBitAmbient,
-        doBurnInProtection: this.mDoBurnInProtection
-      }
+        doBurnInProtection: this.mDoBurnInProtection,
+      },
     };
-    application.notify(eventData);
+    global.NativeScriptGlobals.events.notify(eventData);
   }
 }

@@ -1,8 +1,8 @@
-import { PercentLength, Template, View } from 'tns-core-modules/ui/core/view';
+import { PercentLength, Template, View } from '@nativescript/core';
 import { TNS_WearableRecyclerView } from './tns-wearable-recyclerview';
-import * as BASE from './wear-os-listview-base';
+import { ItemsSource, WearOsListViewBase } from './wear-os-listview-base';
 
-export declare class WearOsListView extends BASE.WearOsListViewBase {
+export declare class WearOsListView extends WearOsListViewBase {
   static itemLoadingEvent: string;
   static itemTapEvent: string;
   nativeViewProtected: any;
@@ -13,7 +13,7 @@ export declare class WearOsListView extends BASE.WearOsListViewBase {
   itemWidth: PercentLength;
   itemHeight: PercentLength;
   spanCount: number;
-  items: any[] | BASE.ItemsSource;
+  items: any[] | ItemsSource;
   itemTemplate: string | Template;
   _realizedItems: Map<globalAndroid.view.View, View>;
   _random: java.util.Random;

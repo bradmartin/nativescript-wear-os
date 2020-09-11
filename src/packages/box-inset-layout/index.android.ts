@@ -1,5 +1,4 @@
-import { ContentView } from 'tns-core-modules/ui/content-view';
-import { AddChildFromBuilder, View } from 'tns-core-modules/ui/core/view';
+import { AddChildFromBuilder, ContentView, View } from '@nativescript/core';
 
 export class BoxInsetLayout extends ContentView implements AddChildFromBuilder {
   private _android: any;
@@ -11,9 +10,9 @@ export class BoxInsetLayout extends ContentView implements AddChildFromBuilder {
     super();
   }
 
-  get android() {
-    return this._android;
-  }
+  // get android() {
+  //   return this._android;
+  // }
 
   createNativeView() {
     this._android = new androidx.wear.widget.BoxInsetLayout(this._context);
@@ -61,17 +60,17 @@ export class BoxInsetLayout extends ContentView implements AddChildFromBuilder {
     return this._content ? 1 : 0;
   }
 
-  public _onContentChanged(oldView: View, newView: View) {
+  _onContentChanged(oldView: View, newView: View) {
     //
   }
 
-  public _addChildFromBuilder(name: string, value: any) {
+  _addChildFromBuilder(name: string, value: any) {
     if (value instanceof View) {
       this.content = value;
     }
   }
 
-  public eachChildView(callback: (child: View) => boolean) {
+  eachChildView(callback: (child: View) => boolean) {
     const content = this._content;
     if (content) {
       callback(content);

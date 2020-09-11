@@ -1,13 +1,13 @@
-import { screen } from 'tns-core-modules/platform';
 import {
   AddChildFromBuilder,
-  ContentView
-} from 'tns-core-modules/ui/content-view';
-import { View } from 'tns-core-modules/ui/core/view';
-import { ad as androidUtils } from 'tns-core-modules/utils/utils';
+  ContentView,
+  Screen,
+  Utils,
+  View
+} from '@nativescript/core';
 
 export class WearOsLayout extends ContentView implements AddChildFromBuilder {
-  public disableInsetConstraint: boolean = false;
+  disableInsetConstraint: boolean = false;
   private _android: android.widget.LinearLayout;
   private _androidViewId: number;
   private _content: View;
@@ -17,9 +17,9 @@ export class WearOsLayout extends ContentView implements AddChildFromBuilder {
     super();
   }
 
-  get android() {
-    return this._android;
-  }
+  // get android() {
+  //   return this._android;
+  // }
 
   createNativeView() {
     this._android = new android.widget.LinearLayout(this._context);
@@ -81,7 +81,7 @@ export class WearOsLayout extends ContentView implements AddChildFromBuilder {
     }
   }
 
-  public eachChildView(callback: (child: View) => boolean) {
+  eachChildView(callback: (child: View) => boolean) {
     const content = this._content;
     if (content) {
       callback(content);
@@ -94,14 +94,14 @@ export class WearOsLayout extends ContentView implements AddChildFromBuilder {
   private _adjustInset() {
     let result = null;
 
-    const androidConfig = (androidUtils.getApplicationContext() as android.content.Context)
+    const androidConfig = (Utils.android.getApplicationContext() as android.content.Context)
       .getResources()
       .getConfiguration();
     // https://developer.android.com/reference/android/content/res/Configuration.html#isScreenRound()
     const isCircleWatch = (androidConfig as any).isScreenRound();
 
     if (isCircleWatch) {
-      result = WearOsLayout.SCALE_FACTOR * screen.mainScreen.widthPixels;
+      result = WearOsLayout.SCALE_FACTOR * Screen.mainScreen.widthPixels;
     }
     return result;
   }

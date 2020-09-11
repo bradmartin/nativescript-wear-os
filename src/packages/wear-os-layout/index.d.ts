@@ -1,5 +1,4 @@
-import { AddChildFromBuilder } from 'tns-core-modules/ui/content-view';
-import { View } from 'tns-core-modules/ui/core/view';
+import { AddChildFromBuilder, View } from '@nativescript/core';
 
 export declare class WearOsLayout extends View implements AddChildFromBuilder {
   private _android: android.widget.ScrollView;

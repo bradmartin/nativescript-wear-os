@@ -1,39 +1,35 @@
-import {
-  AddChildFromBuilder,
-  ContentView
-} from 'tns-core-modules/ui/content-view';
-import { View } from 'tns-core-modules/ui/core/view';
-import { TNS_SwipeDismissFrameLayoutCallback } from './callback';
+import { AddChildFromBuilder, ContentView, View } from '@nativescript/core';
 
-export class SwipeDismissLayout extends ContentView
+export class SwipeDismissLayout
+  extends ContentView
   implements AddChildFromBuilder {
   /**
    * String value for hooking into the layout dismissed event. This event fires when the swipe layout has been dismissed.
    */
-  public static dimissedEvent = 'dismissed';
+  static dimissedEvent = 'dismissed';
   /**
    * String value for hooking into the layout dismissed event. This event fires when the swipe layout has been dismissed.
    */
-  public static swipeCanceledEvent = 'swipeCanceled';
+  static swipeCanceledEvent = 'swipeCanceled';
   /**
    * String value for hooking into the layout dismissed event. This event fires when the swipe layout has been dismissed.
    */
-  public static swipeStartedEvent = 'swipeStarted';
+  static swipeStartedEvent = 'swipeStarted';
   private _android: androidx.wear.widget.SwipeDismissFrameLayout;
   private _holder: android.widget.LinearLayout;
-  private _callback: TNS_SwipeDismissFrameLayoutCallback;
+  private _callback: any;
   private _androidViewId: number;
   private _content: View;
 
   constructor() {
     super();
   }
-  get android() {
-    return this._android;
-  }
+  // get android() {
+  //   return this._android;
+  // }
 
   get swipeable() {
-    return (this._android as any).isSwipeable();
+    return this._android.isSwipeable();
   }
 
   set swipeable(value: boolean) {
@@ -67,10 +63,7 @@ export class SwipeDismissLayout extends ContentView
 
   initNativeView() {
     super.initNativeView();
-    // add the layout callback
-    this._callback = new TNS_SwipeDismissFrameLayoutCallback(
-      new WeakRef(this as any)
-    );
+    this._callback = new TNS_SwipeDismissFrameLayoutCallback(new WeakRef(this));
     this._android.addCallback(this._callback);
   }
 
@@ -92,20 +85,62 @@ export class SwipeDismissLayout extends ContentView
     return this._content ? 1 : 0;
   }
 
-  public _onContentChanged(oldView: View, newView: View) {
+  _onContentChanged(oldView: View, newView: View) {
     //
   }
 
-  public _addChildFromBuilder(name: string, value: any) {
+  _addChildFromBuilder(name: string, value: any) {
     if (value instanceof View) {
       this.content = value;
     }
   }
 
-  public eachChildView(callback: (child: View) => boolean) {
+  eachChildView(callback: (child: View) => boolean) {
     const content = this._content;
     if (content) {
       callback(content);
+    }
+  }
+}
+
+@NativeClass()
+class TNS_SwipeDismissFrameLayoutCallback extends androidx.wear.widget
+  .SwipeDismissFrameLayout.Callback {
+  private readonly owner: WeakRef<SwipeDismissLayout>;
+
+  constructor(owner: WeakRef<SwipeDismissLayout>) {
+    super();
+    this.owner = owner;
+    return global.__native(this);
+  }
+
+  onDismissed(layout: any) {
+    const owner = this.owner && this.owner.get();
+    if (owner) {
+      owner.notify({
+        eventName: SwipeDismissLayout.dimissedEvent,
+        object: owner
+      });
+    }
+  }
+
+  onSwipeCanceled(layout) {
+    const owner = this.owner && this.owner.get();
+    if (owner) {
+      owner.notify({
+        eventName: SwipeDismissLayout.swipeCanceledEvent,
+        object: owner
+      });
+    }
+  }
+
+  onSwipeStarted(layout) {
+    const owner = this.owner && this.owner.get();
+    if (owner) {
+      owner.notify({
+        eventName: SwipeDismissLayout.swipeStartedEvent,
+        object: owner
+      });
     }
   }
 }

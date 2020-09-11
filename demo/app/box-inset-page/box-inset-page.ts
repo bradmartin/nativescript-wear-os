@@ -1,4 +1,4 @@
-import { Frame } from 'tns-core-modules/ui/frame';
+import { Frame } from '@nativescript/core';
 
 export function pageLoaded() {
   console.log('page loaded');
