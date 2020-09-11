@@ -38,7 +38,7 @@ export class CircularProgressLayout
   //   this.android.setBackgroundColor(new Color(value).android);
   // }
 
-  public createNativeView() {
+  createNativeView() {
     this._android = new androidx.wear.widget.CircularProgressLayout(
       this._context
     );
@@ -64,7 +64,7 @@ export class CircularProgressLayout
     return this._android;
   }
 
-  public initNativeView() {
+  initNativeView() {
     super.initNativeView();
 
     if (this.totalTime) {
@@ -75,27 +75,27 @@ export class CircularProgressLayout
       {
         onTimerFinished(param0) {
           console.log('timer finished');
-        },
+        }
       }
     );
     this.android.setOnTimerFinishedListener(timerFinishedListener);
   }
 
-  public disposeNativeView() {
+  disposeNativeView() {
     super.disposeNativeView();
   }
 
-  public startTimer() {
+  startTimer() {
     this.android.startTimer();
   }
 
-  public stopTimer() {
+  stopTimer() {
     this.android.stopTimer();
   }
 
-  public onLoaded(): void {
+  onLoaded(): void {
     super.onLoaded();
-    this._childViews.forEach((value) => {
+    this._childViews.forEach(value => {
       this._addView(value);
       this._holder.addView(value.nativeView);
     });

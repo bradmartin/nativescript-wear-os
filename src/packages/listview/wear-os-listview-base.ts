@@ -18,7 +18,7 @@ import {
   View
 } from '@nativescript/core';
 
-export * from '@nativescript/core/ui/core/view';
+// export * from '@nativescript/core/ui/core/view';
 
 export const ITEMLOADING = 'itemLoading';
 export const LOADMOREITEMS = 'loadMoreItems';
@@ -76,45 +76,43 @@ export abstract class WearOsListViewBase extends View {
   abstract refresh(): void;
 
   // TODO: get rid of such hacks.
-  public static knownFunctions = ['itemTemplateSelector', 'itemIdGenerator']; // See component-builder.ts isKnownFunction
-  public hideScrollBar: boolean;
-  public max: PercentLength;
-  public min: PercentLength;
-  public _itemWidth: any;
-  public _itemHeight: any;
-  public itemWidth: PercentLength;
-  public itemHeight: PercentLength;
-  public layoutType: LayoutType;
-  public spanCount: number;
-  public items: any[] | ItemsSource;
-  public itemTemplate: string | Template;
-  public static itemLoadingEvent = ITEMLOADING;
-  public static itemTapEvent = ITEMTAP;
-  public static loadMoreItemsEvent = LOADMOREITEMS;
-  public static scrollEvent = SCROLLEVENT;
-  public pullToRefresh: boolean = false;
-  public _defaultTemplate: KeyedTemplate = {
+  static knownFunctions = ['itemTemplateSelector', 'itemIdGenerator']; // See component-builder.ts isKnownFunction
+  static itemLoadingEvent = ITEMLOADING;
+  static itemTapEvent = ITEMTAP;
+  static loadMoreItemsEvent = LOADMOREITEMS;
+  static scrollEvent = SCROLLEVENT;
+  hideScrollBar: boolean;
+  max: PercentLength;
+  min: PercentLength;
+  _itemWidth: any;
+  _itemHeight: any;
+  itemWidth: PercentLength;
+  itemHeight: PercentLength;
+  layoutType: LayoutType;
+  spanCount: number;
+  items: any[] | ItemsSource;
+  itemTemplate: string | Template;
+  pullToRefresh: boolean = false;
+  _defaultTemplate: KeyedTemplate = {
     key: 'default',
     createView: () => {
       if (this.itemTemplate) {
         return Builder.parse(this.itemTemplate, this);
       }
       return undefined;
-    },
+    }
   };
-  public _itemTemplatesInternal = new Array<KeyedTemplate>(
-    this._defaultTemplate
-  );
-  public itemTemplates: string | Array<KeyedTemplate>;
-  public _innerWidth: number = 0;
-  public _innerHeight: number = 0;
-  public _effectiveItemHeight: number;
-  public _effectiveItemWidth: number;
-  public orientation: Orientation;
+  _itemTemplatesInternal = new Array<KeyedTemplate>(this._defaultTemplate);
+  itemTemplates: string | Array<KeyedTemplate>;
+  _innerWidth: number = 0;
+  _innerHeight: number = 0;
+  _effectiveItemHeight: number;
+  _effectiveItemWidth: number;
+  orientation: Orientation;
+  itemReorder: boolean = false;
+  selectionBehavior: 'None' | 'Press' | 'LongPress' = 'None';
+  multipleSelection: boolean = false;
   private _itemTemplateSelectorBindable = new Label();
-  public itemReorder: boolean = false;
-  public selectionBehavior: 'None' | 'Press' | 'LongPress' = 'None';
-  public multipleSelection: boolean = false;
 
   constructor() {
     super();
@@ -143,7 +141,7 @@ export abstract class WearOsListViewBase extends View {
       this._itemTemplateSelectorBindable.bind({
         sourceProperty: null,
         targetProperty: 'templateKey',
-        expression: value,
+        expression: value
       });
       this._itemTemplateSelector = (item: any, index: number, items: any) => {
         item['$index'] = index;
@@ -155,7 +153,7 @@ export abstract class WearOsListViewBase extends View {
     }
   }
 
-  public onLayout(left: number, top: number, right: number, bottom: number) {
+  onLayout(left: number, top: number, right: number, bottom: number) {
     super.onLayout(left, top, right, bottom);
     this._innerWidth =
       right - left - this.effectivePaddingLeft - this.effectivePaddingRight;
@@ -176,7 +174,7 @@ export abstract class WearOsListViewBase extends View {
     );
   }
 
-  public _getItemTemplate(index: number): KeyedTemplate {
+  _getItemTemplate(index: number): KeyedTemplate {
     let templateKey = 'default';
     if (this.itemTemplateSelector) {
       const dataItem = this._getDataItem(index);
@@ -196,17 +194,17 @@ export abstract class WearOsListViewBase extends View {
     return this._itemTemplatesInternal[0];
   }
 
-  public _prepareItem(item: View, index: number) {
+  _prepareItem(item: View, index: number) {
     if (item) {
       item.bindingContext = this._getDataItem(index);
     }
   }
 
-  public _getDefaultItemContent(index: number): View {
+  _getDefaultItemContent(index: number): View {
     const lbl = new Label();
     lbl.bind({
       targetProperty: 'text',
-      sourceProperty: '$value',
+      sourceProperty: '$value'
     });
     return lbl;
   }
@@ -246,7 +244,7 @@ export type LayoutType = 'grid' | 'linear' | 'staggered';
 export enum LayoutTypeOptions {
   GRID = 'grid',
   LINEAR = 'linear',
-  STAGGERED = 'staggered',
+  STAGGERED = 'staggered'
 }
 
 export const itemsProperty = new Property<
@@ -273,7 +271,7 @@ export const itemsProperty = new Property<
       );
     }
     target.refresh();
-  },
+  }
 });
 itemsProperty.register(WearOsListViewBase);
 
@@ -283,9 +281,9 @@ export const itemTemplateProperty = new Property<
 >({
   name: 'itemTemplate',
   affectsLayout: true,
-  valueChanged: (target) => {
+  valueChanged: target => {
     target.refresh();
-  },
+  }
 });
 itemTemplateProperty.register(WearOsListViewBase);
 
@@ -295,18 +293,18 @@ export const itemTemplatesProperty = new Property<
 >({
   name: 'itemTemplates',
   affectsLayout: true,
-  valueConverter: (value) => {
+  valueConverter: value => {
     if (typeof value === 'string') {
       return Builder.parseMultipleTemplates(value);
     }
     return value;
-  },
+  }
 });
 itemTemplatesProperty.register(WearOsListViewBase);
 
 export const layoutTypeProperty = new Property<WearOsListViewBase, LayoutType>({
   name: 'layoutType',
-  affectsLayout: true,
+  affectsLayout: true
 });
 layoutTypeProperty.register(WearOsListViewBase);
 
@@ -314,7 +312,7 @@ export const spanCountProperty = new Property<WearOsListViewBase, number>({
   name: 'spanCount',
   defaultValue: 1,
   affectsLayout: true,
-  valueConverter: (v) => parseInt(v, 10),
+  valueConverter: v => parseInt(v, 10)
 });
 spanCountProperty.register(WearOsListViewBase);
 
@@ -340,7 +338,7 @@ export const itemWidthProperty = new CoercibleProperty<
       target._innerWidth
     );
     target.refresh();
-  },
+  }
 });
 itemWidthProperty.register(WearOsListViewBase);
 
@@ -366,7 +364,7 @@ export const itemHeightProperty = new CoercibleProperty<
       target._innerHeight
     );
     target.refresh();
-  },
+  }
 });
 
 itemHeightProperty.register(WearOsListViewBase);
@@ -388,7 +386,7 @@ export const orientationProperty = new Property<
   ) => {
     target.refresh();
   },
-  valueConverter: converter,
+  valueConverter: converter
 });
 
 orientationProperty.register(WearOsListViewBase);
@@ -398,7 +396,7 @@ export const maxProperty = new Property<WearOsListViewBase, PercentLength>({
   affectsLayout: true,
   defaultValue: { value: 1, unit: '%' },
   equalityComparer: PercentLength.equals,
-  valueConverter: PercentLength.parse,
+  valueConverter: PercentLength.parse
 });
 
 maxProperty.register(WearOsListViewBase);
@@ -408,13 +406,13 @@ export const minProperty = new Property<WearOsListViewBase, PercentLength>({
   affectsLayout: true,
   defaultValue: { value: 1 / 3, unit: '%' },
   equalityComparer: PercentLength.equals,
-  valueConverter: PercentLength.parse,
+  valueConverter: PercentLength.parse
 });
 
 minProperty.register(WearOsListViewBase);
 
 export const hideScrollBarProperty = new Property<WearOsListViewBase, boolean>({
-  name: 'hideScrollBar',
+  name: 'hideScrollBar'
 });
 hideScrollBarProperty.register(WearOsListViewBase);
 
@@ -423,12 +421,12 @@ export const circularScrollingEnabled = new Property<
   boolean
 >({
   name: 'circularScrollingEnabled',
-  defaultValue: false,
+  defaultValue: false
 });
 circularScrollingEnabled.register(WearOsListViewBase);
 
 export const useScalingScroll = new Property<WearOsListViewBase, boolean>({
   name: 'useScalingScroll',
-  defaultValue: false,
+  defaultValue: false
 });
 useScalingScroll.register(WearOsListViewBase);

@@ -18,8 +18,8 @@
     "tslint": "cd .. && tslint \"**/*.ts\" --config tslint.json --exclude \"**/node_modules/**\" --exclude \"*demo*/platforms/**\" --exclude \"**/typings/**\"",
     "demo.ios": "cd ../demo && tns run ios",
     "demo.android": "cd ../demo && tns run android",
-    "clean.src": "rimraf node_modules package-lock.json",
     "clean.demo": "cd ../demo && ns clean",
+    "clean.src": "rimraf node_modules package-lock.json",
     "ci.tslint": "npm i && tslint '**/*.ts' --config '../tslint.json' --exclude '**/node_modules/**' --exclude '**/typings/**'",
     "make-changelog": "cd ../ && github_changelog_generator -u bradmartin -p nativescript-wear-os --token=TOKEN"
   },

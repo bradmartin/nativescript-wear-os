@@ -60,17 +60,17 @@ export class BoxInsetLayout extends ContentView implements AddChildFromBuilder {
     return this._content ? 1 : 0;
   }
 
-  public _onContentChanged(oldView: View, newView: View) {
+  _onContentChanged(oldView: View, newView: View) {
     //
   }
 
-  public _addChildFromBuilder(name: string, value: any) {
+  _addChildFromBuilder(name: string, value: any) {
     if (value instanceof View) {
       this.content = value;
     }
   }
 
-  public eachChildView(callback: (child: View) => boolean) {
+  eachChildView(callback: (child: View) => boolean) {
     const content = this._content;
     if (content) {
       callback(content);

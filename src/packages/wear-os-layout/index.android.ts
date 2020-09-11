@@ -7,7 +7,7 @@ import {
 } from '@nativescript/core';
 
 export class WearOsLayout extends ContentView implements AddChildFromBuilder {
-  public disableInsetConstraint: boolean = false;
+  disableInsetConstraint: boolean = false;
   private _android: android.widget.LinearLayout;
   private _androidViewId: number;
   private _content: View;
@@ -81,7 +81,7 @@ export class WearOsLayout extends ContentView implements AddChildFromBuilder {
     }
   }
 
-  public eachChildView(callback: (child: View) => boolean) {
+  eachChildView(callback: (child: View) => boolean) {
     const content = this._content;
     if (content) {
       callback(content);

@@ -24,32 +24,32 @@ export class HelloWorldModel extends Observable {
   public items = new ObservableArray([
     <any>{
       title: 'NativeScript',
-      image: 'res://icon',
+      image: 'res://icon'
     },
     {
       title: 'Angular',
-      image: '~/images/angular.png',
+      image: '~/images/angular.png'
     },
     {
       title: 'TypeScript',
-      image: '~/images/typescript.png',
+      image: '~/images/typescript.png'
     },
     {
       title: 'Brad Wayne',
-      image: '~/images/bradmartin.jpg',
+      image: '~/images/bradmartin.jpg'
     },
     {
       title: 'VS Code',
-      image: '~/images/vscode.png',
+      image: '~/images/vscode.png'
     },
     {
       title: 'Emfinger',
-      image: '~/images/emfinger.png',
+      image: '~/images/emfinger.png'
     },
     {
       title: 'Permobil',
-      image: '~/images/permobil.png',
-    },
+      image: '~/images/permobil.png'
+    }
   ]);
   private _swipeLayout: SwipeDismissLayout;
 
@@ -58,19 +58,19 @@ export class HelloWorldModel extends Observable {
     const x = page.getViewById('swipePage') as unknown;
     this._swipeLayout = <SwipeDismissLayout>x;
     console.log(this._swipeLayout.android);
-    this._swipeLayout.on(SwipeDismissLayout.dimissedEvent, (args) => {
+    this._swipeLayout.on(SwipeDismissLayout.dimissedEvent, args => {
       console.log('dimissedEvent', args.object);
       // hide the offscreen layout when dismissed
       hideOffScreenLayout(this._swipeLayout, { x: 500, y: 0 });
       this.isSwipeLayoutVisible = false;
     });
 
-    Application.on('exitAmbient', (args) => {
+    Application.on('exitAmbient', args => {
       console.log('app has EXITED ambient mode...');
       themes.applyTheme('default.css');
     });
 
-    Application.on('enterAmbient', (args) => {
+    Application.on('enterAmbient', args => {
       console.log('app has ENTERED ambient mode...');
       themes.applyTheme('ambient.css');
     });
@@ -87,7 +87,7 @@ export class HelloWorldModel extends Observable {
         .then(() => {
           console.log('success dialog has completed.');
         })
-        .catch((err) => {
+        .catch(err => {
           console.log('success dialog error', err);
         });
 
@@ -97,7 +97,7 @@ export class HelloWorldModel extends Observable {
         .then(() => {
           console.log('failure dialog has completed.');
         })
-        .catch((err) => {
+        .catch(err => {
           console.log('failure dialog error', err);
         });
       // frame.navigate('./box-inset-page/box-inset-page');
@@ -105,8 +105,8 @@ export class HelloWorldModel extends Observable {
       confirm({
         message: 'Do you like WearOS?',
         title: 'Pick Something',
-        autoCloseTime: 3,
-      }).then((result) => {
+        autoCloseTime: 3
+      }).then(result => {
         if (result === true) {
           console.log('yay');
           frame.navigate('./box-inset-page/box-inset-page');
@@ -118,15 +118,5 @@ export class HelloWorldModel extends Observable {
       showOffScreenLayout(this._swipeLayout);
       this.isSwipeLayoutVisible = true;
     }
-  }
-
-  toggleSwipeBehavior() {
-    const x = (this._swipeLayout as any).swipeable;
-    console.log('is the swipe layout swipeable?', x);
-    // if (x) {
-    //   this._swipeLayout.swipeable = false;
-    // } else {
-    //   this._swipeLayout.swipeable = true;
-    // }
   }
 }

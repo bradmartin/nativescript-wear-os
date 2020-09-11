@@ -6,15 +6,15 @@ export class SwipeDismissLayout
   /**
    * String value for hooking into the layout dismissed event. This event fires when the swipe layout has been dismissed.
    */
-  public static dimissedEvent = 'dismissed';
+  static dimissedEvent = 'dismissed';
   /**
    * String value for hooking into the layout dismissed event. This event fires when the swipe layout has been dismissed.
    */
-  public static swipeCanceledEvent = 'swipeCanceled';
+  static swipeCanceledEvent = 'swipeCanceled';
   /**
    * String value for hooking into the layout dismissed event. This event fires when the swipe layout has been dismissed.
    */
-  public static swipeStartedEvent = 'swipeStarted';
+  static swipeStartedEvent = 'swipeStarted';
   private _android: androidx.wear.widget.SwipeDismissFrameLayout;
   private _holder: android.widget.LinearLayout;
   private _callback: any;
@@ -85,17 +85,17 @@ export class SwipeDismissLayout
     return this._content ? 1 : 0;
   }
 
-  public _onContentChanged(oldView: View, newView: View) {
+  _onContentChanged(oldView: View, newView: View) {
     //
   }
 
-  public _addChildFromBuilder(name: string, value: any) {
+  _addChildFromBuilder(name: string, value: any) {
     if (value instanceof View) {
       this.content = value;
     }
   }
 
-  public eachChildView(callback: (child: View) => boolean) {
+  eachChildView(callback: (child: View) => boolean) {
     const content = this._content;
     if (content) {
       callback(content);

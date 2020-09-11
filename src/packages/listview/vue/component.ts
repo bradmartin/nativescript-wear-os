@@ -11,19 +11,19 @@ export default {
   props: {
     items: {
       type: [Array, Object],
-      required: true,
+      required: true
     },
     '+alias': {
       type: String,
-      default: 'item',
+      default: 'item'
     },
     '+index': {
-      type: String,
+      type: String
     },
     itemTemplateSelector: {
       type: Function,
-      default: undefined,
-    },
+      default: undefined
+    }
   },
   template: `<NativeWearOsListView ref="listView" :items="items" v-bind="$attrs" v-on="listeners" @itemTap="onItemTap" @itemLoading="onItemLoading"
   >
@@ -40,8 +40,8 @@ export default {
         this.$refs.listView.setAttribute('items', newVal);
         this.refresh();
       },
-      deep: true,
-    },
+      deep: true
+    }
   },
   created() {
     // we need to remove the itemTap handler from a clone of the $listeners
@@ -102,8 +102,8 @@ export default {
     },
     getSelectedItems() {
       return this.listView.nativeView.getSelectedItems();
-    },
-  },
+    }
+  }
 };
 function getItemContext(
   item,
@@ -115,6 +115,6 @@ function getItemContext(
     [alias]: item,
     [index_alias || '$index']: index,
     $even: index % 2 === 0,
-    $odd: index % 2 !== 0,
+    $odd: index % 2 !== 0
   };
 }
