@@ -1,7 +1,5 @@
 import { AddChildFromBuilder, ContentView, View } from '@nativescript/core';
 
-let SwipeDismissCallback;
-
 export class SwipeDismissLayout
   extends ContentView
   implements AddChildFromBuilder {
@@ -65,11 +63,7 @@ export class SwipeDismissLayout
 
   initNativeView() {
     super.initNativeView();
-    // console.log('brad tits', TNS_SwipeDismissFrameLayoutCallback);
-    // add the layout callback
-    initSwipeDismissCallback();
-    console.log('SwipeDismissCallback', SwipeDismissCallback);
-    this._callback = new SwipeDismissCallback(new WeakRef(this));
+    this._callback = new TNS_SwipeDismissFrameLayoutCallback(new WeakRef(this));
     this._android.addCallback(this._callback);
   }
 
@@ -109,52 +103,44 @@ export class SwipeDismissLayout
   }
 }
 
-function initSwipeDismissCallback() {
-  if (SwipeDismissCallback) {
-    return SwipeDismissCallback;
+@NativeClass()
+class TNS_SwipeDismissFrameLayoutCallback extends androidx.wear.widget
+  .SwipeDismissFrameLayout.Callback {
+  private readonly owner: WeakRef<SwipeDismissLayout>;
+
+  constructor(owner: WeakRef<SwipeDismissLayout>) {
+    super();
+    this.owner = owner;
+    return global.__native(this);
   }
 
-  @NativeClass()
-  class TNS_SwipeDismissFrameLayoutCallback extends androidx.wear.widget
-    .SwipeDismissFrameLayout.Callback {
-    private readonly owner: WeakRef<SwipeDismissLayout>;
-
-    constructor(owner: WeakRef<SwipeDismissLayout>) {
-      super();
-      this.owner = owner;
-      return global.__native(this);
-    }
-
-    onDismissed(layout: any) {
-      const owner = this.owner && this.owner.get();
-      if (owner) {
-        owner.notify({
-          eventName: SwipeDismissLayout.dimissedEvent,
-          object: owner
-        });
-      }
-    }
-
-    onSwipeCanceled(layout) {
-      const owner = this.owner && this.owner.get();
-      if (owner) {
-        owner.notify({
-          eventName: SwipeDismissLayout.swipeCanceledEvent,
-          object: owner
-        });
-      }
-    }
-
-    onSwipeStarted(layout) {
-      const owner = this.owner && this.owner.get();
-      if (owner) {
-        owner.notify({
-          eventName: SwipeDismissLayout.swipeStartedEvent,
-          object: owner
-        });
-      }
+  onDismissed(layout: any) {
+    const owner = this.owner && this.owner.get();
+    if (owner) {
+      owner.notify({
+        eventName: SwipeDismissLayout.dimissedEvent,
+        object: owner
+      });
     }
   }
 
-  SwipeDismissCallback = TNS_SwipeDismissFrameLayoutCallback;
+  onSwipeCanceled(layout) {
+    const owner = this.owner && this.owner.get();
+    if (owner) {
+      owner.notify({
+        eventName: SwipeDismissLayout.swipeCanceledEvent,
+        object: owner
+      });
+    }
+  }
+
+  onSwipeStarted(layout) {
+    const owner = this.owner && this.owner.get();
+    if (owner) {
+      owner.notify({
+        eventName: SwipeDismissLayout.swipeStartedEvent,
+        object: owner
+      });
+    }
+  }
 }
