@@ -1,5 +1,6 @@
 import { AddChildFromBuilder, ContentView, View } from '@nativescript/core';
-import { TNS_SwipeDismissFrameLayoutCallback } from './callback';
+
+let SwipeDismissCallback;
 
 export class SwipeDismissLayout
   extends ContentView
@@ -18,7 +19,7 @@ export class SwipeDismissLayout
   public static swipeStartedEvent = 'swipeStarted';
   private _android: androidx.wear.widget.SwipeDismissFrameLayout;
   private _holder: android.widget.LinearLayout;
-  private _callback: TNS_SwipeDismissFrameLayoutCallback;
+  private _callback: any;
   private _androidViewId: number;
   private _content: View;
 
@@ -64,9 +65,11 @@ export class SwipeDismissLayout
 
   initNativeView() {
     super.initNativeView();
-    console.log('brad tits', TNS_SwipeDismissFrameLayoutCallback);
+    // console.log('brad tits', TNS_SwipeDismissFrameLayoutCallback);
     // add the layout callback
-    this._callback = new TNS_SwipeDismissFrameLayoutCallback(new WeakRef(this));
+    initSwipeDismissCallback();
+    console.log('SwipeDismissCallback', SwipeDismissCallback);
+    this._callback = new SwipeDismissCallback(new WeakRef(this));
     this._android.addCallback(this._callback);
   }
 
@@ -104,4 +107,54 @@ export class SwipeDismissLayout
       callback(content);
     }
   }
+}
+
+function initSwipeDismissCallback() {
+  if (SwipeDismissCallback) {
+    return SwipeDismissCallback;
+  }
+
+  @NativeClass()
+  class TNS_SwipeDismissFrameLayoutCallback extends androidx.wear.widget
+    .SwipeDismissFrameLayout.Callback {
+    private readonly owner: WeakRef<SwipeDismissLayout>;
+
+    constructor(owner: WeakRef<SwipeDismissLayout>) {
+      super();
+      this.owner = owner;
+      return global.__native(this);
+    }
+
+    onDismissed(layout: any) {
+      const owner = this.owner && this.owner.get();
+      if (owner) {
+        owner.notify({
+          eventName: SwipeDismissLayout.dimissedEvent,
+          object: owner
+        });
+      }
+    }
+
+    onSwipeCanceled(layout) {
+      const owner = this.owner && this.owner.get();
+      if (owner) {
+        owner.notify({
+          eventName: SwipeDismissLayout.swipeCanceledEvent,
+          object: owner
+        });
+      }
+    }
+
+    onSwipeStarted(layout) {
+      const owner = this.owner && this.owner.get();
+      if (owner) {
+        owner.notify({
+          eventName: SwipeDismissLayout.swipeStartedEvent,
+          object: owner
+        });
+      }
+    }
+  }
+
+  SwipeDismissCallback = TNS_SwipeDismissFrameLayoutCallback;
 }

@@ -15,14 +15,14 @@
     "baseUrl": ".",
     "paths": {
       "*": ["./node_modules/tns-core-modules/*", "./node_modules/*"]
-    }
+    },
+    "plugins": [
+      {
+        "transform": "@nativescript/webpack/transformers/ns-transform-native-classes",
+        "type": "raw"
+      }
+    ]
   },
   "exclude": ["node_modules", "typings", "platforms", "scripts"],
-  "compileOnSave": false,
-  "plugins": [
-    {
-      "transform": "@nativescript/webpack/transformers/ns-transform-native-classes",
-      "type": "raw"
-    }
-  ]
+  "compileOnSave": false
 }
